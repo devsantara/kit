@@ -1,7 +1,8 @@
 # dependencies
-node_modules/public/
+node_modules/
 
 # next.js
+public/
 .next/
 out/
 
@@ -10,8 +11,6 @@ build/
 
 # package manager
 pnpm-lock.yaml
-
-# debug
 .pnpm-debug.log*
 
 # misc
