@@ -88,6 +88,7 @@ const eslintStylisticConfig = [
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@stylistic/linebreak-style': ['error', 'unix'],
       '@stylistic/jsx-one-expression-per-line': ['off'],
+      '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/member-delimiter-style': [
         'error',
         {
