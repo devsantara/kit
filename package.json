@@ -5,6 +5,14 @@
   "description": "The Blueprint for Your Next Big Idea",
   "author": "devsantara",
   "license": "MIT",
+  "homepage": "https://github.com/devsantara/kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devsantara/kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devsantara/kit/issues"
+  },
   "type": "module",
   "packageManager": "pnpm@10.12.2",
   "keywords": [
