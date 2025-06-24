@@ -29,22 +29,27 @@ const nextJsAppReservedFiles = [
   'route',
   'template',
   'unauthorized',
+  'icon',
+  'apple-icon',
+  'opengraph-image',
+  'twitter-image',
+  'robots',
+  'sitemap',
 ];
 
 const eslintCoreConfig = [
   {
     name: '[Core] Base',
-    linterOptions: {
-      reportUnusedDisableDirectives: 'warn',
-    },
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
-      parser: eslintParserTypeScript,
       globals: {
         ...globals.browser,
         ...globals.node,
       },
+    },
+    linterOptions: {
+      reportUnusedDisableDirectives: 'warn',
     },
   },
 ];
@@ -52,7 +57,7 @@ const eslintCoreConfig = [
 const eslintJavascriptConfig = [
   {
     name: '[Javascript] Base',
-    files: ['**/*.{js,mjs,jsx,ts,tsx}'],
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     rules: {
       ...eslintJsPlugin.configs.recommended.rules,
       eqeqeq: ['error', 'always'],
@@ -70,7 +75,7 @@ const eslintJavascriptConfig = [
 const eslintStylisticConfig = [
   {
     name: '[Stylistic] Base',
-    files: ['**/*.{js,mjs,jsx,ts,tsx}'],
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     plugins: {
       '@stylistic': eslintStylisticPlugin,
     },
@@ -82,6 +87,7 @@ const eslintStylisticConfig = [
       '@stylistic/no-tabs': ['error', { allowIndentationTabs: false }],
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@stylistic/linebreak-style': ['error', 'unix'],
+      '@stylistic/jsx-one-expression-per-line': ['off'],
       '@stylistic/member-delimiter-style': [
         'error',
         {
@@ -104,22 +110,19 @@ const eslintTypescriptConfig = [
   {
     name: '[Typescript] Base',
     files: ['**/*.{ts,tsx}'],
-    extends: [
-      ...eslintTypescriptPlugin.configs.strictTypeChecked,
-      ...eslintTypescriptPlugin.configs.stylisticTypeChecked,
-    ],
     languageOptions: {
       parser: eslintParserTypeScript,
       parserOptions: {
         // https://typescript-eslint.io/getting-started/typed-linting
         projectService: true,
         tsconfigRootDir: __dirname,
-        ecmaFeatures: {
-          jsx: true,
-        },
         warnOnUnsupportedTypeScriptVersion: true,
       },
     },
+    extends: [
+      ...eslintTypescriptPlugin.configs.strictTypeChecked,
+      ...eslintTypescriptPlugin.configs.stylisticTypeChecked,
+    ],
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -139,7 +142,7 @@ const eslintTypescriptConfig = [
     // only needed if you use TypeChecked rules
     // (and you have javascript files in your project)
     name: '[Typescript] Disable javascript TypeChecked',
-    files: ['**/*.{js,mjs,jsx}'],
+    files: ['**/*.{js,mjs,cjs,jsx}'],
     ...eslintTypescriptPlugin.disableTypeChecked,
   },
   {
@@ -155,10 +158,15 @@ const eslintImportConfig = [
   {
     name: '[Import] Base',
     files: ['**/*.{js,mjs,jsx,ts,tsx}'],
+    languageOptions: {
+      // Override the recommended configs
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
     settings: {
       'import/resolver': {
-        typescript: true,
         node: true,
+        typescript: true,
       },
     },
     extends: [
@@ -207,7 +215,7 @@ const eslintImportConfig = [
   },
   {
     name: '[Import] For source code',
-    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.{js,mjs,cjs,jsx}', 'src/**/*.{ts,tsx}'],
     rules: {
       // only allow named export in source code
       'import/no-default-export': ['error'],
@@ -216,13 +224,13 @@ const eslintImportConfig = [
   {
     name: '[Import] For NextJS App reserved files',
     files: [
-      ...nextJsAppReservedFiles.map((keyword) => {
-        return `src/app/**/${keyword}.{js,jsx,ts,tsx}`;
+      ...nextJsAppReservedFiles.map((filename) => {
+        return `src/app/**/${filename}.{js,jsx,ts,tsx}`;
       }),
       'src/middleware.{js,ts}',
     ],
-    // only allow default export in reserved files
     rules: {
+      // only allow default export in reserved files
       'import/no-default-export': ['off'],
       'import/prefer-default-export': ['error'],
     },
@@ -233,6 +241,13 @@ const eslintReactConfig = [
   {
     name: '[React] Base',
     files: ['**/*.{jsx,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
     settings: {
       react: {
         pragma: 'React',
@@ -248,7 +263,6 @@ const eslintReactConfig = [
       'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
       'react/jsx-no-leaked-render': ['error'],
       'react/jsx-no-duplicate-props': ['error'],
-
       'react/function-component-definition': [
         'error',
         { namedComponents: 'function-declaration' },
@@ -259,13 +273,6 @@ const eslintReactConfig = [
           allowReferrer: false,
           enforceDynamicLinks: 'always',
           warnOnSpreadAttributes: true,
-        },
-      ],
-      'react/jsx-handler-names': [
-        'error',
-        {
-          eventHandlerPrefix: 'handle',
-          eventHandlerPropPrefix: 'on',
         },
       ],
     },
@@ -301,7 +308,7 @@ const eslintJsxA11yConfig = [
 const eslintNextConfig = [
   {
     name: '[NextJS] Base',
-    files: ['**/*.{js,mjs,jsx,ts,tsx}'],
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     plugins: {
       '@next/next': eslintNextPlugin,
     },
