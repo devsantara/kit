@@ -19,7 +19,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "next lint --fix .",
     "lint:inspect": "eslint --inspect-config",
     "format": "prettier --write .",
     "commitlint": "commitlint --edit",
