@@ -32,13 +32,11 @@
           },
           {
             "type": "docs",
-            "section": "Documentation",
-            "hidden": true
+            "section": "Documentation"
           },
           {
             "type": "style",
-            "section": "Formatting Styles",
-            "hidden": true
+            "section": "Formatting Styles"
           },
           {
             "type": "refactor",
@@ -54,13 +52,11 @@
           },
           {
             "type": "build",
-            "section": "Build System",
-            "hidden": true
+            "section": "Build System"
           },
           {
             "type": "ci",
-            "section": "Continuous Integration",
-            "hidden": true
+            "section": "Continuous Integration"
           },
           {
             "type": "chore",
@@ -68,8 +64,7 @@
           },
           {
             "type": "revert",
-            "section": "Reverts",
-            "hidden": true
+            "section": "Reverts"
           }
         ]
       }
