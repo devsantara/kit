@@ -46,7 +46,7 @@
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.8",
     "@typescript-eslint/parser": "^8.35.0",
-    "conventional-changelog-conventionalcommits": "^9.0.0",
+    "conventional-changelog-conventionalcommits": "8.0.0",
     "eslint": "^9.29.0",
     "eslint-import-resolver-typescript": "^4.4.3",
     "eslint-plugin-import": "^2.32.0",
@@ -60,5 +60,8 @@
     "release-it": "^19.0.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0"
+  },
+  "resolutions": {
+    "conventional-changelog-conventionalcommits": "8.0.0"
   }
 }
