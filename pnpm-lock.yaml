@@ -24,6 +24,9 @@ importers:
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -242,6 +245,11 @@ packages:
   detect-libc@2.0.4:
     resolution: {integrity: sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA==}
     engines: {node: '>=8'}
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   is-arrayish@0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
@@ -495,6 +503,8 @@ snapshots:
 
   detect-libc@2.0.4:
     optional: true
+
+  husky@9.1.7: {}
 
   is-arrayish@0.3.2:
     optional: true
