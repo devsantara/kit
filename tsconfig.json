@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    // Module Resolution and Compatibility
+    "module": "esnext",
+    "target": "ES2017",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    // Type Checking & Strictness
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUncheckedSideEffectImports": true,
+    "useUnknownInCatchVariables": true,
+
+    // Performance & Output
+    "noEmit": true,
+    "incremental": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+
+    // Library Support
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    // JSX Configuration
+    "jsx": "preserve",
+
+    // Path Mapping for Imports
+    "paths": {
+      "~/*": ["./src/*"],
+      "~/package.json": ["./package.json"],
+      "~/public/*": ["./public/*"]
+    },
+
+    // Plugins and Extra Configuration
+    "plugins": [{ "name": "next" }]
+  },
+  // File Inclusion and Exclusion
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

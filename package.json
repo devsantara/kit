@@ -1,0 +1,32 @@
+{
+  "name": "kit",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The Blueprint for Your Next Big Idea",
+  "author": "devsantara",
+  "license": "MIT",
+  "packageManager": "pnpm@10.12.2",
+  "keywords": [
+    "devsantara/kit",
+    "blueprint",
+    "starter",
+    "template",
+    "boilerplate"
+  ],
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "@types/react": "^19.1.8",
+    "typescript": "^5.8.3"
+  }
+}
