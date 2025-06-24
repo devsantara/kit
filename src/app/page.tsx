@@ -1,3 +1,3 @@
 export default function RootPage() {
-  return <h1>{'@devsantara/kit'}</h1>;
+  return <h1>@devsantara/kit</h1>;
 }
