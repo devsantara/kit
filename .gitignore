@@ -1,0 +1,33 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# production
+build/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+# allow local env and example env files
+!.env.example
+!.env.development.local
+!.env.production.local
+!.env.secret.example
+
+# vercel
+.vercel
