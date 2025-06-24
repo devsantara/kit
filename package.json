@@ -18,6 +18,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "commitlint": "commitlint --edit",
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
@@ -26,6 +27,9 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.8",
     "husky": "^9.1.7",
