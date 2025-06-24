@@ -5,6 +5,7 @@
   "description": "The Blueprint for Your Next Big Idea",
   "author": "devsantara",
   "license": "MIT",
+  "type": "module",
   "packageManager": "pnpm@10.12.2",
   "keywords": [
     "devsantara/kit",
@@ -18,6 +19,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write .",
     "commitlint": "commitlint --edit",
     "postinstall": "./scripts/postinstall.sh"
   },
