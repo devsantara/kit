@@ -67,11 +67,20 @@ const eslintStylisticConfig = [
       '@stylistic/quote-props': ['error', 'consistent'],
       '@stylistic/linebreak-style': ['error', 'unix'],
       '@stylistic/arrow-parens': ['error', 'always'],
-      '@stylistic/jsx-one-expression-per-line': ['off'],
       '@stylistic/array-bracket-newline': ['error', { multiline: true, minItems: null }],
       '@stylistic/object-curly-newline': ['error', { multiline: true, consistent: true }],
       '@stylistic/function-paren-newline': ['error', 'consistent'],
+      '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-line' }],
       '@stylistic/jsx-curly-spacing': ['error', { when: 'never', children: true }],
+      '@stylistic/jsx-sort-props': [
+        'error', {
+          callbacksLast: true,
+          shorthandFirst: true,
+          ignoreCase: true,
+          noSortAlphabetically: false,
+          multiline: 'last',
+        },
+      ],
       '@stylistic/member-delimiter-style': [
         'error',
         {
