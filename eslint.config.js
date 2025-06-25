@@ -68,6 +68,15 @@ const eslintStylisticConfig = [
       '@stylistic/linebreak-style': ['error', 'unix'],
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/jsx-one-expression-per-line': ['off'],
+      '@stylistic/array-bracket-newline': [
+        'error',
+        { multiline: true, minItems: null },
+      ],
+      '@stylistic/object-curly-newline': [
+        'error',
+        { multiline: true, consistent: true },
+      ],
+      '@stylistic/function-paren-newline': ['error', 'consistent'],
       '@stylistic/jsx-curly-spacing': [
         'error',
         { when: 'never', children: true },
@@ -96,7 +105,12 @@ const eslintJavascriptConfig = [
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     rules: {
       ...eslintJsPlugin.configs.recommended.rules,
-      'no-console': ['warn', { allow: ['error'] }],
+      'no-console': [
+        'warn',
+        {
+          allow: ['error'],
+        },
+      ],
       'prefer-const': [
         'error',
         { destructuring: 'all', ignoreReadBeforeAssign: false },
