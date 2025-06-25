@@ -17,3 +17,11 @@ pnpm-lock.yaml
 .DS_Store
 *.pem
 .husky/
+
+# handled by eslint
+**/*.js
+**/*.cjs
+**/*.mjs
+**/*.jsx
+**/*.ts
+**/*.tsx
