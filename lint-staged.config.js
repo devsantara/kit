@@ -11,11 +11,7 @@ const buildEslintCommand = (filenames) =>
 const lintStagedConfig = {
   '*.{ts,tsx}': () => ['tsc --noEmit'],
   '*.{js,mjs,cjs,jsx,ts,tsx}': (stagedFiles) => [
-    `prettier --write ${stagedFiles.join(' ')}`,
     buildEslintCommand(stagedFiles),
-  ],
-  '*.{md,json,css,sh,yaml,yml}': (stagedFiles) => [
-    `prettier --write ${stagedFiles.join(' ')}`,
   ],
 };
 

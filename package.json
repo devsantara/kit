@@ -29,7 +29,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix .",
     "lint:inspect": "eslint --inspect-config",
-    "format": "prettier --write .",
+    "format": "pnpm lint:fix",
     "commitlint": "commitlint --edit",
     "postinstall": "./scripts/postinstall.sh",
     "release:patch": "release-it patch",
@@ -64,7 +64,6 @@
     "globals": "^16.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
-    "prettier": "^3.6.0",
     "release-it": "^19.0.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0"
