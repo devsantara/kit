@@ -1,11 +1,14 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
+  // Prettier settings
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Eslint settings
   // https://eslint.style/guide/faq#vs-code
-  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
-   "eslint.rules.customizations": [
+  "eslint.rules.customizations": [
     {
       "rule": "@stylistic/*",
       "fixable": true,

@@ -54,24 +54,6 @@ const eslintCoreConfig = [
   },
 ];
 
-const eslintJavascriptConfig = [
-  {
-    name: '[Javascript] Base',
-    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
-    rules: {
-      ...eslintJsPlugin.configs.recommended.rules,
-      eqeqeq: ['error', 'always'],
-      'no-console': ['warn', { allow: ['error'] }],
-      'no-debugger': ['error'],
-      'no-undef': ['error'],
-      'prefer-const': [
-        'error',
-        { destructuring: 'all', ignoreReadBeforeAssign: false },
-      ],
-    },
-  },
-];
-
 const eslintStylisticConfig = [
   {
     name: '[Stylistic] Base',
@@ -82,13 +64,14 @@ const eslintStylisticConfig = [
     rules: {
       ...eslintStylisticPlugin.configs.recommended.rules,
       '@stylistic/semi': ['error', 'always'],
-      '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
-      '@stylistic/quote-props': ['off'],
-      '@stylistic/no-tabs': ['error', { allowIndentationTabs: false }],
-      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
+      '@stylistic/quote-props': ['error', 'consistent'],
       '@stylistic/linebreak-style': ['error', 'unix'],
-      '@stylistic/jsx-one-expression-per-line': ['off'],
       '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/jsx-one-expression-per-line': ['off'],
+      '@stylistic/array-bracket-newline': ['error', { multiline: true, minItems: null }],
+      '@stylistic/object-curly-newline': ['error', { multiline: true, consistent: true }],
+      '@stylistic/function-paren-newline': ['error', 'consistent'],
+      '@stylistic/jsx-curly-spacing': ['error', { when: 'never', children: true }],
       '@stylistic/member-delimiter-style': [
         'error',
         {
@@ -102,6 +85,26 @@ const eslintStylisticConfig = [
           },
           multilineDetection: 'brackets',
         },
+      ],
+    },
+  },
+];
+
+const eslintJavascriptConfig = [
+  {
+    name: '[Javascript] Base',
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    rules: {
+      ...eslintJsPlugin.configs.recommended.rules,
+      'no-console': [
+        'warn',
+        {
+          allow: ['error'],
+        },
+      ],
+      'prefer-const': [
+        'error',
+        { destructuring: 'all', ignoreReadBeforeAssign: false },
       ],
     },
   },
@@ -185,7 +188,7 @@ const eslintImportConfig = [
       'import/order': [
         'error',
         {
-          groups: [
+          'groups': [
             'builtin',
             'external',
             'internal',
@@ -197,8 +200,8 @@ const eslintImportConfig = [
             'type',
           ],
           'newlines-between': 'always',
-          named: true,
-          alphabetize: {
+          'named': true,
+          'alphabetize': {
             order: 'asc',
             caseInsensitive: true,
           },
@@ -261,20 +264,10 @@ const eslintReactConfig = [
     rules: {
       ...eslintReactPlugin.configs.recommended.rules,
       ...eslintReactPlugin.configs['jsx-runtime'].rules,
-      'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
       'react/jsx-no-leaked-render': ['error'],
-      'react/jsx-no-duplicate-props': ['error'],
       'react/function-component-definition': [
         'error',
         { namedComponents: 'function-declaration' },
-      ],
-      'react/jsx-no-target-blank': [
-        'error',
-        {
-          allowReferrer: false,
-          enforceDynamicLinks: 'always',
-          warnOnSpreadAttributes: true,
-        },
       ],
     },
   },

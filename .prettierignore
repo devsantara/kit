@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# next.js
+public/
+.next/
+out/
+
+# production
+build/
+
+# package manager
+pnpm-lock.yaml
+.pnpm-debug.log*
+
+# misc
+.DS_Store
+*.pem
+.husky/
+
+# handled by eslint
+**/*.js
+**/*.cjs
+**/*.mjs
+**/*.jsx
+**/*.ts
+**/*.tsx
