@@ -39,6 +39,91 @@ We believe developers should spend their time solving unique problems, not re-so
 - Easily create _changelogs_ and perform application _releases_ using [Release-it](https://github.com/release-it/release-it).
 - _...And many more to come_
 
+## Tooling & Configuration
+
+Let's take a look and get to know more about some of the tools and configurations used.
+
+### Getting started
+
+Before you begin, ensure you have the following installed on your local development machine:
+
+1. [Node.js](https://nodejs.org): Version `v22.14.0` or later.
+2. [Pnpm](https://pnpm.io/): A fast, disk space efficient package manager.
+
+#### Step 1: Create a New Repository from This Template
+
+1. Navigate to the main page of [this repository](https://github.com/devsantara/kit) on GitHub.
+2. Above the file list, click the green "**Use this template**" button, and then select "**Create a new repository**".
+3. On the "**Create a new repository**" page that opens, select an `Owner` (_your personal account or an organization_) and enter a unique repository name for your new project.
+
+> Learn [how to creating a repository from a template here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+
+#### Step 2: Clone Your New Repository
+
+Once your new repository is created, you need to clone it to your local machine.
+
+> Learn [how to clone GitHub repository here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+
+#### Step 3: Install Project Dependencies
+
+This project uses `pnpm` for package management. To install all the necessary dependencies defined in the `package.json` file, run:
+
+```bash
+pnpm install
+```
+
+> Learn [how to install pnpm as your package manager here](https://pnpm.io/installation)
+
+#### Step 4: Run the Scripts
+
+Now you can start developing your ideas, with several scripts available:
+
+| Script name     | Description                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dev`           | Runs the Next.js development server with `Turbopack`.                                                                                                           |
+| `build`         | Creates an optimized production build of your application.                                                                                                      |
+| `start`         | Starts the production server for your built application.                                                                                                        |
+| `lint`          | Analyzes code for potential errors and style issues using Next.js's built-in ESLint configuration.                                                              |
+| `lint:fix`      | Automatically fixes linting errors and warnings that are fixable.                                                                                               |
+| `lint:inspect`  | Allows you to inspect the final ESLint configuration being used.                                                                                                |
+| `format`        | Formats `non-code`/`js`/`ts` (`json`/`markdown`/`css`/`...`) files in the project with Prettier.                                                                |
+| `commitlint`    | Checks if your commit messages meet the conventional commit format. (_Used on commit-msg git hooks_)                                                            |
+| `postinstall`   | A script that runs automatically after pnpm install is completed. (_Put any postinstall command/scripts on [scripts/postinstall.sh](./scripts/postinstall.sh)_) |
+| `release:patch` | Creates a new patch release `(e.g., v1.0.0 -> v1.0.1)`.                                                                                                         |
+| `release:minor` | Creates a new minor release `(e.g., v1.0.1 -> v1.1.0)`.                                                                                                         |
+| `release:major` | Creates a new major release `(e.g., v1.1.0 -> v2.0.0)`.                                                                                                         |
+
+### Visual Studio Code
+
+You can see in [`.vscode/settings.json`](./.vscode/settings.json) there are several configurations that have been made to make the work process easier and more comfortable with the following settings:
+
+- **Format on save** for Prettier
+- **Auto fixAll** on save for Eslint
+- Not to show errors in your editor (for `@stylistic` rules), but still have the ability to auto-fix them
+
+> And also don't forget to install the **recommended extensions** that have been provided in [`.vscode/settings.json`](./.vscode/extensions.json)
+
+### Eslint
+
+Here are some eslint plugins/tools that are used to support the quality of your code (_full support for eslint flat config_):
+
+- `@eslint/compat`
+- `@eslint/js`
+- `@next/eslint-plugin-next`
+- `@stylistic/eslint-plugin`
+- `@typescript-eslint/parser`
+- `eslint-plugin-import`
+- `eslint-plugin-jsx-a11y`
+- `eslint-plugin-react`
+- `eslint-plugin-react-hooks`
+- `typescript-eslint`
+
+### Conventional Commits
+
+This project adheres to the [Conventional Commits](https://www.conventionalcommits.org) specification. A specification for adding human and machine readable meaning to commit messages, make commit messages easier to read and understand.
+
+> To ensure the quality and consistency of commit messages, `commitlint` is used to validate that all commits follow this standard. see the [commitlint config here](./commitlint.config.ts)
+
 ## Contribution
 
 We welcome contributions from the community! If you have suggestions for _improvements_, _new features_, or _bug fixes_, please open an issue or submit a pull request.
