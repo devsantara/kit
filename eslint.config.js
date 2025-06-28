@@ -156,7 +156,8 @@ const eslintTypescriptConfig = [
     // (and you have javascript files in your project)
     name: '[Typescript] Disable javascript TypeChecked',
     files: ['**/*.{js,mjs,cjs,jsx}'],
-    ...eslintTypescriptPlugin.disableTypeChecked,
+    languageOptions: eslintTypescriptPlugin.configs.disableTypeChecked.languageOptions,
+    rules: eslintTypescriptPlugin.configs.disableTypeChecked.rules,
   },
   {
     name: '[Typescript] For definition files (.d.ts)',
