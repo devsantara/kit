@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.0](https://github.com/devsantara/kit/compare/1.0.0...1.1.0) (2025-06-28)
+
+### Bug Fixes
+
+- **eslint:** invalid disable js typechecked rules ([6842fad](https://github.com/devsantara/kit/commit/6842fad6adbdc36566febe4a3bbaf12a34e3d034))
+
+### Documentation
+
+- **readme:** add tools and configuration detail ([a00315c](https://github.com/devsantara/kit/commit/a00315c5020f43394958d341b168d5ac281f915e))
+
+### Chores
+
+- consolidate code formatting under eslint ([874398e](https://github.com/devsantara/kit/commit/874398eb356eef68d235f70daef1206f72ebf6a5))
+- **eslint:** add bracket newline stylistic rules ([8662651](https://github.com/devsantara/kit/commit/8662651c87bd00e508c6c430d7dcc41ef5f304ac))
+- **eslint:** adjust stylistic jsx rules ([d1e2be4](https://github.com/devsantara/kit/commit/d1e2be4541012c35358976cbe3caba0ec10f770a))
+- only use prettier for non js files ([61c160b](https://github.com/devsantara/kit/commit/61c160bf96020f2d2f06f8004ece023664b09fcc))
+
 ## [1.0.0](https://github.com/devsantara/kit/compare/...1.0.0) (2025-06-24)
 
 ### Features
