@@ -117,6 +117,7 @@ Here are some eslint plugins/tools that are used to support the quality of your 
 - `eslint-plugin-react`
 - `eslint-plugin-react-hooks`
 - `typescript-eslint`
+- `eslint-plugin-better-tailwindcss`
 
 ### Conventional Commits
 
