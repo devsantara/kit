@@ -31,7 +31,7 @@
     "lint:inspect": "eslint --inspect-config",
     "format": "prettier --write .",
     "commitlint": "commitlint --edit",
-    "postinstall": "./scripts/postinstall.sh",
+    "postinstall": "jiti ./scripts/postinstall.ts",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
     "release:major": "release-it major"
