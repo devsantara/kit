@@ -323,6 +323,34 @@ const eslintNextConfig = [
   },
 ];
 
+const restrictedSyntaxReactImport = [
+  {
+    message: 'Do not import default from React. Use a namespace `import * as React from \'react\'` instead.',
+    selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+  },
+  {
+    message: 'Please import React using `import * as React from \'react\'` instead of named imports.',
+    selector: 'ImportDeclaration[source.value=\'react\'] ImportSpecifier',
+  },
+  {
+    message: 'Please import React using namespace `React` (case sensitive) `import * as React from \'react\'` instead of others.',
+    selector: 'ImportDeclaration[source.value=\'react\'] ImportNamespaceSpecifier:not([local.name=\'React\'])',
+  },
+];
+
+const eslintRestrictedSyntaxConfig = [
+  {
+    name: '[Restricted Syntax] Base',
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        ...restrictedSyntaxReactImport,
+      ],
+    },
+  },
+];
+
 /**
  * @see {@link https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file}
  * @type {import('eslint').Linter.Config}
@@ -338,6 +366,7 @@ const eslintConfig = eslintTypescriptPlugin.config(
   ...eslintReactHooksConfig,
   ...eslintJsxA11yConfig,
   ...eslintNextConfig,
+  ...eslintRestrictedSyntaxConfig,
 );
 
 export default eslintConfig;
