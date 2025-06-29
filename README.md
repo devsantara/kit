@@ -100,6 +100,7 @@ You can see in [`.vscode/settings.json`](./.vscode/settings.json) there are seve
 - **Format on save** for Prettier
 - **Auto fixAll** on save for Eslint
 - Not to show errors in your editor (for `@stylistic` rules), but still have the ability to auto-fix them
+- Disable TailwindCSS IntelliSense warnings on utility class conflicts (_Eslint already handle this_).
 
 > And also don't forget to install the **recommended extensions** that have been provided in [`.vscode/settings.json`](./.vscode/extensions.json)
 
