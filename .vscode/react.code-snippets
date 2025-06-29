@@ -88,7 +88,7 @@
   "React Custom Hook": {
     "scope": "typescript,typescriptreact",
     "prefix": ["rch"],
-    "body": ["function use$1() {", "\t$5", "\treturn undefined;", "}$0"],
+    "body": ["function use$1() {", "\t$2", "\treturn undefined;", "}$0"],
     "description": "Create a custom React hook",
   },
   "React useState Hook": {
