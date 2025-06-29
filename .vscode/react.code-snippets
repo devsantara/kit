@@ -1,0 +1,147 @@
+{
+  /**
+   * @devsantara/kit Code Snippets
+   *
+   * This file contains code snippets for the Kit workspace.
+   * These snippets can be used to quickly insert commonly used code patterns into your files.
+   *
+   * Each snippet is defined with a name, scope, prefix, body, and description.
+   *
+   * Scope: The languages where the snippet is applicable (e.g., javascript, typescript, etc.)
+   * Prefix: The trigger text for the snippet
+   * Body: The code that will be inserted when the snippet is triggered
+   * Description: A brief explanation of what the snippet does
+   *
+   * @example
+   * "Print to console": {
+   *   "scope": "javascript,typescript",
+   *   "prefix": "log",
+   *   "body": [
+   *     "console.log('$1');",
+   *     "$2"
+   *   ],
+   *   "description": "Log output to console"
+   * }
+   *
+   * @see {@link https://code.visualstudio.com/docs/editing/userdefinedsnippets}
+   */
+  "React Namespace Import": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["ir"],
+    "body": ["import * as React from 'react';"],
+    "description": "Import React library using namespace syntax",
+  },
+  "Use Client": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["uc"],
+    "body": ["'use client';"],
+    "description": "Create 'use client' directive",
+  },
+  "Use Server": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["us"],
+    "body": ["'use server';"],
+    "description": "Create 'use server' directive",
+  },
+  "React Function Component Without Props": {
+    "scope": "typescriptreact",
+    "prefix": ["rfc"],
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "function ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}$1() {",
+      "\treturn <>$0</>;",
+      "}",
+      "",
+    ],
+    "description": "Generate a basic React functional component without props",
+  },
+  "React Function Component With Props": {
+    "scope": "typescriptreact",
+    "prefix": ["rfcp"],
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "interface ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}$1Props {",
+      "\tchildren?: React.ReactNode;",
+      "}",
+      "",
+      "function ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}$1(props: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}$1Props) {",
+      "\treturn <>$0</>;",
+      "}",
+      "",
+    ],
+    "description": "Create a React functional component with typed props interface",
+  },
+  "React Fragment Element": {
+    "scope": "typescriptreact",
+    "prefix": ["rf"],
+    "body": ["<React.Fragment>$1</React.Fragment>$0"],
+    "description": "Create React Fragment component",
+  },
+  "React Suspense Element": {
+    "scope": "typescriptreact",
+    "prefix": ["rs"],
+    "body": ["<React.Suspense>$1</React.Suspense>$0"],
+    "description": "Create React Suspense component",
+  },
+  "React Custom Hook": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rch"],
+    "body": ["function use$1() {", "\t$2", "\treturn undefined;", "}$0"],
+    "description": "Create a custom React hook",
+  },
+  "React useState Hook": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rus"],
+    "body": [
+      "const [$1, set${1/(?:^|-)([a-z])|/${1:/pascalcase}/g}] = React.useState<${2:null}>(${3:null});$0",
+    ],
+    "description": "Create React useState hook",
+  },
+  "React useEffect Hook": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rue"],
+    "body": [
+      "React.useEffect(function ${1:doSomething}(){",
+      "\t$2",
+      "\treturn () => { ${3:/** no-op */} }",
+      "}, [$4])$0",
+    ],
+    "description": "Create React useEffect hook",
+  },
+  "React useRef Hook": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rur"],
+    "body": ["const $1Ref = React.useRef<${2:null}>(${3:null})$0"],
+    "description": "Create React useRef hook",
+  },
+  "React Context": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["ruc"],
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "interface ${1:Entity}ContextValue {",
+      "\t$2",
+      "}",
+      "",
+      "const ${1}Context = React.createContext<${1:Entity}ContextValue | null>(null);$0",
+    ],
+    "description": "Create React context",
+  },
+  "React Context Hook": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["ruch"],
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "function use$1Context() {",
+      "\tconst context = React.useContext($1Context);",
+      "\tif (!context) throw new Error('$1Context must be used within a $1Provider');",
+      "\treturn context;",
+      "}$0",
+    ],
+    "description": "Create React context hook",
+  },
+}
