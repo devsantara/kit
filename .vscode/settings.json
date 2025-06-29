@@ -1,8 +1,10 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
+
   // Prettier settings
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+
   // Eslint settings
   // https://eslint.style/guide/faq#vs-code
   "editor.codeActionsOnSave": {
@@ -14,5 +16,16 @@
       "fixable": true,
       "severity": "off"
     }
-  ]
+  ],
+
+  // TailwindCSS settings
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.lint.cssConflict": "ignore", // Avoid confusion with Eslint
+  "tailwindCSS.classAttributes": ["class", "className", "classNames"],
+  "tailwindCSS.classFunctions": ["clsx", "twMerge", "cn"]
 }
