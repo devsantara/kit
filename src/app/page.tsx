@@ -1,3 +1,3 @@
 export default function RootPage() {
-  return <h1 className="text-xl text-center p-4 font-bold">@devsantara/kit</h1>;
+  return <h1 className="p-4 text-center text-xl font-bold">@devsantara/kit</h1>;
 }
