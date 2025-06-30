@@ -6,6 +6,7 @@ import eslintJsPlugin from '@eslint/js';
 import eslintNextPlugin from '@next/eslint-plugin-next';
 import eslintStylisticPlugin from '@stylistic/eslint-plugin';
 import eslintParserTypeScript from '@typescript-eslint/parser';
+import eslintTailwindcssPlugin from 'eslint-plugin-better-tailwindcss';
 import eslintImportPlugin from 'eslint-plugin-import';
 import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import eslintReactPlugin from 'eslint-plugin-react';
@@ -129,6 +130,7 @@ const eslintTypescriptConfig: ConfigWithExtends[] = [
     languageOptions: {
       parser: eslintParserTypeScript,
       parserOptions: {
+        project: true,
         // https://typescript-eslint.io/getting-started/typed-linting
         projectService: true,
         tsconfigRootDir: __dirname,
@@ -331,6 +333,33 @@ const eslintNextConfig: ConfigWithExtends[] = [
   },
 ];
 
+// #region TailwindCSS Configs
+const eslintTailwindcssConfig: ConfigWithExtends[] = [
+  {
+    name: '[TailwindCSS] Base',
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    plugins: {
+      'better-tailwindcss': eslintTailwindcssPlugin,
+    },
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: 'src/styles/globals.css',
+      },
+    },
+    rules: {
+      ...eslintTailwindcssPlugin.configs['recommended-warn']?.rules,
+      'better-tailwindcss/no-unregistered-classes': ['error'],
+      'better-tailwindcss/no-duplicate-classes': ['error'],
+      'better-tailwindcss/no-conflicting-classes': ['error'],
+      'better-tailwindcss/enforce-consistent-class-order': ['warn', { order: 'improved' }],
+      'better-tailwindcss/enforce-consistent-line-wrapping': [
+        'warn',
+        { group: 'newLine', preferSingleLine: true, printWidth: 80 },
+      ],
+    },
+  },
+];
+
 // #region Restricted Syntax Configs
 const restrictedSyntaxReactImport: RestrictedSyntaxRuleItem[] = [
   {
@@ -372,6 +401,7 @@ const eslintConfig = eslintTypescriptPlugin.config(
   ...eslintReactHooksConfig,
   ...eslintJsxA11yConfig,
   ...eslintNextConfig,
+  ...eslintTailwindcssConfig,
   ...eslintRestrictedSyntaxConfig,
 );
 

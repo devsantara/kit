@@ -37,6 +37,7 @@ We believe developers should spend their time solving unique problems, not re-so
 - Will never forget to maintain code quality with [Lint-staged](https://github.com/lint-staged/lint-staged).
 - [Husky](https://typicode.github.io/husky), Ultra-fast modern native git hooks.
 - Easily create _changelogs_ and perform application _releases_ using [Release-it](https://github.com/release-it/release-it).
+- Using [TailwindCSS](https://tailwindcss.com), unapologetically modern styling solution, and takes advantage of all the latest and greatest CSS features to make the developer experience as pleasant as possible.
 - _...And many more to come_
 
 ## Tooling & Configuration
@@ -111,6 +112,7 @@ Here are some eslint plugins/tools that are used to support the quality of your 
 - `eslint-plugin-react`
 - `eslint-plugin-react-hooks`
 - `typescript-eslint`
+- `eslint-plugin-better-tailwindcss`
 
 ### Conventional Commits
 

@@ -2,11 +2,23 @@
 
 ## Settings
 
-VS Code stores setting values in a [`settings.json`](./settings.json) file.
+VS Code stores setting values in a [`settings.json`](./settings.json) file. There are several configurations that have been made to make the work process easier and more comfortable with the following settings:
+
+- **Format on save** for Prettier.
+- **Auto fixAll** on save for Eslint.
+- Not to show errors in your editor (for `@stylistic` rules), but still have the ability to auto-fix them.
+- Enable **TailwindCSS** syntax highlighting for `.css` files.
+- Enable intellisense suggestions inside strings (e.g., in `className="..."`)
+- Recognize class attributes and functions for **TailwindCSS** Intellisense.
+- Disable **TailwindCSS** Intellisense warnings on utility class conflicts (_Eslint already handle this_).
 
 ## Extensions
 
 You can see a list of recommended extensions using Show Recommended Extensions, which sets the `@recommended` filter. All recommended extensions are in a [`extensions.json`](./extensions.json) file.
+
+- [`Eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [`Prettier`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [`Tailwind CSS IntelliSense`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 ## Code Snippets
 

@@ -1,3 +1,5 @@
+import '~/styles/globals.css';
+
 import * as React from 'react';
 
 interface RootLayoutProps {
