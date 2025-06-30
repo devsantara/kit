@@ -37,6 +37,7 @@ We believe developers should spend their time solving unique problems, not re-so
 - Will never forget to maintain code quality with [Lint-staged](https://github.com/lint-staged/lint-staged).
 - [Husky](https://typicode.github.io/husky), Ultra-fast modern native git hooks.
 - Easily create _changelogs_ and perform application _releases_ using [Release-it](https://github.com/release-it/release-it).
+- Using [TailwindCSS](https://tailwindcss.com), unapologetically modern styling solution, and takes advantage of all the latest and greatest CSS features to make the developer experience as pleasant as possible.
 - _...And many more to come_
 
 ## Tooling & Configuration
@@ -97,9 +98,13 @@ Now you can start developing your ideas, with several scripts available:
 
 You can see in [`.vscode/settings.json`](./.vscode/settings.json) there are several configurations that have been made to make the work process easier and more comfortable with the following settings:
 
-- **Format on save** for Prettier
-- **Auto fixAll** on save for Eslint
-- Not to show errors in your editor (for `@stylistic` rules), but still have the ability to auto-fix them
+- **Format on save** for Prettier.
+- **Auto fixAll** on save for Eslint.
+- Not to show errors in your editor (for `@stylistic` rules), but still have the ability to auto-fix them.
+- Enable **TailwindCSS** syntax highlighting for `.css` files.
+- Enable intellisense suggestions inside strings (e.g., in `className="..."`)
+- Recognize class attributes and functions for **TailwindCSS** Intellisense.
+- Disable **TailwindCSS** Intellisense warnings on utility class conflicts (_Eslint already handle this_).
 
 > And also don't forget to install the **recommended extensions** that have been provided in [`.vscode/settings.json`](./.vscode/extensions.json)
 
@@ -117,6 +122,7 @@ Here are some eslint plugins/tools that are used to support the quality of your 
 - `eslint-plugin-react`
 - `eslint-plugin-react-hooks`
 - `typescript-eslint`
+- `eslint-plugin-better-tailwindcss`
 
 ### Conventional Commits
 
