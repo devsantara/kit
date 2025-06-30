@@ -11,7 +11,9 @@ import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import eslintReactPlugin from 'eslint-plugin-react';
 import eslintReactHooksPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
-import eslintTypescriptPlugin from 'typescript-eslint';
+import eslintTypescriptPlugin, { type ConfigWithExtends } from 'typescript-eslint';
+
+interface RestrictedSyntaxRuleItem { message: string; selector: string }
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,7 +39,8 @@ const nextJsAppReservedFiles = [
   'sitemap',
 ];
 
-const eslintCoreConfig = [
+// #region Core Configs
+const eslintCoreConfig: ConfigWithExtends[] = [
   {
     name: '[Core] Base',
     languageOptions: {
@@ -51,10 +54,12 @@ const eslintCoreConfig = [
     linterOptions: {
       reportUnusedDisableDirectives: 'warn',
     },
+
   },
 ];
 
-const eslintStylisticConfig = [
+// #region Stylistic Configs
+const eslintStylisticConfig: ConfigWithExtends[] = [
   {
     name: '[Stylistic] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
@@ -99,18 +104,15 @@ const eslintStylisticConfig = [
   },
 ];
 
-const eslintJavascriptConfig = [
+// #region Javascript Configs
+const eslintJavascriptConfig: ConfigWithExtends[] = [
   {
     name: '[Javascript] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     rules: {
       ...eslintJsPlugin.configs.recommended.rules,
-      'no-console': [
-        'warn',
-        {
-          allow: ['error'],
-        },
-      ],
+      'func-style': ['error', 'declaration', { allowArrowFunctions: false }],
+      'no-console': ['warn', { allow: ['error'] }],
       'prefer-const': [
         'error',
         { destructuring: 'all', ignoreReadBeforeAssign: false },
@@ -119,7 +121,8 @@ const eslintJavascriptConfig = [
   },
 ];
 
-const eslintTypescriptConfig = [
+// #region Typescript Configs
+const eslintTypescriptConfig: ConfigWithExtends[] = [
   {
     name: '[Typescript] Base',
     files: ['**/*.{ts,tsx}'],
@@ -168,7 +171,8 @@ const eslintTypescriptConfig = [
   },
 ];
 
-const eslintImportConfig = [
+// #region Import Configs
+const eslintImportConfig: ConfigWithExtends[] = [
   {
     name: '[Import] Base',
     files: ['**/*.{js,mjs,jsx,ts,tsx}'],
@@ -251,7 +255,8 @@ const eslintImportConfig = [
   },
 ];
 
-const eslintReactConfig = [
+// #region React Configs
+const eslintReactConfig: ConfigWithExtends[] = [
   {
     name: '[React] Base',
     files: ['**/*.{jsx,tsx}'],
@@ -283,7 +288,8 @@ const eslintReactConfig = [
   },
 ];
 
-const eslintReactHooksConfig = [
+// #region React Hooks Configs
+const eslintReactHooksConfig: ConfigWithExtends[] = [
   {
     name: '[React Hooks] Base',
     files: ['**/*.{jsx,tsx}'],
@@ -296,7 +302,8 @@ const eslintReactHooksConfig = [
   },
 ];
 
-const eslintJsxA11yConfig = [
+// #region JSX A11y Configs
+const eslintJsxA11yConfig: ConfigWithExtends[] = [
   {
     name: '[JSX A11y] Base',
     files: ['**/*.{jsx,tsx}'],
@@ -304,12 +311,13 @@ const eslintJsxA11yConfig = [
       'jsx-a11y': eslintPluginJsxA11y,
     },
     rules: {
-      ...eslintPluginJsxA11y.configs.strict.rules,
+      ...eslintPluginJsxA11y.flatConfigs.strict.rules,
     },
   },
 ];
 
-const eslintNextConfig = [
+// #region Next Configs
+const eslintNextConfig: ConfigWithExtends[] = [
   {
     name: '[NextJS] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
@@ -323,10 +331,36 @@ const eslintNextConfig = [
   },
 ];
 
-/**
- * @see {@link https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file}
- * @type {import('eslint').Linter.Config}
- */
+// #region Restricted Syntax Configs
+const restrictedSyntaxReactImport: RestrictedSyntaxRuleItem[] = [
+  {
+    message: 'Do not import default from React. Use a namespace `import * as React from \'react\'` instead.',
+    selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+  },
+  {
+    message: 'Please import React using `import * as React from \'react\'` instead of named imports.',
+    selector: 'ImportDeclaration[source.value=\'react\'] ImportSpecifier',
+  },
+  {
+    message: 'Please import React using namespace `React` (case sensitive) `import * as React from \'react\'` instead of others.',
+    selector: 'ImportDeclaration[source.value=\'react\'] ImportNamespaceSpecifier:not([local.name=\'React\'])',
+  },
+];
+
+const eslintRestrictedSyntaxConfig: ConfigWithExtends[] = [
+  {
+    name: '[Restricted Syntax] Base',
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        ...restrictedSyntaxReactImport,
+      ],
+    },
+  },
+];
+
+// #region Merge All Configs
 const eslintConfig = eslintTypescriptPlugin.config(
   includeIgnoreFile(gitignorePath),
   ...eslintCoreConfig,
@@ -338,6 +372,7 @@ const eslintConfig = eslintTypescriptPlugin.config(
   ...eslintReactHooksConfig,
   ...eslintJsxA11yConfig,
   ...eslintNextConfig,
+  ...eslintRestrictedSyntaxConfig,
 );
 
 export default eslintConfig;
