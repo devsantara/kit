@@ -109,6 +109,7 @@ const eslintJavascriptConfig: ConfigWithExtends[] = [
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     rules: {
       ...eslintJsPlugin.configs.recommended.rules,
+      'func-style': ['error', 'declaration', { allowArrowFunctions: false }],
       'no-console': [
         'warn',
         {
