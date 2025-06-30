@@ -14,6 +14,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.11
+      jiti:
+        specifier: ^2.4.2
+        version: 2.4.2
       next:
         specifier: ^15.3.4
         version: 15.3.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -96,9 +99,6 @@ importers:
       husky:
         specifier: ^9.1.7
         version: 9.1.7
-      jiti:
-        specifier: ^2.4.2
-        version: 2.4.2
       lint-staged:
         specifier: ^16.1.2
         version: 16.1.2
