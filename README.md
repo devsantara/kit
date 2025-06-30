@@ -95,13 +95,7 @@ Now you can start developing your ideas, with several scripts available:
 
 ### Visual Studio Code
 
-You can see in [`.vscode/settings.json`](./.vscode/settings.json) there are several configurations that have been made to make the work process easier and more comfortable with the following settings:
-
-- **Format on save** for Prettier
-- **Auto fixAll** on save for Eslint
-- Not to show errors in your editor (for `@stylistic` rules), but still have the ability to auto-fix them
-
-> And also don't forget to install the **recommended extensions** that have been provided in [`.vscode/settings.json`](./.vscode/extensions.json)
+All information regarding **configurations**, **extensions** and **code snippets** for Visual Studio Code can be [seen here](./.vscode/README.md).
 
 ### Eslint
 
