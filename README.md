@@ -102,8 +102,9 @@ You can see in [`.vscode/settings.json`](./.vscode/settings.json) there are seve
 - **Auto fixAll** on save for Eslint.
 - Not to show errors in your editor (for `@stylistic` rules), but still have the ability to auto-fix them.
 - Enable **TailwindCSS** syntax highlighting for `.css` files.
-- Enable **intelliSense** suggestions inside strings (e.g., in `className="..."`)
-- Recognize class attributes and functions for **TailwindCSS** IntelliSense.
+- Enable intellisense suggestions inside strings (e.g., in `className="..."`)
+- Recognize class attributes and functions for **TailwindCSS** Intellisense.
+- Disable **TailwindCSS** Intellisense warnings on utility class conflicts (_Eslint already handle this_).
 
 > And also don't forget to install the **recommended extensions** that have been provided in [`.vscode/settings.json`](./.vscode/extensions.json)
 
@@ -121,6 +122,7 @@ Here are some eslint plugins/tools that are used to support the quality of your 
 - `eslint-plugin-react`
 - `eslint-plugin-react-hooks`
 - `typescript-eslint`
+- `eslint-plugin-better-tailwindcss`
 
 ### Conventional Commits
 

@@ -25,6 +25,7 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
+  "tailwindCSS.lint.cssConflict": "ignore", // Avoid confusion with Eslint
   "tailwindCSS.classAttributes": ["class", "className", "classNames"],
   "tailwindCSS.classFunctions": ["clsx", "twMerge", "cn"]
 }
