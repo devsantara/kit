@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.0](https://github.com/devsantara/kit/compare/1.1.0...1.2.0) (2025-06-30)
+
+### Features
+
+- add tailwindcss as styling system ([291016d](https://github.com/devsantara/kit/commit/291016d90d41cc72fc1a0d301c40933bde70eb07))
+
+### Bug Fixes
+
+- **windows:** unable to run sh scripts directly ([786ca3c](https://github.com/devsantara/kit/commit/786ca3c3b47699f7797e002684263ee75c74c527))
+
+### Chores
+
+- **eslint:** add eslint restricted syntax rules for react import ([9f4ef06](https://github.com/devsantara/kit/commit/9f4ef06454dc34158029bd40ad0891ab417ab797))
+- **eslint:** strict use of function declarations ([1578e8e](https://github.com/devsantara/kit/commit/1578e8e60fa18a5cab6f97cffdefb66634830605))
+- **eslint:** using typescript for eslint config ([4606a88](https://github.com/devsantara/kit/commit/4606a880f91763551a7fb56d87989ce2d5c8b02a))
+- **vscode:** add common vscode react snippets ([46b5a02](https://github.com/devsantara/kit/commit/46b5a02f7c34ddf3e08772278f5d1fdb5d7ea9cf))
+
 ## [1.1.0](https://github.com/devsantara/kit/compare/1.0.0...1.1.0) (2025-06-28)
 
 ### Bug Fixes
