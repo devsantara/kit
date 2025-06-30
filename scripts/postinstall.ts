@@ -1,13 +1,12 @@
 import { execSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
 
-const HUSKY_DIRECTORY = './node_modules/husky';
-const HUSKY_INSTALL_COMMAND = 'husky';
+const isProduction = process.env.NODE_ENV === 'production';
+const isCI = process.env.CI === 'true';
 
 /**
- * Run husky install in non-production environments.
- * When running in production, we don't install devDependencies
+ * Skip Husky install in production and CI
+ * @see {@link https://typicode.github.io/husky/how-to.html#ci-server-and-docker}
  */
-if (existsSync(HUSKY_DIRECTORY)) {
-  execSync(HUSKY_INSTALL_COMMAND, { stdio: 'inherit' });
+if (!isProduction && !isCI) {
+  execSync('husky', { stdio: 'inherit' });
 }
