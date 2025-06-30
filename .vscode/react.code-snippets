@@ -85,6 +85,20 @@
     "body": ["<React.Suspense>$1</React.Suspense>$0"],
     "description": "Create React Suspense component",
   },
+  "React Create Context": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rcc"],
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "interface ${1:Entity}ContextValue {",
+      "\t$2",
+      "}",
+      "",
+      "const ${1}Context = React.createContext<${1:Entity}ContextValue | null>(null);$0",
+    ],
+    "description": "Create React context",
+  },
   "React Custom Hook": {
     "scope": "typescript,typescriptreact",
     "prefix": ["rch"],
@@ -116,23 +130,9 @@
     "body": ["const $1Ref = React.useRef<${2:null}>(${3:null})$0"],
     "description": "Create React useRef hook",
   },
-  "React Context": {
+  "React useContext Hook": {
     "scope": "typescript,typescriptreact",
     "prefix": ["ruc"],
-    "body": [
-      "import * as React from 'react';",
-      "",
-      "interface ${1:Entity}ContextValue {",
-      "\t$2",
-      "}",
-      "",
-      "const ${1}Context = React.createContext<${1:Entity}ContextValue | null>(null);$0",
-    ],
-    "description": "Create React context",
-  },
-  "React Context Hook": {
-    "scope": "typescript,typescriptreact",
-    "prefix": ["ruch"],
     "body": [
       "import * as React from 'react';",
       "",
@@ -142,6 +142,6 @@
       "\treturn context;",
       "}$0",
     ],
-    "description": "Create React context hook",
+    "description": "Create React useContext hook",
   },
 }
