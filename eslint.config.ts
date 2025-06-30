@@ -13,6 +13,8 @@ import eslintReactHooksPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import eslintTypescriptPlugin, { type ConfigWithExtends } from 'typescript-eslint';
 
+interface RestrictedSyntaxRuleItem { message: string; selector: string }
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, '.gitignore');
@@ -329,6 +331,36 @@ const eslintNextConfig: ConfigWithExtends[] = [
   },
 ];
 
+// #region Restricted Syntax Configs
+const restrictedSyntaxReactImport: RestrictedSyntaxRuleItem[] = [
+  {
+    message: 'Do not import default from React. Use a namespace `import * as React from \'react\'` instead.',
+    selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+  },
+  {
+    message: 'Please import React using `import * as React from \'react\'` instead of named imports.',
+    selector: 'ImportDeclaration[source.value=\'react\'] ImportSpecifier',
+  },
+  {
+    message: 'Please import React using namespace `React` (case sensitive) `import * as React from \'react\'` instead of others.',
+    selector: 'ImportDeclaration[source.value=\'react\'] ImportNamespaceSpecifier:not([local.name=\'React\'])',
+  },
+];
+
+const eslintRestrictedSyntaxConfig: ConfigWithExtends[] = [
+  {
+    name: '[Restricted Syntax] Base',
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        ...restrictedSyntaxReactImport,
+      ],
+    },
+  },
+];
+
+// #region Merge All Configs
 const eslintConfig = eslintTypescriptPlugin.config(
   includeIgnoreFile(gitignorePath),
   ...eslintCoreConfig,
@@ -340,6 +372,7 @@ const eslintConfig = eslintTypescriptPlugin.config(
   ...eslintReactHooksConfig,
   ...eslintJsxA11yConfig,
   ...eslintNextConfig,
+  ...eslintRestrictedSyntaxConfig,
 );
 
 export default eslintConfig;
