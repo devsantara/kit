@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/devsantara/kit/compare/1.2.0...1.2.1) (2025-07-01)
+
+### Bug Fixes
+
+- **eslint:** error when import external package ([cbc1919](https://github.com/devsantara/kit/commit/cbc191924061a760a166386052f3a5a19c86b749))
+- **eslint:** excessive strictness level on types ([b0835c0](https://github.com/devsantara/kit/commit/b0835c0ea3b82c86506997d5557b5f28cc687c6d))
+
 ## [1.2.0](https://github.com/devsantara/kit/compare/1.1.0...1.2.0) (2025-06-30)
 
 ### Features
