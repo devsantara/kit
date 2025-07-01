@@ -1,4 +1,8 @@
-import { ChevronDownIcon } from 'lucide-react';
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+} from 'lucide-react';
 
 /**
  * Icon library.
@@ -32,5 +36,7 @@ import { ChevronDownIcon } from 'lucide-react';
  */
 export const Icons = {
   AccordionToggle: ChevronDownIcon,
+  BreadcrumbEllipsis: MoreHorizontalIcon,
+  BreadcrumbSeparator: ChevronRightIcon,
   // Add additional icons here
 };
