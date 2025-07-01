@@ -142,6 +142,7 @@ const eslintTypescriptConfig: ConfigWithExtends[] = [
       ...eslintTypescriptPlugin.configs.stylisticTypeChecked,
     ],
     rules: {
+      '@typescript-eslint/no-unsafe-assignment': ['off'],
       '@typescript-eslint/no-unused-vars': [
         'error',
         { args: 'all', argsIgnorePattern: '_', caughtErrorsIgnorePattern: '_' },
