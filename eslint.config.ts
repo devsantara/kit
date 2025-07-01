@@ -187,7 +187,7 @@ const eslintImportConfig: ConfigWithExtends[] = [
       'import/resolver': {
         'typescript': true,
         'node': {
-          extensions: ['.js', '.ts', '.jsx', '.tsx', '.d.ts'],
+          extensions: ['.js', '.mjs', '.cjs', '.jsx', '.ts', '.tsx', '.d.ts'],
         },
       },
     },
