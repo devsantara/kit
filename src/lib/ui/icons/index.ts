@@ -42,5 +42,7 @@ export const Icons = {
   CalendarNext: ChevronRightIcon,
   CalendarPrevious: ChevronLeftIcon,
   CalendarDropdown: ChevronDownIcon,
+  CarouselNext: ChevronRightIcon,
+  CarouselPrevious: ChevronLeftIcon,
   // Add additional icons here
 };
