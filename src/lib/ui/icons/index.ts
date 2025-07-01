@@ -4,6 +4,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   MoreHorizontalIcon,
+  SearchIcon,
   XIcon,
 } from 'lucide-react';
 
@@ -39,6 +40,7 @@ import {
  */
 export const Icons = {
   Close: XIcon,
+  Search: SearchIcon,
   AccordionToggle: ChevronDownIcon,
   BreadcrumbEllipsis: MoreHorizontalIcon,
   BreadcrumbSeparator: ChevronRightIcon,
