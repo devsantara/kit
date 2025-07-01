@@ -343,7 +343,7 @@ const eslintTailwindcssConfig: ConfigWithExtends[] = [
     },
     settings: {
       'better-tailwindcss': {
-        entryPoint: 'src/styles/globals.css',
+        entryPoint: 'src/lib/ui/styles/globals.css',
       },
     },
     rules: {
