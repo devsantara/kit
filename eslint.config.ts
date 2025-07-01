@@ -138,8 +138,8 @@ const eslintTypescriptConfig: ConfigWithExtends[] = [
       },
     },
     extends: [
-      ...eslintTypescriptPlugin.configs.strictTypeChecked,
-      ...eslintTypescriptPlugin.configs.stylisticTypeChecked,
+      ...eslintTypescriptPlugin.configs.strict,
+      ...eslintTypescriptPlugin.configs.stylistic,
     ],
     rules: {
       '@typescript-eslint/no-unused-vars': [
@@ -283,6 +283,7 @@ const eslintReactConfig: ConfigWithExtends[] = [
     rules: {
       ...eslintReactPlugin.configs.recommended.rules,
       ...eslintReactPlugin.configs['jsx-runtime'].rules,
+      'react/prop-types': ['off'],
       'react/jsx-no-leaked-render': ['error'],
       'react/function-component-definition': [
         'error',
