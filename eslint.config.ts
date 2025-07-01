@@ -177,7 +177,7 @@ const eslintTypescriptConfig: ConfigWithExtends[] = [
 const eslintImportConfig: ConfigWithExtends[] = [
   {
     name: '[Import] Base',
-    files: ['**/*.{js,mjs,jsx,ts,tsx}'],
+    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     languageOptions: {
       // Override the recommended configs
       ecmaVersion: 'latest',
@@ -185,8 +185,10 @@ const eslintImportConfig: ConfigWithExtends[] = [
     },
     settings: {
       'import/resolver': {
-        node: true,
-        typescript: true,
+        'typescript': true,
+        'node': {
+          extensions: ['.js', '.ts', '.jsx', '.tsx', '.d.ts'],
+        },
       },
     },
     extends: [
@@ -198,7 +200,7 @@ const eslintImportConfig: ConfigWithExtends[] = [
       'import/newline-after-import': ['error', { count: 1 }],
       'import/no-absolute-path': ['error'],
       'import/no-duplicates': ['error', { 'prefer-inline': true }],
-      'import/no-cycle': ['error'],
+      'import/no-cycle': ['error', { ignoreExternal: true }],
       'import/no-self-import': ['error'],
       'import/no-named-as-default-member': ['off'],
       'import/order': [
