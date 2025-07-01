@@ -4,6 +4,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   MoreHorizontalIcon,
+  XIcon,
 } from 'lucide-react';
 
 /**
@@ -37,6 +38,7 @@ import {
  * This practice allows easy icon replacements or updates without changing component implementations directly.
  */
 export const Icons = {
+  Close: XIcon,
   AccordionToggle: ChevronDownIcon,
   BreadcrumbEllipsis: MoreHorizontalIcon,
   BreadcrumbSeparator: ChevronRightIcon,
