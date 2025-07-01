@@ -1,4 +1,5 @@
 import {
+  CheckIcon,
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -44,5 +45,6 @@ export const Icons = {
   CalendarDropdown: ChevronDownIcon,
   CarouselNext: ChevronRightIcon,
   CarouselPrevious: ChevronLeftIcon,
+  CheckboxChecked: CheckIcon,
   // Add additional icons here
 };
