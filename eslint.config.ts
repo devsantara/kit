@@ -284,6 +284,7 @@ const eslintReactConfig: ConfigWithExtends[] = [
     rules: {
       ...eslintReactPlugin.configs.recommended.rules,
       ...eslintReactPlugin.configs['jsx-runtime'].rules,
+      'react/prop-types': ['off'],
       'react/jsx-no-leaked-render': ['error'],
       'react/function-component-definition': [
         'error',

@@ -1,5 +1,6 @@
 import {
   ChevronDownIcon,
+  ChevronLeftIcon,
   ChevronRightIcon,
   MoreHorizontalIcon,
 } from 'lucide-react';
@@ -38,5 +39,8 @@ export const Icons = {
   AccordionToggle: ChevronDownIcon,
   BreadcrumbEllipsis: MoreHorizontalIcon,
   BreadcrumbSeparator: ChevronRightIcon,
+  CalendarNext: ChevronRightIcon,
+  CalendarPrevious: ChevronLeftIcon,
+  CalendarDropdown: ChevronDownIcon,
   // Add additional icons here
 };
