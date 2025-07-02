@@ -1,4 +1,4 @@
-import '~/styles/globals.css';
+import '~/ui/styles/globals.css';
 
 import * as React from 'react';
 
