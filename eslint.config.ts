@@ -351,7 +351,7 @@ const eslintTailwindcssConfig: ConfigWithExtends[] = [
     },
     rules: {
       ...eslintTailwindcssPlugin.configs['recommended-warn']?.rules,
-      'better-tailwindcss/no-unregistered-classes': ['error'],
+      'better-tailwindcss/no-unregistered-classes': ['error', { ignore: ['origin-top-center', 'toaster'] }],
       'better-tailwindcss/no-duplicate-classes': ['error'],
       'better-tailwindcss/no-conflicting-classes': ['error'],
       'better-tailwindcss/enforce-consistent-class-order': ['warn', { order: 'improved' }],
