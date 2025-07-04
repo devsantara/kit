@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function NavigationMenu({
+export function NavigationMenu({
   className,
   children,
   viewport = true,
@@ -32,7 +32,7 @@ function NavigationMenu({
   );
 }
 
-function NavigationMenuList({
+export function NavigationMenuList({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.List>) {
@@ -48,7 +48,7 @@ function NavigationMenuList({
   );
 }
 
-function NavigationMenuItem({
+export function NavigationMenuItem({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
@@ -61,7 +61,7 @@ function NavigationMenuItem({
   );
 }
 
-const navigationMenuTriggerStyle = cva(
+export const navigationMenuTriggerStyle = cva(
   `
     group inline-flex h-9 w-max items-center justify-center rounded-md
     bg-background px-4 py-2 text-sm font-medium transition-[color,box-shadow]
@@ -75,7 +75,7 @@ const navigationMenuTriggerStyle = cva(
   `,
 );
 
-function NavigationMenuTrigger({
+export function NavigationMenuTrigger({
   className,
   children,
   ...props
@@ -99,7 +99,7 @@ function NavigationMenuTrigger({
   );
 }
 
-function NavigationMenuContent({
+export function NavigationMenuContent({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Content>) {
@@ -143,7 +143,7 @@ function NavigationMenuContent({
   );
 }
 
-function NavigationMenuViewport({
+export function NavigationMenuViewport({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
@@ -173,7 +173,7 @@ function NavigationMenuViewport({
   );
 }
 
-function NavigationMenuLink({
+export function NavigationMenuLink({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
@@ -200,7 +200,7 @@ function NavigationMenuLink({
   );
 }
 
-function NavigationMenuIndicator({
+export function NavigationMenuIndicator({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Indicator>) {
@@ -224,15 +224,3 @@ function NavigationMenuIndicator({
     </NavigationMenuPrimitive.Indicator>
   );
 }
-
-export {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigationMenuViewport,
-};

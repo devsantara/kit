@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   `
     inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm
     font-medium whitespace-nowrap transition-all outline-none
@@ -57,7 +57,7 @@ const buttonVariants = cva(
   },
 );
 
-function Button({
+export function Button({
   className,
   variant,
   size,
@@ -77,5 +77,3 @@ function Button({
     />
   );
 }
-
-export { Button, buttonVariants };

@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function InputOTP({
+export function InputOTP({
   className,
   containerClassName,
   ...props
@@ -26,7 +26,7 @@ function InputOTP({
   );
 }
 
-function InputOTPGroup({ className, ...props }: React.ComponentProps<'div'>) {
+export function InputOTPGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn('flex items-center', className)}
@@ -36,7 +36,7 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function InputOTPSlot({
+export function InputOTPSlot({
   index,
   className,
   ...props
@@ -87,12 +87,10 @@ function InputOTPSlot({
   );
 }
 
-function InputOTPSeparator({ ...props }: React.ComponentProps<'div'>) {
+export function InputOTPSeparator({ ...props }: React.ComponentProps<'div'>) {
   return (
     <div data-slot="input-otp-separator" role="separator" {...props}>
       <MinusIcon />
     </div>
   );
 }
-
-export { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot };

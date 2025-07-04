@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-const badgeVariants = cva(
+export const badgeVariants = cva(
   `
     inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden
     rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap
@@ -48,7 +48,7 @@ const badgeVariants = cva(
   },
 );
 
-function Badge({
+export function Badge({
   className,
   variant,
   asChild = false,
@@ -65,5 +65,3 @@ function Badge({
     />
   );
 }
-
-export { Badge, badgeVariants };

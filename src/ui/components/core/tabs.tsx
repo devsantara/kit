@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function Tabs({
+export function Tabs({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Root>) {
@@ -18,7 +18,7 @@ function Tabs({
   );
 }
 
-function TabsList({
+export function TabsList({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List>) {
@@ -37,7 +37,7 @@ function TabsList({
   );
 }
 
-function TabsTrigger({
+export function TabsTrigger({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
@@ -68,7 +68,7 @@ function TabsTrigger({
   );
 }
 
-function TabsContent({
+export function TabsContent({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Content>) {
@@ -80,5 +80,3 @@ function TabsContent({
     />
   );
 }
-
-export { Tabs, TabsContent, TabsList, TabsTrigger };

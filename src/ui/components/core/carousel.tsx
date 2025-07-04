@@ -9,7 +9,7 @@ import * as React from 'react';
 import { Button } from '~/ui/components/core/button';
 import { cn } from '~/ui/utils';
 
-type CarouselApi = UseEmblaCarouselType[1];
+export type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
@@ -42,7 +42,7 @@ function useCarousel() {
   return context;
 }
 
-function Carousel({
+export function Carousel({
   orientation = 'horizontal',
   opts,
   setApi,
@@ -133,7 +133,7 @@ function Carousel({
   );
 }
 
-function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
+export function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -154,7 +154,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
+export function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   const { orientation } = useCarousel();
 
   return (
@@ -172,7 +172,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function CarouselPrevious({
+export function CarouselPrevious({
   className,
   variant = 'outline',
   size = 'icon',
@@ -202,7 +202,7 @@ function CarouselPrevious({
   );
 }
 
-function CarouselNext({
+export function CarouselNext({
   className,
   variant = 'outline',
   size = 'icon',
@@ -231,12 +231,3 @@ function CarouselNext({
     </Button>
   );
 }
-
-export {
-  Carousel,
-  type CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-};

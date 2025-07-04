@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-const toggleVariants = cva(
+export const toggleVariants = cva(
   `
     inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium
     whitespace-nowrap transition-[color,box-shadow] outline-none
@@ -43,7 +43,7 @@ const toggleVariants = cva(
   },
 );
 
-function Toggle({
+export function Toggle({
   className,
   variant,
   size,
@@ -58,5 +58,3 @@ function Toggle({
     />
   );
 }
-
-export { Toggle, toggleVariants };

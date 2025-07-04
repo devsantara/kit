@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function Label({
+export function Label({
   className,
   ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root>) {
@@ -25,5 +25,3 @@ function Label({
     />
   );
 }
-
-export { Label };

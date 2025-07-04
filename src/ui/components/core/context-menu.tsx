@@ -6,13 +6,13 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function ContextMenu({
+export function ContextMenu({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Root>) {
   return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
 }
 
-function ContextMenuTrigger({
+export function ContextMenuTrigger({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Trigger>) {
   return (
@@ -20,7 +20,7 @@ function ContextMenuTrigger({
   );
 }
 
-function ContextMenuGroup({
+export function ContextMenuGroup({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Group>) {
   return (
@@ -28,7 +28,7 @@ function ContextMenuGroup({
   );
 }
 
-function ContextMenuPortal({
+export function ContextMenuPortal({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Portal>) {
   return (
@@ -36,13 +36,13 @@ function ContextMenuPortal({
   );
 }
 
-function ContextMenuSub({
+export function ContextMenuSub({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Sub>) {
   return <ContextMenuPrimitive.Sub data-slot="context-menu-sub" {...props} />;
 }
 
-function ContextMenuRadioGroup({
+export function ContextMenuRadioGroup({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.RadioGroup>) {
   return (
@@ -53,7 +53,7 @@ function ContextMenuRadioGroup({
   );
 }
 
-function ContextMenuSubTrigger({
+export function ContextMenuSubTrigger({
   className,
   inset,
   children,
@@ -85,7 +85,7 @@ function ContextMenuSubTrigger({
   );
 }
 
-function ContextMenuSubContent({
+export function ContextMenuSubContent({
   className,
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.SubContent>) {
@@ -113,7 +113,7 @@ function ContextMenuSubContent({
   );
 }
 
-function ContextMenuContent({
+export function ContextMenuContent({
   className,
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Content>) {
@@ -144,7 +144,7 @@ function ContextMenuContent({
   );
 }
 
-function ContextMenuItem({
+export function ContextMenuItem({
   className,
   inset,
   variant = 'default',
@@ -181,7 +181,7 @@ function ContextMenuItem({
   );
 }
 
-function ContextMenuCheckboxItem({
+export function ContextMenuCheckboxItem({
   className,
   children,
   checked,
@@ -218,7 +218,7 @@ function ContextMenuCheckboxItem({
   );
 }
 
-function ContextMenuRadioItem({
+export function ContextMenuRadioItem({
   className,
   children,
   ...props
@@ -253,7 +253,7 @@ function ContextMenuRadioItem({
   );
 }
 
-function ContextMenuLabel({
+export function ContextMenuLabel({
   className,
   inset,
   ...props
@@ -273,7 +273,7 @@ function ContextMenuLabel({
   );
 }
 
-function ContextMenuSeparator({
+export function ContextMenuSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Separator>) {
@@ -286,7 +286,7 @@ function ContextMenuSeparator({
   );
 }
 
-function ContextMenuShortcut({
+export function ContextMenuShortcut({
   className,
   ...props
 }: React.ComponentProps<'span'>) {
@@ -301,21 +301,3 @@ function ContextMenuShortcut({
     />
   );
 }
-
-export {
-  ContextMenu,
-  ContextMenuCheckboxItem,
-  ContextMenuContent,
-  ContextMenuGroup,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuPortal,
-  ContextMenuRadioGroup,
-  ContextMenuRadioItem,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
-  ContextMenuTrigger,
-};

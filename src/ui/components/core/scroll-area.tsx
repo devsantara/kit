@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function ScrollArea({
+export function ScrollArea({
   className,
   children,
   ...props
@@ -32,7 +32,7 @@ function ScrollArea({
   );
 }
 
-function ScrollBar({
+export function ScrollBar({
   className,
   orientation = 'vertical',
   ...props
@@ -58,5 +58,3 @@ function ScrollBar({
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );
 }
-
-export { ScrollArea, ScrollBar };

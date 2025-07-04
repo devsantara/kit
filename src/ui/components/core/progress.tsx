@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function Progress({
+export function Progress({
   className,
   value,
   ...props
@@ -27,5 +27,3 @@ function Progress({
     </ProgressPrimitive.Root>
   );
 }
-
-export { Progress };

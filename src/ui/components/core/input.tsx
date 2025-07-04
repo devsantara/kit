@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
+export function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   return (
     <input
       data-slot="input"
@@ -35,5 +35,3 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
     />
   );
 }
-
-export { Input };

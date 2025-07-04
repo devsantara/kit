@@ -11,7 +11,7 @@ import { DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker';
 import { Button, buttonVariants } from '~/ui/components/core/button';
 import { cn } from '~/ui/utils';
 
-function Calendar({
+export function Calendar({
   className,
   classNames,
   showOutsideDays = true,
@@ -203,9 +203,8 @@ function Calendar({
   );
 }
 
-function CalendarDayButton({
+export function CalendarDayButton({
   className,
-  day,
   modifiers,
   ...props
 }: React.ComponentProps<typeof DayButton>) {
@@ -218,7 +217,7 @@ function CalendarDayButton({
 
   return (
     <Button
-      data-day={day.date.toLocaleDateString()}
+      data-day={props.day.date.toLocaleDateString()}
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
       data-range-start={modifiers.range_start}
@@ -263,5 +262,3 @@ function CalendarDayButton({
     />
   );
 }
-
-export { Calendar, CalendarDayButton };

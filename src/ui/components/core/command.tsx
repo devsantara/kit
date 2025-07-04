@@ -13,7 +13,7 @@ import {
 } from '~/ui/components/core/dialog';
 import { cn } from '~/ui/utils';
 
-function Command({
+export function Command({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive>) {
@@ -32,7 +32,7 @@ function Command({
   );
 }
 
-function CommandDialog({
+export function CommandDialog({
   title = 'Command Palette',
   description = 'Search for a command to run...',
   children,
@@ -74,7 +74,7 @@ function CommandDialog({
   );
 }
 
-function CommandInput({
+export function CommandInput({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
@@ -101,7 +101,7 @@ function CommandInput({
   );
 }
 
-function CommandList({
+export function CommandList({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.List>) {
@@ -117,7 +117,7 @@ function CommandList({
   );
 }
 
-function CommandEmpty({
+export function CommandEmpty({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
   return (
@@ -129,7 +129,7 @@ function CommandEmpty({
   );
 }
 
-function CommandGroup({
+export function CommandGroup({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Group>) {
@@ -150,7 +150,7 @@ function CommandGroup({
   );
 }
 
-function CommandSeparator({
+export function CommandSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Separator>) {
@@ -163,7 +163,7 @@ function CommandSeparator({
   );
 }
 
-function CommandItem({
+export function CommandItem({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Item>) {
@@ -189,7 +189,7 @@ function CommandItem({
   );
 }
 
-function CommandShortcut({
+export function CommandShortcut({
   className,
   ...props
 }: React.ComponentProps<'span'>) {
@@ -204,15 +204,3 @@ function CommandShortcut({
     />
   );
 }
-
-export {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-};

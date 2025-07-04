@@ -8,7 +8,7 @@ import * as React from 'react';
 import { Button, buttonVariants } from '~/ui/components/core/button';
 import { cn } from '~/ui/utils';
 
-function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
+export function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
   return (
     <nav
       aria-label="pagination"
@@ -20,7 +20,7 @@ function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
   );
 }
 
-function PaginationContent({
+export function PaginationContent({
   className,
   ...props
 }: React.ComponentProps<'ul'>) {
@@ -33,7 +33,7 @@ function PaginationContent({
   );
 }
 
-function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
+export function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
   return <li data-slot="pagination-item" {...props} />;
 }
 
@@ -42,7 +42,7 @@ type PaginationLinkProps = {
 } & Pick<React.ComponentProps<typeof Button>, 'size'>
 & React.ComponentProps<'a'>;
 
-function PaginationLink({
+export function PaginationLink({
   className,
   isActive,
   children,
@@ -68,7 +68,7 @@ function PaginationLink({
   );
 }
 
-function PaginationPrevious({
+export function PaginationPrevious({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
@@ -85,7 +85,7 @@ function PaginationPrevious({
   );
 }
 
-function PaginationNext({
+export function PaginationNext({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
@@ -102,7 +102,7 @@ function PaginationNext({
   );
 }
 
-function PaginationEllipsis({
+export function PaginationEllipsis({
   className,
   ...props
 }: React.ComponentProps<'span'>) {
@@ -118,13 +118,3 @@ function PaginationEllipsis({
     </span>
   );
 }
-
-export {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-};

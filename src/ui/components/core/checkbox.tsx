@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function Checkbox({
+export function Checkbox({
   className,
   ...props
 }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
@@ -41,5 +41,3 @@ function Checkbox({
     </CheckboxPrimitive.Root>
   );
 }
-
-export { Checkbox };

@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function Slider({
+export function Slider({
   className,
   defaultValue,
   value,
@@ -81,5 +81,3 @@ function Slider({
     </SliderPrimitive.Root>
   );
 }
-
-export { Slider };

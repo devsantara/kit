@@ -5,19 +5,19 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
-function Popover({
+export function Popover({
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />;
 }
 
-function PopoverTrigger({
+export function PopoverTrigger({
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 
-function PopoverContent({
+export function PopoverContent({
   className,
   align = 'center',
   sideOffset = 4,
@@ -51,10 +51,8 @@ function PopoverContent({
   );
 }
 
-function PopoverAnchor({
+export function PopoverAnchor({
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {
   return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />;
 }
-
-export { Popover, PopoverAnchor, PopoverContent, PopoverTrigger };
