@@ -43,6 +43,12 @@
     "plugins": [{ "name": "next" }]
   },
   // File Inclusion and Exclusion
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".storybook/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }

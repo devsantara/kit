@@ -11,6 +11,7 @@ import eslintImportPlugin from 'eslint-plugin-import';
 import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import eslintReactPlugin from 'eslint-plugin-react';
 import eslintReactHooksPlugin from 'eslint-plugin-react-hooks';
+import eslintStoryBookPlugin from 'eslint-plugin-storybook';
 import globals from 'globals';
 import eslintTypescriptPlugin, { type ConfigWithExtends } from 'typescript-eslint';
 
@@ -197,6 +198,7 @@ const eslintImportConfig: ConfigWithExtends[] = [
     ],
     rules: {
       'import/first': ['error'],
+      'import/namespace': ['off'],
       'import/newline-after-import': ['error', { count: 1 }],
       'import/no-absolute-path': ['error'],
       'import/no-duplicates': ['error', { 'prefer-inline': true }],
@@ -392,6 +394,16 @@ const eslintRestrictedSyntaxConfig: ConfigWithExtends[] = [
   },
 ];
 
+// #region Storybook Configs
+const eslintStorybookConfig: ConfigWithExtends[] = [
+  {
+    name: '[Storybook] Base',
+    ignores: ['!.storybook'],
+    extends: [eslintStoryBookPlugin.configs['flat/recommended']],
+    files: ['**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
+  },
+];
+
 // #region Merge All Configs
 const eslintConfig = eslintTypescriptPlugin.config(
   includeIgnoreFile(gitignorePath),
@@ -406,6 +418,7 @@ const eslintConfig = eslintTypescriptPlugin.config(
   ...eslintNextConfig,
   ...eslintTailwindcssConfig,
   ...eslintRestrictedSyntaxConfig,
+  ...eslintStorybookConfig,
 );
 
 export default eslintConfig;
