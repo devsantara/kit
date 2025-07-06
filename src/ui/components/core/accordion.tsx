@@ -6,6 +6,9 @@ import * as React from 'react';
 
 import { cn } from '~/ui/utils';
 
+/**
+ * https://www.radix-ui.com/primitives/docs/components/accordion#api-reference
+ */
 export function Accordion({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
