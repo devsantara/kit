@@ -115,6 +115,7 @@ const eslintJavascriptConfig: ConfigWithExtends[] = [
       ...eslintJsPlugin.configs.recommended.rules,
       'func-style': ['error', 'declaration', { allowArrowFunctions: false }],
       'no-console': ['warn', { allow: ['error'] }],
+      'no-empty-pattern': ['off'],
       'prefer-const': [
         'error',
         { destructuring: 'all', ignoreReadBeforeAssign: false },
@@ -252,6 +253,7 @@ const eslintImportConfig: ConfigWithExtends[] = [
         return `src/app/**/${filename}.{js,jsx,ts,tsx}`;
       }),
       'src/middleware.{js,ts}',
+      'src/**/*.stories.{js,jsx,ts,tsx}',
     ],
     rules: {
       // only allow default export in reserved files
