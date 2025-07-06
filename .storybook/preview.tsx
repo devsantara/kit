@@ -9,8 +9,11 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { themes } from 'storybook/theming';
 
 import { cn } from '~/ui/utils';
+
+import { DocsContainer } from './docs-container';
 
 import type { Preview } from '@storybook/nextjs-vite';
 
@@ -33,6 +36,14 @@ const fontMono = Geist_Mono(
 const preview: Preview = {
   tags: ['autodocs'],
   parameters: {
+    darkMode: {
+      dark: { ...themes.dark },
+      light: { ...themes.normal },
+      classTarget: 'body',
+      stylePreview: true,
+      darkClass: 'dark',
+      lightClass: 'light',
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -40,6 +51,7 @@ const preview: Preview = {
       },
     },
     docs: {
+      container: DocsContainer,
       toc: true,
       page: () => (
         <>

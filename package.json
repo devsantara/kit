@@ -106,10 +106,14 @@
     "@storybook/addon-docs": "^9.0.15",
     "@storybook/addon-onboarding": "^9.0.15",
     "@storybook/addon-vitest": "^9.0.15",
+    "@storybook/nextjs-vite": "^9.0.15",
     "@stylistic/eslint-plugin": "^5.0.0",
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.8",
     "@typescript-eslint/parser": "^8.35.0",
+    "@vitest/browser": "^3.2.4",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vueless/storybook-dark-mode": "^9.0.6",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "eslint": "^9.29.0",
     "eslint-import-resolver-typescript": "^4.4.3",
@@ -122,16 +126,13 @@
     "globals": "^16.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
+    "playwright": "^1.53.2",
     "prettier": "^3.6.1",
     "release-it": "^19.0.3",
     "storybook": "^9.0.15",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",
-    "@storybook/nextjs-vite": "^9.0.15",
-    "vitest": "^3.2.4",
-    "@vitest/browser": "^3.2.4",
-    "playwright": "^1.53.2",
-    "@vitest/coverage-v8": "^3.2.4"
+    "vitest": "^3.2.4"
   },
   "resolutions": {
     "conventional-changelog-conventionalcommits": "8.0.0"

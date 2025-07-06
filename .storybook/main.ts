@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-a11y',
     '@storybook/addon-vitest',
+    '@vueless/storybook-dark-mode',
   ],
   'framework': {
     'name': '@storybook/nextjs-vite',
