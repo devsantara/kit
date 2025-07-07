@@ -1,9 +1,11 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { Toaster as Sonner, type ToasterProps } from 'sonner';
+import { toast as sonnerToast, Toaster as Sonner, type ToasterProps } from 'sonner';
 
-export function Toaster({ ...props }: ToasterProps) {
+export const toast = sonnerToast;
+
+export function ToastProvider({ ...props }: ToasterProps) {
   const { theme = 'system' } = useTheme();
 
   return (
@@ -12,6 +14,7 @@ export function Toaster({ ...props }: ToasterProps) {
       theme={theme as ToasterProps['theme']}
       style={
         {
+          'fontFamily': 'var(--font-sans)',
           '--normal-bg': 'var(--popover)',
           '--normal-text': 'var(--popover-foreground)',
           '--normal-border': 'var(--border)',
