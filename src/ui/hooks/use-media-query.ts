@@ -11,8 +11,13 @@ const breakpointWidth: Record<BreakpointName, string> = {
   '2xl': '96rem',
 };
 
-export function useMediaQuery(breakpoint: BreakpointName) {
-  const [value, setValue] = React.useState(false);
+interface options {
+  initial?: boolean;
+}
+
+export function useMediaQuery(breakpoint: BreakpointName, options?: options) {
+  const { initial = false } = options ?? {};
+  const [value, setValue] = React.useState(initial);
 
   React.useEffect(function watchMediaSize() {
     function onChangeMediaWidth(event: MediaQueryListEvent) {
