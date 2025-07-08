@@ -1,9 +1,9 @@
 'use client';
 
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
-import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react';
 import * as React from 'react';
 
+import { Icons } from '~/ui/icons';
 import { cn } from '~/ui/utils';
 
 export function Menubar({
@@ -173,7 +173,7 @@ export function MenubarCheckboxItem({
       `}
       >
         <MenubarPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
+          <Icons.Check className="size-4" />
         </MenubarPrimitive.ItemIndicator>
       </span>
       {children}
@@ -208,7 +208,7 @@ export function MenubarRadioItem({
       `}
       >
         <MenubarPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
+          <Icons.Circle className="size-2 fill-current" />
         </MenubarPrimitive.ItemIndicator>
       </span>
       {children}
@@ -296,7 +296,7 @@ export function MenubarSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto h-4 w-4" />
+      <Icons.ChevronRight className="ml-auto h-4 w-4" />
     </MenubarPrimitive.SubTrigger>
   );
 }

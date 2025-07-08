@@ -2,7 +2,6 @@
 
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { PanelLeftIcon } from 'lucide-react';
 import * as React from 'react';
 
 import { Button } from '~/ui/components/core/button';
@@ -23,6 +22,7 @@ import {
   TooltipTrigger,
 } from '~/ui/components/core/tooltip';
 import { useMediaQuery } from '~/ui/hooks/use-media-query';
+import { Icons } from '~/ui/icons';
 import { cn } from '~/ui/utils';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
@@ -311,7 +311,7 @@ export function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <Icons.Sidebar />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

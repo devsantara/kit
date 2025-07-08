@@ -1,9 +1,9 @@
 'use client';
 
 import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { XIcon } from 'lucide-react';
 import * as React from 'react';
 
+import { Icons } from '~/ui/icons';
 import { cn } from '~/ui/utils';
 
 export function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
@@ -108,7 +108,7 @@ export function SheetContent({
           data-[state=open]:bg-secondary
         `}
         >
-          <XIcon className="size-4" />
+          <Icons.Close className="size-4" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>

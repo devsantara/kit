@@ -1,9 +1,9 @@
 'use client';
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { XIcon } from 'lucide-react';
 import * as React from 'react';
 
+import { Icons } from '~/ui/icons';
 import { cn } from '~/ui/utils';
 
 export function Dialog({
@@ -96,7 +96,7 @@ export function DialogContent({
                   [&_svg:not([class*='size-'])]:size-4
                 `}
               >
-                <XIcon />
+                <Icons.Close />
                 <span className="sr-only">Close</span>
               </DialogPrimitive.Close>
             )

@@ -1,7 +1,6 @@
 'use client';
 
 import { Command as CommandPrimitive } from 'cmdk';
-import { SearchIcon } from 'lucide-react';
 import * as React from 'react';
 
 import {
@@ -11,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '~/ui/components/core/dialog';
+import { Icons } from '~/ui/icons';
 import { cn } from '~/ui/utils';
 
 export function Command({
@@ -83,7 +83,7 @@ export function CommandInput({
       className="flex h-9 items-center gap-2 border-b px-3"
       data-slot="command-input-wrapper"
     >
-      <SearchIcon className="size-4 shrink-0 opacity-50" />
+      <Icons.Search className="size-4 shrink-0 opacity-50" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
