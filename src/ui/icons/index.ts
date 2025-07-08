@@ -1,3 +1,20 @@
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+  CircleIcon,
+  GripVerticalIcon,
+  MinusIcon,
+  MoreHorizontalIcon,
+  PanelLeftIcon,
+  SearchIcon,
+  XIcon,
+} from 'lucide-react';
+
 /**
  * Icon library.
  *
@@ -29,5 +46,19 @@
  * This practice allows easy icon replacements or updates without changing component implementations directly.
  */
 export const Icons = {
+  ChevronUp: ChevronUpIcon,
+  ChevronDown: ChevronDownIcon,
+  ChevronRight: ChevronRightIcon,
+  ChevronLeft: ChevronLeftIcon,
+  ArrowRight: ArrowRightIcon,
+  ArrowLeft: ArrowLeftIcon,
+  MoreHorizontal: MoreHorizontalIcon,
+  GripVertical: GripVerticalIcon,
+  Check: CheckIcon,
+  Search: SearchIcon,
+  Circle: CircleIcon,
+  Close: XIcon,
+  Dash: MinusIcon,
+  Sidebar: PanelLeftIcon,
   // Add icons here
 };
