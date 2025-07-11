@@ -37,9 +37,9 @@ export const siteMetadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: 'https://assets.devsantara.com/kit/opengraph-image.jpg',
-        width: 1200,
-        height: 630,
+        url: 'https://assets.devsantara.com/kit/opengraph-site.jpg',
+        width: 2800,
+        height: 1600,
       },
     ],
   },
