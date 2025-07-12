@@ -5,6 +5,8 @@ import * as React from 'react';
 import { fonts } from '~/ui/styles/fonts';
 import { cn } from '~/ui/utils';
 
+export { siteMetadata as metadata } from '~/configs/site';
+
 interface RootLayoutProps {
   children: React.ReactNode;
 }
