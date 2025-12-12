@@ -3,7 +3,6 @@
  *
  * @example
  * ```
- * type
  * <type>[optional scope]: <subject/description>
  *
  * [optional body]
