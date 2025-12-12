@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Auto-generated files
+routeTree.gen.ts
+
+# Output
+.output/
+dist/
+dist-ssr/
+public/
