@@ -1,0 +1,9 @@
+{
+  // Editor
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "prettier.prettier-vscode",
+
+  // Extension - Prettier
+  "prettier.enable": true,
+  "prettier.configPath": "prettier.config.js"
+}
