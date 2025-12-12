@@ -2,8 +2,8 @@ import {
   createStartHandler,
   defaultStreamHandler,
   defineHandlerCallback,
-} from "@tanstack/react-start/server";
-import { createServerEntry } from "@tanstack/react-start/server-entry";
+} from '@tanstack/react-start/server';
+import { createServerEntry } from '@tanstack/react-start/server-entry';
 
 const serverHandler = defineHandlerCallback((ctx) => {
   return defaultStreamHandler(ctx);

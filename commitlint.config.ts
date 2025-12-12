@@ -12,90 +12,90 @@
  * @see {@link https://commitlint.js.org}
  */
 
-import { RuleConfigSeverity, type UserConfig } from "@commitlint/types";
+import { RuleConfigSeverity, type UserConfig } from '@commitlint/types';
 
 const CommitlintConfig: UserConfig = {
-  extends: ["@commitlint/config-conventional"],
-  formatter: "@commitlint/format",
+  extends: ['@commitlint/config-conventional'],
+  formatter: '@commitlint/format',
   rules: {
-    "subject-case": [2, "never", ["start-case", "pascal-case", "upper-case"]],
-    "subject-empty": [2, "never"], // Subject must not be empty
-    "subject-full-stop": [2, "never", "."], // No period at end
+    'subject-case': [2, 'never', ['start-case', 'pascal-case', 'upper-case']],
+    'subject-empty': [2, 'never'], // Subject must not be empty
+    'subject-full-stop': [2, 'never', '.'], // No period at end
 
-    "header-max-length": [2, "always", 72],
+    'header-max-length': [2, 'always', 72],
 
-    "body-leading-blank": [2, "always"], // Blank line before body
-    "footer-leading-blank": [2, "always"], // Blank line before footer
+    'body-leading-blank': [2, 'always'], // Blank line before body
+    'footer-leading-blank': [2, 'always'], // Blank line before footer
 
-    "type-enum": [
+    'type-enum': [
       RuleConfigSeverity.Error,
-      "always",
+      'always',
       [
         /**
          * New feature for the user
          * @example feat(cart): add checkout button
          */
-        "feat",
+        'feat',
 
         /**
          * Bug fix that resolves user-facing issue
          * @example fix(api): handle 500 error from payment gateway
          */
-        "fix",
+        'fix',
 
         /**
          * Changes to documentation only
          * @example docs(readme): clarify setup instructions
          */
-        "docs",
+        'docs',
 
         /**
          * Code formatting/style with no logic changes (reorder imports, fix whitespace, remove comments)
          * @example style: remove unused imports
          */
-        "style",
+        'style',
 
         /**
          * Code change that neither fixes a bug nor adds a feature
          * @example refactor(store): move actions to slice
          */
-        "refactor",
+        'refactor',
 
         /**
          * Performance improvement
          * @example perf(map): memoize marker rendering
          */
-        "perf",
+        'perf',
 
         /**
          * Adding or updating tests
          * @example test(auth): add tests for login redirect
          */
-        "test",
+        'test',
 
         /**
          * Changes affecting build tools or external dependencies
          * @example build(webpack): enable splitChunks optimization
          */
-        "build",
+        'build',
 
         /**
          * Continuous Integration related changes
          * @example ci(github): add PR labeler action
          */
-        "ci",
+        'ci',
 
         /**
          * Routine tasks like bumping deps, renaming
          * @example chore(deps): update emotion to 11.11.0
          */
-        "chore",
+        'chore',
 
         /**
          * Reverts a previous commit
          * @example revert(user): rollback avatar upload
          */
-        "revert",
+        'revert',
       ],
     ],
   },
