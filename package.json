@@ -24,7 +24,9 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.140.5",
@@ -33,10 +35,14 @@
     "react-dom": "^19.2.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@commitlint/types": "^20.2.0",
     "@types/node": "^25.0.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
+    "husky": "^9.1.7",
     "nitro": "3.0.1-alpha.1",
     "typescript": "^5.9.3",
     "vite": "^7.2.7",
