@@ -26,11 +26,11 @@ const lintStagedConfig = {
   [ALL_FILES]: function (stagedFiles) {
     return [buildPrettierCommand(stagedFiles)];
   },
-  [JAVASCRIPT_FILES]: function (filenames) {
-    return [buildEslintCommand(filenames)];
+  [JAVASCRIPT_FILES]: function (stagedFiles) {
+    return [buildEslintCommand(stagedFiles)];
   },
-  [TYPESCRIPT_FILES]: function (filenames) {
-    return [buildEslintCommand(filenames)];
+  [TYPESCRIPT_FILES]: function (stagedFiles) {
+    return [buildEslintCommand(stagedFiles)];
   },
 };
 
