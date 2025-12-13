@@ -17,6 +17,11 @@ function buildEslintCommand(stagedFiles) {
   return `eslint --cache --fix ${stagedFiles.join(' ')}`;
 }
 
+// Type check with TypeScript
+function buildTypeCheckCommand() {
+  return 'tsc --noEmit';
+}
+
 /**
  * Lint staged files
  * @description Run commands on staged files based on their types
@@ -30,7 +35,7 @@ const lintStagedConfig = {
     return [buildEslintCommand(stagedFiles)];
   },
   [TYPESCRIPT_FILES]: function (stagedFiles) {
-    return [buildEslintCommand(stagedFiles)];
+    return [buildTypeCheckCommand(), buildEslintCommand(stagedFiles)];
   },
 };
 
