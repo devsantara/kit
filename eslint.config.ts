@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { includeIgnoreFile } from '@eslint/compat';
 import { default as eslintJsPlugin } from '@eslint/js';
+import eslintTanstackRouterPlugin from '@tanstack/eslint-plugin-router';
 import eslintTypescriptParser from '@typescript-eslint/parser';
 import { defineConfig, type Config as EslintConfig } from 'eslint/config';
 import { importX as eslintImportPlugin } from 'eslint-plugin-import-x';
@@ -281,6 +282,21 @@ const eslintNodeConfig = defineConfig([
   },
 ]);
 
+// #region Tanstack Router Configs
+const eslintTanstackRouterConfig = defineConfig([
+  {
+    name: '[Tanstack Router] Base',
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
+    plugins: {
+      '@tanstack/router': eslintTanstackRouterPlugin as unknown as Plugin,
+    },
+    rules: {
+      ...eslintTanstackRouterPlugin.configs['flat/recommended'][0]?.rules,
+      '@tanstack/router/create-route-property-order': ['error'],
+    },
+  },
+]);
+
 // #region Restricted Syntax Configs
 const restrictedSyntaxReactImport = defineRestrictedSyntaxRule([
   {
@@ -322,6 +338,7 @@ export default defineConfig(
   ...eslintReactHooksConfig,
   ...eslintJsxA11yConfig,
   ...eslintNodeConfig,
+  ...eslintTanstackRouterConfig,
   ...eslintRestrictedSyntaxConfig,
 );
 
