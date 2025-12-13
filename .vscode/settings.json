@@ -3,6 +3,12 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "prettier.prettier-vscode",
 
+  // Typescript
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.updateImportsOnFileMove.enabled": "prompt",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+
   // Extension - Prettier
   "prettier.enable": true,
   "prettier.configPath": "prettier.config.js",
