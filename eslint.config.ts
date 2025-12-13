@@ -114,9 +114,9 @@ const eslintImportConfig = defineConfig([
     name: '[Import] Base',
     files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     plugins: {
-      import: eslintImportPlugin as unknown as Plugin,
+      'import-x': eslintImportPlugin as unknown as Plugin,
     },
-    extends: ['import/flat/recommended'],
+    extends: ['import-x/flat/recommended'],
     settings: {
       'import-x/resolver': {
         typescript: true,
@@ -136,15 +136,15 @@ const eslintImportConfig = defineConfig([
       },
     },
     rules: {
-      'import/namespace': ['off'],
-      'import/first': ['error'],
-      'import/newline-after-import': ['error', { count: 1 }],
-      'import/no-absolute-path': ['error'],
-      'import/no-duplicates': ['error', { 'prefer-inline': true }],
-      'import/no-cycle': ['error', { ignoreExternal: true, maxDepth: 3 }],
-      'import/no-self-import': ['error'],
-      'import/no-named-as-default-member': ['off'],
-      'import/order': [
+      'import-x/namespace': ['off'],
+      'import-x/first': ['error'],
+      'import-x/newline-after-import': ['error', { count: 1 }],
+      'import-x/no-absolute-path': ['error'],
+      'import-x/no-duplicates': ['error', { 'prefer-inline': true }],
+      'import-x/no-cycle': ['error', { ignoreExternal: true, maxDepth: 3 }],
+      'import-x/no-self-import': ['error'],
+      'import-x/no-named-as-default-member': ['off'],
+      'import-x/order': [
         'error',
         {
           groups: [
@@ -178,23 +178,23 @@ const eslintImportConfig = defineConfig([
     name: '[Import] Definition files (.d.ts)',
     files: [FILES.DTS],
     rules: {
-      'import/no-default-export': ['off'],
-      'import/prefer-default-export': ['error'],
+      'import-x/no-default-export': ['off'],
+      'import-x/prefer-default-export': ['error'],
     },
   },
   {
     name: '[Import] Named export files',
     files: [FILES.ALL_SOURCE],
     rules: {
-      'import/no-default-export': ['error'],
+      'import-x/no-default-export': ['error'],
     },
   },
   {
     name: '[Import] Default export files',
     files: [...FILES.RESERVED_FOR_DEFAULT_EXPORTS],
     rules: {
-      'import/no-default-export': ['off'],
-      'import/prefer-default-export': ['error'],
+      'import-x/no-default-export': ['off'],
+      'import-x/prefer-default-export': ['error'],
     },
   },
 ]);
