@@ -14,15 +14,15 @@ import eslintTypescriptPlugin from 'typescript-eslint';
 
 const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
 
-type Config = Parameters<typeof defineConfig>[0];
 type Plugin = NonNullable<EslintConfig['plugins']>[string];
+
 interface RestrictedSyntaxRuleItem {
   message: string;
   selector: string;
 }
 
 // #region Core Configs
-const eslintCoreConfig: Config[] = [
+const eslintCoreConfig = defineConfig([
   {
     name: '[Core] Base',
     languageOptions: {
@@ -37,10 +37,10 @@ const eslintCoreConfig: Config[] = [
       reportUnusedDisableDirectives: 'warn',
     },
   },
-];
+]);
 
 // #region Javascript Configs
-const eslintJavascriptConfig: Config[] = [
+const eslintJavascriptConfig = defineConfig([
   {
     name: '[Javascript] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
@@ -59,10 +59,10 @@ const eslintJavascriptConfig: Config[] = [
       'no-debugger': ['error'],
     },
   },
-];
+]);
 
 // #region Typescript Configs
-const eslintTypescriptConfig: Config[] = [
+const eslintTypescriptConfig = defineConfig([
   {
     name: '[Typescript] Base',
     files: ['**/*.{ts,tsx}'],
@@ -107,10 +107,10 @@ const eslintTypescriptConfig: Config[] = [
       '@typescript-eslint/no-explicit-any': ['off'],
     },
   },
-];
+]);
 
 // #region Import Configs
-const eslintImportConfig: Config[] = [
+const eslintImportConfig = defineConfig([
   {
     name: '[Import] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
@@ -188,10 +188,10 @@ const eslintImportConfig: Config[] = [
       'import/prefer-default-export': ['error'],
     },
   },
-];
+]);
 
 // #region React Configs
-const eslintReactConfig: Config[] = [
+const eslintReactConfig = defineConfig([
   {
     name: '[React] Base',
     files: ['**/*.{jsx,tsx}'],
@@ -236,19 +236,19 @@ const eslintReactConfig: Config[] = [
       ],
     },
   },
-];
+]);
 
 // #region React Hooks Configs
-const eslintReactHooksConfig: Config[] = [
+const eslintReactHooksConfig = defineConfig([
   {
     name: '[React Hooks] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
     ...eslintReactHooksPlugin.configs.flat.recommended,
   },
-];
+]);
 
 // #region JSX A11y Configs
-const eslintJsxA11yConfig: Config[] = [
+const eslintJsxA11yConfig = defineConfig([
   {
     name: '[JSX A11y] Base',
     files: ['**/*.{jsx,tsx}'],
@@ -257,10 +257,10 @@ const eslintJsxA11yConfig: Config[] = [
     },
     rules: eslintPluginJsxA11y.flatConfigs.strict.rules,
   },
-];
+]);
 
 // #region Node Configs
-const eslintNodeConfig: Config[] = [
+const eslintNodeConfig = defineConfig([
   {
     name: '[Node] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
@@ -271,7 +271,7 @@ const eslintNodeConfig: Config[] = [
       'node/prefer-node-protocol': ['error'],
     },
   },
-];
+]);
 
 // #region Restricted Syntax Configs
 const restrictedSyntaxReactImport: RestrictedSyntaxRuleItem[] = [
@@ -293,7 +293,7 @@ const restrictedSyntaxReactImport: RestrictedSyntaxRuleItem[] = [
   },
 ];
 
-const eslintRestrictedSyntaxConfig: Config[] = [
+const eslintRestrictedSyntaxConfig = defineConfig([
   {
     name: '[Restricted Syntax] Base',
     files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
@@ -301,7 +301,7 @@ const eslintRestrictedSyntaxConfig: Config[] = [
       'no-restricted-syntax': ['error', ...restrictedSyntaxReactImport],
     },
   },
-];
+]);
 
 export default defineConfig(
   includeIgnoreFile(gitignorePath, '[Ignore] .gitignore patterns'),
