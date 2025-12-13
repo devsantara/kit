@@ -1,8 +1,10 @@
 /// <reference types="vite/client" />
 
+import { TanStackDevtools } from '@tanstack/react-devtools';
 import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
 import * as React from 'react';
 
+import { tanstackRouterDevtools } from '~/devtools/router-devtools';
 import appStylesheet from '~/ui/styles/app.css?url';
 
 export const Route = createRootRoute({
@@ -25,6 +27,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <TanStackDevtools
+          config={{ position: 'bottom-right' }}
+          plugins={[tanstackRouterDevtools]}
+        />
         <Scripts />
       </body>
     </html>
