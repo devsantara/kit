@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { includeIgnoreFile } from '@eslint/compat';
@@ -15,6 +16,7 @@ import eslintTypescriptPlugin from 'typescript-eslint';
 type Plugin = NonNullable<EslintConfig['plugins']>[string];
 
 const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
+const tsConfigDirPath = path.dirname(fileURLToPath(import.meta.url));
 
 const FILES = {
   ALL_SOURCE: 'src/**/*',
@@ -79,7 +81,7 @@ const eslintTypescriptConfig = defineConfig([
       parserOptions: {
         // https://typescript-eslint.io/getting-started/typed-linting
         projectService: true,
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: tsConfigDirPath,
         warnOnUnsupportedTypeScriptVersion: true,
       },
     },
