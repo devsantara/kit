@@ -30,6 +30,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint --cache",
+    "lint:ts": "tsc --noEmit",
     "lint:fix": "eslint --cache --fix",
     "lint:inspect": "eslint --inspect-config"
   },
