@@ -18,6 +18,9 @@ logs
 *.log
 .pnpm-debug.log*
 
+# Cache
+.eslintcache
+
 # Misc
 .DS_Store
 *.pem

@@ -10,3 +10,6 @@ routeTree.gen.ts
 dist/
 dist-ssr/
 public/
+
+# Cache
+.eslintcache

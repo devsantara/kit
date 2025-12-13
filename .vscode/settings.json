@@ -5,5 +5,11 @@
 
   // Extension - Prettier
   "prettier.enable": true,
-  "prettier.configPath": "prettier.config.js"
+  "prettier.configPath": "prettier.config.js",
+
+  // Extension - ESLint
+  "eslint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }
