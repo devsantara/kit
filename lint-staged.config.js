@@ -1,6 +1,20 @@
+// Define file extensions
+const TYPESCRIPT_EXTENSIONS = ['ts', 'mts', 'cts', 'tsx'];
+const JAVASCRIPT_EXTENSIONS = ['js', 'mjs', 'cjs', 'jsx'];
+
+// Construct glob patterns for lint-staged
+const ALL_FILES = '*';
+const TYPESCRIPT_FILES = `*.{${TYPESCRIPT_EXTENSIONS.join(',')}}`;
+const JAVASCRIPT_FILES = `*.{${JAVASCRIPT_EXTENSIONS.join(',')}}`;
+
 // Format code with Prettier
 function buildPrettierCommand(stagedFiles) {
   return `prettier --ignore-unknown --write ${stagedFiles.join(' ')}`;
+}
+
+// Check and fix code with ESLint
+function buildEslintCommand(stagedFiles) {
+  return `eslint --cache --fix ${stagedFiles.join(' ')}`;
 }
 
 /**
@@ -9,8 +23,14 @@ function buildPrettierCommand(stagedFiles) {
  * @type {import('lint-staged').Configuration}
  */
 const lintStagedConfig = {
-  '*': function (stagedFiles) {
+  [ALL_FILES]: function (stagedFiles) {
     return [buildPrettierCommand(stagedFiles)];
+  },
+  [JAVASCRIPT_FILES]: function (stagedFiles) {
+    return [buildEslintCommand(stagedFiles)];
+  },
+  [TYPESCRIPT_FILES]: function (stagedFiles) {
+    return [buildEslintCommand(stagedFiles)];
   },
 };
 
