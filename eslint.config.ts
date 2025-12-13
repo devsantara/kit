@@ -5,21 +5,25 @@ import { default as eslintJsPlugin } from '@eslint/js';
 import eslintTypescriptParser from '@typescript-eslint/parser';
 import { defineConfig, type Config as EslintConfig } from 'eslint/config';
 import { importX as eslintImportPlugin } from 'eslint-plugin-import-x';
-import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
+import eslintJsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import eslintNodePlugin from 'eslint-plugin-n';
 import eslintReactPlugin from 'eslint-plugin-react';
 import eslintReactHooksPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import eslintTypescriptPlugin from 'typescript-eslint';
 
-const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
-
 type Plugin = NonNullable<EslintConfig['plugins']>[string];
 
-interface RestrictedSyntaxRuleItem {
-  message: string;
-  selector: string;
-}
+const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
+
+const FILES = {
+  ALL_SOURCE: 'src/**/*',
+  JAVASCRIPT: '**/*.{js,mjs,cjs,jsx}',
+  TYPESCRIPT: '**/*.{ts,mts,cts,tsx}',
+  DTS: '**/*.d.ts',
+  /** Reserved files that required to using default export */
+  RESERVED_FOR_DEFAULT_EXPORTS: ['src/server.ts'],
+} as const;
 
 // #region Core Configs
 const eslintCoreConfig = defineConfig([
@@ -43,7 +47,7 @@ const eslintCoreConfig = defineConfig([
 const eslintJavascriptConfig = defineConfig([
   {
     name: '[Javascript] Base',
-    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     rules: {
       ...eslintJsPlugin.configs.recommended.rules,
       eqeqeq: ['error', 'always'],
@@ -65,7 +69,7 @@ const eslintJavascriptConfig = defineConfig([
 const eslintTypescriptConfig = defineConfig([
   {
     name: '[Typescript] Base',
-    files: ['**/*.{ts,tsx}'],
+    files: [FILES.TYPESCRIPT],
     extends: [
       eslintTypescriptPlugin.configs.strict,
       eslintTypescriptPlugin.configs.stylistic,
@@ -77,14 +81,6 @@ const eslintTypescriptConfig = defineConfig([
         projectService: true,
         tsconfigRootDir: __dirname,
         warnOnUnsupportedTypeScriptVersion: true,
-      },
-    },
-    settings: {
-      'import-x/resolver': {
-        typescript: true,
-        node: {
-          extensions: ['.js', '.mjs', '.cjs', '.jsx', '.ts', '.tsx', '.d.ts'],
-        },
       },
     },
     rules: {
@@ -102,7 +98,7 @@ const eslintTypescriptConfig = defineConfig([
   },
   {
     name: '[Typescript] For definition files (.d.ts)',
-    files: ['**/*.d.ts'],
+    files: [FILES.DTS],
     rules: {
       '@typescript-eslint/no-explicit-any': ['off'],
     },
@@ -113,16 +109,26 @@ const eslintTypescriptConfig = defineConfig([
 const eslintImportConfig = defineConfig([
   {
     name: '[Import] Base',
-    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     plugins: {
       import: eslintImportPlugin as unknown as Plugin,
     },
     extends: ['import/flat/recommended'],
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: true,
         node: {
-          extensions: ['.js', '.mjs', '.cjs', '.jsx', '.ts', '.tsx', '.d.ts'],
+          extensions: [
+            '.js',
+            '.mjs',
+            '.cjs',
+            '.jsx',
+            '.ts',
+            '.mts',
+            '.cts',
+            '.tsx',
+            '.d.ts',
+          ],
         },
       },
     },
@@ -167,7 +173,7 @@ const eslintImportConfig = defineConfig([
   },
   {
     name: '[Import] Definition files (.d.ts)',
-    files: ['**/*.d.ts'],
+    files: [FILES.DTS],
     rules: {
       'import/no-default-export': ['off'],
       'import/prefer-default-export': ['error'],
@@ -175,14 +181,14 @@ const eslintImportConfig = defineConfig([
   },
   {
     name: '[Import] Named export files',
-    files: ['src/**/*.{js,mjs,cjs,jsx}', 'src/**/*.{ts,tsx}'],
+    files: [FILES.ALL_SOURCE],
     rules: {
       'import/no-default-export': ['error'],
     },
   },
   {
     name: '[Import] Default export files',
-    files: ['src/server.ts'],
+    files: [...FILES.RESERVED_FOR_DEFAULT_EXPORTS],
     rules: {
       'import/no-default-export': ['off'],
       'import/prefer-default-export': ['error'],
@@ -194,7 +200,7 @@ const eslintImportConfig = defineConfig([
 const eslintReactConfig = defineConfig([
   {
     name: '[React] Base',
-    files: ['**/*.{jsx,tsx}'],
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     plugins: {
       react: eslintReactPlugin,
     },
@@ -242,7 +248,7 @@ const eslintReactConfig = defineConfig([
 const eslintReactHooksConfig = defineConfig([
   {
     name: '[React Hooks] Base',
-    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     ...eslintReactHooksPlugin.configs.flat.recommended,
   },
 ]);
@@ -251,11 +257,11 @@ const eslintReactHooksConfig = defineConfig([
 const eslintJsxA11yConfig = defineConfig([
   {
     name: '[JSX A11y] Base',
-    files: ['**/*.{jsx,tsx}'],
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     plugins: {
-      'jsx-a11y': eslintPluginJsxA11y,
+      'jsx-a11y': eslintJsxA11yPlugin,
     },
-    rules: eslintPluginJsxA11y.flatConfigs.strict.rules,
+    rules: eslintJsxA11yPlugin.flatConfigs.strict.rules,
   },
 ]);
 
@@ -263,7 +269,7 @@ const eslintJsxA11yConfig = defineConfig([
 const eslintNodeConfig = defineConfig([
   {
     name: '[Node] Base',
-    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     plugins: {
       node: eslintNodePlugin,
     },
@@ -274,7 +280,7 @@ const eslintNodeConfig = defineConfig([
 ]);
 
 // #region Restricted Syntax Configs
-const restrictedSyntaxReactImport: RestrictedSyntaxRuleItem[] = [
+const restrictedSyntaxReactImport = defineRestrictedSyntaxRule([
   {
     message:
       "Do not import default from React. Use a namespace `import * as React from 'react'` instead.",
@@ -291,18 +297,19 @@ const restrictedSyntaxReactImport: RestrictedSyntaxRuleItem[] = [
     selector:
       "ImportDeclaration[source.value='react'] ImportNamespaceSpecifier:not([local.name='React'])",
   },
-];
+]);
 
 const eslintRestrictedSyntaxConfig = defineConfig([
   {
     name: '[Restricted Syntax] Base',
-    files: ['**/*.{js,mjs,cjs,jsx}', '**/*.{ts,tsx}'],
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
     rules: {
       'no-restricted-syntax': ['error', ...restrictedSyntaxReactImport],
     },
   },
 ]);
 
+// #region Merge All Configs
 export default defineConfig(
   includeIgnoreFile(gitignorePath, '[Ignore] .gitignore patterns'),
   ...eslintCoreConfig,
@@ -315,3 +322,13 @@ export default defineConfig(
   ...eslintNodeConfig,
   ...eslintRestrictedSyntaxConfig,
 );
+
+// #region Utilities
+function defineRestrictedSyntaxRule(
+  rules: { message: string; selector: string }[],
+) {
+  return rules.map((rule) => ({
+    message: rule.message,
+    selector: rule.selector,
+  }));
+}
