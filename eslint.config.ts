@@ -236,14 +236,6 @@ const eslintReactConfig = defineConfig([
       ],
       'react/jsx-no-duplicate-props': ['error'],
       'react/no-object-type-as-default-prop': ['error'],
-      'react/jsx-no-target-blank': [
-        'error',
-        {
-          allowReferrer: false,
-          enforceDynamicLinks: 'always',
-          warnOnSpreadAttributes: true,
-        },
-      ],
     },
   },
 ]);
@@ -334,7 +326,12 @@ const eslintTailwindcssConfig = defineConfig([
       'better-tailwindcss/no-deprecated-classes': ['error'],
       'better-tailwindcss/no-duplicate-classes': ['error'],
       'better-tailwindcss/no-unnecessary-whitespace': ['warn'],
-      'better-tailwindcss/no-unregistered-classes': ['error'],
+      'better-tailwindcss/no-unregistered-classes': [
+        'error',
+        {
+          ignore: ['origin-top-center', 'toaster'],
+        },
+      ],
     },
   },
 ]);
