@@ -6,6 +6,7 @@ import { default as eslintJsPlugin } from '@eslint/js';
 import eslintTanstackRouterPlugin from '@tanstack/eslint-plugin-router';
 import eslintTypescriptParser from '@typescript-eslint/parser';
 import { defineConfig, type Config as EslintConfig } from 'eslint/config';
+import eslintTailwindcssPlugin from 'eslint-plugin-better-tailwindcss';
 import { importX as eslintImportPlugin } from 'eslint-plugin-import-x';
 import eslintJsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import eslintNodePlugin from 'eslint-plugin-n';
@@ -297,6 +298,47 @@ const eslintTanstackRouterConfig = defineConfig([
   },
 ]);
 
+// #region Tailwindcss Configs
+const eslintTailwindcssConfig = defineConfig([
+  {
+    name: '[Tailwindcss] Base',
+    files: [FILES.JAVASCRIPT, FILES.TYPESCRIPT],
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: 'src/ui/styles/app.css',
+        attributes: ['class', 'className', 'classNames'],
+        callees: ['clsx', 'twMerge', 'cn', 'cva'],
+      },
+    },
+    plugins: {
+      'better-tailwindcss': eslintTailwindcssPlugin,
+    },
+    rules: {
+      'better-tailwindcss/enforce-consistent-class-order': [
+        'warn',
+        { order: 'improved' },
+      ],
+      'better-tailwindcss/enforce-consistent-important-position': [
+        'error',
+        { position: 'recommended' },
+      ],
+      'better-tailwindcss/enforce-consistent-line-wrapping': ['off'],
+      'better-tailwindcss/enforce-consistent-variable-syntax': [
+        'error',
+        {
+          syntax: 'shorthand',
+        },
+      ],
+      'better-tailwindcss/enforce-shorthand-classes': ['warn'],
+      'better-tailwindcss/no-conflicting-classes': ['error'],
+      'better-tailwindcss/no-deprecated-classes': ['error'],
+      'better-tailwindcss/no-duplicate-classes': ['error'],
+      'better-tailwindcss/no-unnecessary-whitespace': ['warn'],
+      'better-tailwindcss/no-unregistered-classes': ['error'],
+    },
+  },
+]);
+
 // #region Restricted Syntax Configs
 const restrictedSyntaxReactImport = defineRestrictedSyntaxRule([
   {
@@ -339,6 +381,7 @@ export default defineConfig(
   ...eslintJsxA11yConfig,
   ...eslintNodeConfig,
   ...eslintTanstackRouterConfig,
+  ...eslintTailwindcssConfig,
   ...eslintRestrictedSyntaxConfig,
 );
 

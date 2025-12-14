@@ -17,5 +17,10 @@
   "eslint.enable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+
+  // Extension - Tailwind CSS
+  "tailwindCSS.lint.cssConflict": "ignore", // Avoid confusion with Eslint
+  "tailwindCSS.classAttributes": ["class", "className", "classNames"],
+  "tailwindCSS.classFunctions": ["clsx", "twMerge", "cn", "cva"]
 }
