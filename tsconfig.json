@@ -1,5 +1,5 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", ".storybook/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     /* Base options: */
@@ -35,7 +35,8 @@
     "paths": {
       "~/*": ["./src/*"],
       "~/public/*": ["./public/*"],
-      "~/package.json": ["./package.json"]
+      "~/package.json": ["./package.json"],
+      "~/storybook/*": ["./.storybook/*"]
     }
   }
 }
