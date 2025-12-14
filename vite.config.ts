@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
@@ -10,6 +11,7 @@ export default defineConfig({
   plugins: [
     devtools(),
     nitro(),
+    tailwindcss(),
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
     tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
     // react's vite plugin must come after start's vite plugin
