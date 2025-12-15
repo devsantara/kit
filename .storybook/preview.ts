@@ -5,6 +5,7 @@ import '../src/ui/styles/app.css';
 
 export default definePreview({
   addons: [addonDocs()],
+  tags: ['autodocs'],
   parameters: {
     controls: {
       matchers: {
