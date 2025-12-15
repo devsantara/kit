@@ -37,7 +37,9 @@
     "storybook:build": "storybook build",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
-    "release:major": "release-it major"
+    "release:major": "release-it major",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "resolutions": {
     "conventional-changelog-conventionalcommits": "8.0.0"
@@ -99,6 +101,7 @@
     "@eslint/js": "^9.39.2",
     "@prettier/plugin-oxc": "^0.1.3",
     "@release-it/conventional-changelog": "10.0.1",
+    "@storybook/addon-docs": "^10.1.8",
     "@storybook/react-vite": "^10.1.8",
     "@tanstack/devtools-vite": "^0.3.12",
     "@tanstack/eslint-plugin-router": "^1.141.0",
@@ -127,6 +130,8 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.49.0",
     "vite": "^7.2.7",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "storybook": "^10.1.8",
+    "eslint-plugin-storybook": "^10.1.8"
   }
 }

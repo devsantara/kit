@@ -12,6 +12,7 @@ import eslintJsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import eslintNodePlugin from 'eslint-plugin-n';
 import eslintReactPlugin from 'eslint-plugin-react';
 import eslintReactHooksPlugin from 'eslint-plugin-react-hooks';
+import eslintStorybookPlugin from 'eslint-plugin-storybook';
 import globals from 'globals';
 import eslintTypescriptPlugin from 'typescript-eslint';
 
@@ -24,6 +25,7 @@ const FILES = {
   ALL_SOURCE: 'src/**/*',
   JAVASCRIPT: '**/*.{js,mjs,cjs,jsx}',
   TYPESCRIPT: '**/*.{ts,mts,cts,tsx}',
+  STORIES: '**/*.stories.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
   DTS: '**/*.d.ts',
   /** Reserved files that required to using default export */
   RESERVED_FOR_DEFAULT_EXPORTS: ['src/server.ts'],
@@ -336,6 +338,19 @@ const eslintTailwindcssConfig = defineConfig([
   },
 ]);
 
+// #region Storybook Configs
+const eslintStorybookConfig = defineConfig([
+  {
+    name: '[Storybook] Base',
+    files: [FILES.STORIES],
+    plugins: {
+      import: eslintImportPlugin as unknown as Plugin,
+      storybook: eslintStorybookPlugin as unknown as Plugin,
+    },
+    extends: ['storybook/flat/csf-strict'],
+  },
+]);
+
 // #region Restricted Syntax Configs
 const restrictedSyntaxReactImport = defineRestrictedSyntaxRule([
   {
@@ -379,6 +394,7 @@ export default defineConfig(
   ...eslintNodeConfig,
   ...eslintTanstackRouterConfig,
   ...eslintTailwindcssConfig,
+  ...eslintStorybookConfig,
   ...eslintRestrictedSyntaxConfig,
 );
 
