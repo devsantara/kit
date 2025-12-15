@@ -3,6 +3,11 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "prettier.prettier-vscode",
 
+  // Files
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
   // Typescript
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "prompt",
