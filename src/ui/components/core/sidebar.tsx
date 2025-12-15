@@ -20,7 +20,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '~/ui/components/core/tooltip';
-import { useIsMobile } from '~/ui/hooks/use-media-query';
+import { useMediaQuery } from '~/ui/hooks/use-media-query';
 import { cn } from '~/ui/utils';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
@@ -64,7 +64,7 @@ function SidebarProvider({
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }) {
-  const isMobile = useIsMobile();
+  const isMobile = useMediaQuery('max-width', 'md');
   const [openMobile, setOpenMobile] = React.useState(false);
 
   // This is the internal state of the sidebar.

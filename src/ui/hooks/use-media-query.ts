@@ -1,4 +1,8 @@
+'use client';
+
 import * as React from 'react';
+
+type BreakpointDirection = 'min-width' | 'max-width';
 
 type BreakpointName = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
@@ -10,11 +14,20 @@ const breakpointWidth: Record<BreakpointName, string> = {
   '2xl': '96rem',
 };
 
-interface options {
+const directionOperators: Record<BreakpointDirection, string> = {
+  'min-width': '>=',
+  'max-width': '<',
+};
+
+interface Options {
   initial?: boolean;
 }
 
-export function useMediaQuery(breakpoint: BreakpointName, options?: options) {
+export function useMediaQuery(
+  direction: BreakpointDirection,
+  breakpoint: BreakpointName,
+  options?: Options,
+) {
   const { initial = false } = options ?? {};
   const [value, setValue] = React.useState(initial);
 
@@ -23,18 +36,16 @@ export function useMediaQuery(breakpoint: BreakpointName, options?: options) {
       function onChangeMediaWidth(event: MediaQueryListEvent) {
         setValue(event.matches);
       }
-      const result = matchMedia(`(width >= ${breakpointWidth[breakpoint]})`);
+      const operator = directionOperators[direction];
+      const result = matchMedia(
+        `(width ${operator} ${breakpointWidth[breakpoint]})`,
+      );
       result.addEventListener('change', onChangeMediaWidth);
       setValue(result.matches);
       return () => result.removeEventListener('change', onChangeMediaWidth);
     },
-    [breakpoint],
+    [breakpoint, direction],
   );
 
   return value;
-}
-
-export function useIsMobile() {
-  const mdUp = useMediaQuery('md');
-  return !mdUp;
 }
