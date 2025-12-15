@@ -5,6 +5,7 @@ import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
 import * as React from 'react';
 
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
+import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
 
 export const Route = createRootRoute({
@@ -26,6 +27,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <Toaster />
         {children}
         <TanStackDevtools
           config={{ position: 'bottom-right' }}
