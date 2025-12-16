@@ -37,9 +37,7 @@
     "storybook:build": "storybook build",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
-    "release:major": "release-it major",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "release:major": "release-it major"
   },
   "resolutions": {
     "conventional-changelog-conventionalcommits": "8.0.0"
