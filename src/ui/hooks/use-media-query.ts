@@ -1,12 +1,16 @@
 import * as React from 'react';
 
-/** Direction of the media query breakpoint - either minimum or maximum width */
+/**
+ * Direction for media query breakpoint comparison.
+ * - `'min-width'`: Matches when viewport width is greater than or equal to the breakpoint
+ * - `'max-width'`: Matches when viewport width is less than the breakpoint
+ */
 type BreakpointDirection = 'min-width' | 'max-width';
 
-/** Predefined breakpoint names matching common responsive design sizes */
+/** Standard Tailwind CSS breakpoints mapped to their pixel widths. */
 type BreakpointName = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
-/** Mapping of breakpoint names to their corresponding CSS width values in rem units */
+/** Maps breakpoint names to their corresponding pixel widths. */
 const breakpointWidth: Record<BreakpointName, string> = {
   sm: '40rem',
   md: '48rem',
@@ -15,52 +19,87 @@ const breakpointWidth: Record<BreakpointName, string> = {
   '2xl': '96rem',
 };
 
-/** Mapping of direction types to their corresponding CSS media query operators */
+/** Maps breakpoint directions to their CSS media query operators. */
 const directionOperators: Record<BreakpointDirection, string> = {
   'min-width': '>=',
   'max-width': '<',
 };
 
-/** Options for configuring the useMediaQuery hook behavior */
-interface Options {
-  /** Initial state value before the media query listener is attached (default: false) */
-  initial?: boolean;
+interface Options<TInitialValue> {
+  /**
+   * Initial value to use before the media query listener is set up.
+   * This opens up the possibility of knowing the media query match state
+   * during the initial render and easy to control the media query behavior/state.
+   */
+  initialValue?: TInitialValue;
 }
 
 /**
- * Hook to check if a media query matches the current viewport
+ * React hook for matching CSS media queries using the MediaQueryList API.
+ *
+ * Returns boolean from the media query evaluation or the provided initial value
+ * when media query has not been evaluated yet.
  *
  * @example
  * ```
- * // Check if viewport is at least medium size (min-width: 48rem)
- * const isMediumOrLarger = useMediaQuery('min-width', 'md');
- * // Check if viewport is smaller than large size (max-width: 64rem)
- * const isLessThanLarge = useMediaQuery('max-width', 'lg');
- *```
+ * const isMatch = useMediaQuery('min-width', 'md', { initialValue: false });
+ * // true | false
+ * ```
  */
 export function useMediaQuery(
   direction: BreakpointDirection,
   breakpoint: BreakpointName,
-  options?: Options,
+  options: Options<boolean>,
+): boolean;
+
+/**
+ * React hook for matching CSS media queries using the MediaQueryList API.
+ *
+ * Returns boolean or undefined when the media query has not been evaluated yet,
+ * undefined indicates that media query is not yet evaluated (initial render).
+ *
+ * @example
+ * ```
+ * const isMatch = useMediaQuery('min-width', 'md');
+ * // true | false | undefined
+ * ```
+ */
+export function useMediaQuery(
+  direction: BreakpointDirection,
+  breakpoint: BreakpointName,
+  options?: Options<undefined>,
+): boolean | undefined;
+
+/**
+ * Implementation of the useMediaQuery hook.
+ * @internal
+ */
+export function useMediaQuery<TInitialValue extends boolean | undefined>(
+  direction: BreakpointDirection,
+  breakpoint: BreakpointName,
+  options?: Options<TInitialValue>,
 ) {
-  const { initial = false } = options ?? {};
-  const [value, setValue] = React.useState(initial);
+  const { initialValue } = options ?? {};
+  const [isMatches, setIsMatches] = React.useState<boolean | undefined>(
+    initialValue,
+  );
 
   React.useEffect(
     function watchMediaSize() {
-      function onChangeMediaWidth(event: MediaQueryListEvent) {
-        setValue(event.matches);
-      }
       const operator = directionOperators[direction];
-      const result = matchMedia(
+      const mediaQuery = matchMedia(
         `(width ${operator} ${breakpointWidth[breakpoint]})`,
       );
-      result.addEventListener('change', onChangeMediaWidth);
-      setValue(result.matches);
-      return () => result.removeEventListener('change', onChangeMediaWidth);
+
+      function onChangeMediaQuery(event: MediaQueryListEvent) {
+        setIsMatches(event.matches);
+      }
+      mediaQuery.addEventListener('change', onChangeMediaQuery);
+      setIsMatches(mediaQuery.matches);
+      return () => mediaQuery.removeEventListener('change', onChangeMediaQuery);
     },
     [breakpoint, direction],
   );
 
-  return value;
+  return isMatches;
 }
