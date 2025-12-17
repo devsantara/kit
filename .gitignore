@@ -5,6 +5,7 @@ node_modules/
 .output/
 dist/
 dist-ssr/
+storybook-static/
 
 # Local files
 *.local
@@ -17,6 +18,7 @@ dist-ssr/
 logs
 *.log
 .pnpm-debug.log*
+*storybook.log
 
 # Cache
 .eslintcache

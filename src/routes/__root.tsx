@@ -5,7 +5,9 @@ import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
 import * as React from 'react';
 
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
+import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
+import { ThemeProvider } from '~/ui/styles/theme';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -21,16 +23,19 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
-        <TanStackDevtools
-          config={{ position: 'bottom-right' }}
-          plugins={[tanstackRouterDevtools]}
-        />
+        <ThemeProvider>
+          <Toaster />
+          {children}
+          <TanStackDevtools
+            config={{ position: 'bottom-right' }}
+            plugins={[tanstackRouterDevtools]}
+          />
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>
