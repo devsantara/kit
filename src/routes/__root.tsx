@@ -33,7 +33,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   preload(jetBrainsMonoFont, { as: 'font', type: 'font/woff2' });
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
