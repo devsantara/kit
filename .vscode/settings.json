@@ -7,6 +7,15 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  },
 
   // Typescript
   "typescript.tsdk": "node_modules/typescript/lib",
