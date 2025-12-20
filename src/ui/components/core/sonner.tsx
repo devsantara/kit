@@ -6,13 +6,19 @@ import {
   TriangleAlertIcon,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { toast, Toaster as Sonner, type ToasterProps } from 'sonner';
+import {
+  toast as baseToast,
+  Toaster as BaseToaster,
+  type ToasterProps,
+} from 'sonner';
+
+const toast = baseToast;
 
 function Toaster({ ...props }: ToasterProps) {
   const { theme = 'system' } = useTheme();
 
   return (
-    <Sonner
+    <BaseToaster
       theme={theme as ToasterProps['theme']}
       className="toaster group"
       icons={{
