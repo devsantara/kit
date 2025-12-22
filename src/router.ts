@@ -1,11 +1,16 @@
 import { createRouter as createTanstackRouter } from '@tanstack/react-router';
+import posthog from 'posthog-js';
 
 import { routeTree } from '~/routeTree.gen';
 
 export function getRouter() {
-  return createTanstackRouter({
+  const router = createTanstackRouter({
     routeTree,
     defaultPreload: 'intent',
     scrollRestoration: true,
+    defaultOnCatch(error, errorInfo) {
+      posthog.captureException(error, errorInfo);
+    },
   });
+  return router;
 }
