@@ -10,7 +10,7 @@ export default defineConfig({
   server: { port: 3000 },
   plugins: [
     devtools(),
-    nitro(),
+    nitro({ minify: true, output: { dir: '.output' } }),
     tailwindcss(),
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
     tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
