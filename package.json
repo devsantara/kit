@@ -21,11 +21,14 @@
     "url": "https://github.com/devsantara/kit/issues"
   },
   "scripts": {
+    "prepare": "husky",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node .output/server/index.mjs",
-    "prepare": "husky",
+    "alchemy": "alchemy",
+    "alchemy:dev": "alchemy dev --env-file ./.env",
+    "alchemy:deploy": "alchemy deploy --env-file ./.env",
+    "alchemy:destroy": "alchemy destroy --env-file ./.env",
     "commitlint": "commitlint --edit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -94,6 +97,8 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.19.0",
+    "@cloudflare/workers-types": "^4.20251221.0",
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
     "@commitlint/types": "^20.2.0",
@@ -113,6 +118,7 @@
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/parser": "^8.50.0",
     "@vitejs/plugin-react": "^5.1.2",
+    "alchemy": "^0.82.1",
     "conventional-changelog-conventionalcommits": "9.1.0",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -126,7 +132,6 @@
     "globals": "^16.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "nitro": "3.0.1-alpha.1",
     "prettier": "^3.7.4",
     "release-it": "19.0.4",
     "storybook": "^10.1.8",

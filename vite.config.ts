@@ -2,15 +2,24 @@ import tailwindcss from '@tailwindcss/vite';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
-import { nitro } from 'nitro/vite';
+import alchemy from 'alchemy/cloudflare/tanstack-start';
 import { defineConfig } from 'vite';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   server: { port: 3000 },
+  preview: { port: 3000 },
+  build: {
+    target: 'esnext',
+    minify: true,
+    cssMinify: true,
+    rollupOptions: {
+      external: ['node:async_hooks', 'cloudflare:workers'],
+    },
+  },
   plugins: [
+    alchemy(),
     devtools(),
-    nitro(),
     tailwindcss(),
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
     tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
