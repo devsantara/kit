@@ -1,3 +1,7 @@
+/** Validate env's schema on build */
+import './src/lib/env/client';
+import './src/lib/env/server';
+
 import tailwindcss from '@tailwindcss/vite';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';

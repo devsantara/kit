@@ -20,7 +20,10 @@ import alchemy, { type Scope } from 'alchemy';
 import { TanStackStart } from 'alchemy/cloudflare';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
-const ALCHEMY_STATE_TOKEN = alchemy.secret(process.env.ALCHEMY_STATE_TOKEN);
+import { serverEnv } from './src/lib/env/server.ts';
+
+const ALCHEMY_SECRET = serverEnv.ALCHEMY_SECRET;
+const ALCHEMY_STATE_TOKEN = alchemy.secret(serverEnv.ALCHEMY_STATE_TOKEN);
 
 /** Create a state store based on the current stage */
 function createStateStore(scope: Scope) {
@@ -36,7 +39,7 @@ function createStateStore(scope: Scope) {
 }
 
 const app = await alchemy('kit', {
-  password: process.env.ALCHEMY_SECRET,
+  password: ALCHEMY_SECRET,
   stateStore: createStateStore,
 });
 
