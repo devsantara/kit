@@ -16,42 +16,69 @@
  * ```
  */
 
-import alchemy, { type Scope } from 'alchemy';
-import { TanStackStart } from 'alchemy/cloudflare';
+import alchemy, { type Scope, type StateStore } from 'alchemy';
+import { TanStackStart, type WorkerObservability } from 'alchemy/cloudflare';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
 import { serverEnv } from './src/lib/env/server.ts';
 
+type Stage = 'production' | 'staging' | (string & {});
+
+//#region Secrets
 const ALCHEMY_SECRET = serverEnv.ALCHEMY_SECRET;
 const ALCHEMY_STATE_TOKEN = alchemy.secret(serverEnv.ALCHEMY_STATE_TOKEN);
+//#endregion
 
-/** Create a state store based on the current stage */
-function createStateStore(scope: Scope) {
-  // Using Cloudflare StateStore for the listed stages.
-  if (['production', 'staging'].includes(scope.stage)) {
-    return new CloudflareStateStore(scope, {
-      scriptName: 'alchemy-state-service',
-      stateToken: ALCHEMY_STATE_TOKEN,
-    });
+//#region Configuration
+function getStageStore(scope: Scope): StateStore {
+  switch (scope.stage) {
+    case 'production':
+    case 'staging':
+      return new CloudflareStateStore(scope, {
+        scriptName: 'alchemy-state-service',
+        stateToken: ALCHEMY_STATE_TOKEN,
+      });
+    default:
+      return new FileSystemStateStore(scope);
   }
-  // Otherwise, use the default file system state store for the development stage/default `$USER`.
-  return new FileSystemStateStore(scope);
 }
 
+function getWorkerObservability(stage: Stage): WorkerObservability {
+  switch (stage) {
+    case 'production':
+      return { enabled: true };
+    default:
+      return { enabled: false };
+  }
+}
+
+function getWorkerPlacement(stage: Stage): { mode: 'smart' } | undefined {
+  switch (stage) {
+    case 'production':
+      return { mode: 'smart' };
+    default:
+      return undefined;
+  }
+}
+//#endregion
+
+//#region Applications
 const app = await alchemy('kit', {
   password: ALCHEMY_SECRET,
-  stateStore: createStateStore,
+  stateStore: getStageStore,
 });
 
 export const worker = await TanStackStart('website', {
   adopt: true,
-  observability: {
-    enabled: app.stage === 'production',
-  },
-  placement: { mode: 'smart' },
+  observability: getWorkerObservability(app.stage),
+  placement: getWorkerPlacement(app.stage),
   bindings: {},
 });
 
-console.info({ worker: worker.url });
+console.info({
+  worker: worker.name,
+  url: worker.domains?.map((domain) => `https://${domain.name}`) ?? worker.url,
+});
 
 await app.finalize();
+//#endregion
