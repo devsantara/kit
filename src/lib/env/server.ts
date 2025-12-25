@@ -3,7 +3,6 @@ import * as z from 'zod/v4';
 
 export const serverEnv = createEnv({
   server: {
-    // Alchemy
     ALCHEMY_SECRET: z.string(),
     ALCHEMY_STATE_TOKEN: z.string(),
     HOSTNAME: z.hostname(),
