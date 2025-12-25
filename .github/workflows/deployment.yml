@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Deploy
-        run: pnpm dlx alchemy deploy --stage ${{ env.STAGE }}
+        run: pnpm alchemy deploy --stage ${{ env.STAGE }}
         env:
           ALCHEMY_SECRET: ${{ secrets.ALCHEMY_SECRET }}
           ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}
