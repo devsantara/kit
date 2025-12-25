@@ -52,6 +52,27 @@ function getWorkerObservability(stage: Stage): WorkerObservability {
   }
 }
 
+function getWorkerUrl(stage: Stage): boolean {
+  switch (stage) {
+    case 'production':
+    case 'staging':
+      return false;
+    default:
+      return true;
+  }
+}
+
+function getWorkerDomain(stage: Stage): string[] | undefined {
+  switch (stage) {
+    case 'production':
+      return [serverEnv.HOSTNAME];
+    case 'staging':
+      return [`staging-${serverEnv.HOSTNAME}`];
+    default:
+      return undefined;
+  }
+}
+
 function getWorkerPlacement(stage: Stage): { mode: 'smart' } | undefined {
   switch (stage) {
     case 'production':
@@ -71,6 +92,8 @@ const app = await alchemy('kit', {
 export const worker = await TanStackStart('website', {
   adopt: true,
   observability: getWorkerObservability(app.stage),
+  url: getWorkerUrl(app.stage),
+  domains: getWorkerDomain(app.stage),
   placement: getWorkerPlacement(app.stage),
   bindings: {},
 });

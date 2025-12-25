@@ -6,6 +6,7 @@ export const serverEnv = createEnv({
     // Alchemy
     ALCHEMY_SECRET: z.string(),
     ALCHEMY_STATE_TOKEN: z.string(),
+    HOSTNAME: z.hostname(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
