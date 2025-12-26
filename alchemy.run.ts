@@ -17,7 +17,7 @@
  */
 
 import alchemy, { type Scope, type StateStore } from 'alchemy';
-import { TanStackStart, type WorkerObservability } from 'alchemy/cloudflare';
+import { TanStackStart, type BaseWorkerProps } from 'alchemy/cloudflare';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
 import { serverEnv } from './src/lib/env/server.ts';
@@ -43,7 +43,9 @@ function getStageStore(scope: Scope): StateStore {
   }
 }
 
-function getWorkerObservability(stage: Stage): WorkerObservability {
+function getWorkerObservability(
+  stage: Stage,
+): BaseWorkerProps['observability'] {
   switch (stage) {
     case 'production':
       return { enabled: true };
@@ -52,7 +54,7 @@ function getWorkerObservability(stage: Stage): WorkerObservability {
   }
 }
 
-function getWorkerUrl(stage: Stage): boolean {
+function getWorkerUrl(stage: Stage): BaseWorkerProps['url'] {
   switch (stage) {
     case 'production':
     case 'staging':
@@ -62,7 +64,7 @@ function getWorkerUrl(stage: Stage): boolean {
   }
 }
 
-function getWorkerDomain(stage: Stage): string[] | undefined {
+function getWorkerDomain(stage: Stage): BaseWorkerProps['domains'] {
   switch (stage) {
     case 'production':
       return [serverEnv.HOSTNAME];
@@ -73,7 +75,7 @@ function getWorkerDomain(stage: Stage): string[] | undefined {
   }
 }
 
-function getWorkerPlacement(stage: Stage): { mode: 'smart' } | undefined {
+function getWorkerPlacement(stage: Stage): BaseWorkerProps['placement'] {
   switch (stage) {
     case 'production':
       return { mode: 'smart' };
