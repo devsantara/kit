@@ -17,7 +17,11 @@
  */
 
 import alchemy, { type Scope, type StateStore } from 'alchemy';
-import { TanStackStart, type BaseWorkerProps } from 'alchemy/cloudflare';
+import {
+  TanStackStart,
+  type Bindings,
+  type TanStackStartProps,
+} from 'alchemy/cloudflare';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
 import { serverEnv } from './src/lib/env/server.ts';
@@ -30,7 +34,7 @@ const ALCHEMY_STATE_TOKEN = alchemy.secret(serverEnv.ALCHEMY_STATE_TOKEN);
 //#endregion
 
 //#region Configuration
-function getStageStore(scope: Scope): StateStore {
+function getStateStore(scope: Scope): StateStore {
   switch (scope.stage) {
     case 'production':
     case 'staging':
@@ -43,44 +47,38 @@ function getStageStore(scope: Scope): StateStore {
   }
 }
 
-function getWorkerObservability(
+function getWorkerConfigByStage<B extends Bindings>(
   stage: Stage,
-): BaseWorkerProps['observability'] {
+  props?: { bindings: B },
+): Partial<TanStackStartProps<B>> {
   switch (stage) {
     case 'production':
-      return { enabled: true };
-    default:
-      return { enabled: false };
-  }
-}
-
-function getWorkerUrl(stage: Stage): BaseWorkerProps['url'] {
-  switch (stage) {
-    case 'production':
+      return {
+        adopt: true,
+        observability: { enabled: true },
+        url: false,
+        domains: [serverEnv.HOSTNAME],
+        placement: { mode: 'smart' },
+        ...props,
+      };
     case 'staging':
-      return false;
+      return {
+        adopt: true,
+        observability: { enabled: false },
+        url: false,
+        domains: [`staging-${serverEnv.HOSTNAME}`],
+        placement: undefined,
+        ...props,
+      };
     default:
-      return true;
-  }
-}
-
-function getWorkerDomain(stage: Stage): BaseWorkerProps['domains'] {
-  switch (stage) {
-    case 'production':
-      return [serverEnv.HOSTNAME];
-    case 'staging':
-      return [`staging-${serverEnv.HOSTNAME}`];
-    default:
-      return undefined;
-  }
-}
-
-function getWorkerPlacement(stage: Stage): BaseWorkerProps['placement'] {
-  switch (stage) {
-    case 'production':
-      return { mode: 'smart' };
-    default:
-      return undefined;
+      return {
+        adopt: true,
+        observability: { enabled: false },
+        url: true,
+        domains: undefined,
+        placement: undefined,
+        ...props,
+      };
   }
 }
 //#endregion
@@ -88,17 +86,13 @@ function getWorkerPlacement(stage: Stage): BaseWorkerProps['placement'] {
 //#region Applications
 const app = await alchemy('kit', {
   password: ALCHEMY_SECRET,
-  stateStore: getStageStore,
+  stateStore: getStateStore,
 });
 
-export const worker = await TanStackStart('website', {
-  adopt: true,
-  observability: getWorkerObservability(app.stage),
-  url: getWorkerUrl(app.stage),
-  domains: getWorkerDomain(app.stage),
-  placement: getWorkerPlacement(app.stage),
-  bindings: {},
-});
+export const worker = await TanStackStart(
+  'website',
+  getWorkerConfigByStage(app.stage, { bindings: {} }),
+);
 
 console.info({
   worker: worker.name,
