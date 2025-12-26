@@ -3,19 +3,17 @@ on:
   push:
     branches:
       - main
-      - dev
-      - ci/deployment
+      - staging
 concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: false
 env:
   # Stage based on branch
   # main -> production
-  # dev -> staging
+  # staging -> staging
   STAGE: ${{
     github.ref == 'refs/heads/main' && 'production' ||
-    github.ref == 'refs/heads/dev' && 'staging' ||
-    github.ref == 'refs/heads/ci/deployment' && 'testing' ||
+    github.ref == 'refs/heads/staging' && 'staging' ||
     github.ref_name }}
 jobs:
   deploy:
