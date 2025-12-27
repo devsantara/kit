@@ -62,7 +62,7 @@ const eslintJavascriptConfig = defineConfig([
         { destructuring: 'all', ignoreReadBeforeAssign: false },
       ],
       'func-style': ['error', 'declaration', { allowArrowFunctions: false }],
-      'no-console': ['warn', { allow: ['error'] }],
+      'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
       'no-fallthrough': ['off'],
       'no-unused-vars': ['off'],
       'no-undef': ['error'],
@@ -139,6 +139,7 @@ const eslintImportConfig = defineConfig([
       },
     },
     rules: {
+      'import-x/no-unresolved': ['off'],
       'import-x/namespace': ['off'],
       'import-x/first': ['error'],
       'import-x/newline-after-import': ['error', { count: 1 }],
