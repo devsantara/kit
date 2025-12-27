@@ -23,14 +23,14 @@ const ALCHEMY_STATE_TOKEN = alchemy.secret(alchemyEnv.ALCHEMY_STATE_TOKEN);
 function isProductionStage(scope: Scope) {
   return scope.stage === 'production';
 }
-function isStagingStage(scope: Scope) {
-  return scope.stage.startsWith('staging');
+function isPreviewStage(scope: Scope) {
+  return scope.stage.startsWith('preview');
 }
 
 const app = await alchemy('kit', {
   password: ALCHEMY_SECRET,
   stateStore: (scope) => {
-    if (isProductionStage(scope) || isStagingStage(scope)) {
+    if (isProductionStage(scope) || isPreviewStage(scope)) {
       return new CloudflareStateStore(scope, {
         scriptName: 'alchemy-state-service',
         stateToken: ALCHEMY_STATE_TOKEN,
@@ -69,10 +69,10 @@ await app.finalize();
 function createPreviewGithubCommentBody() {
   return `## 🚀 Preview Deployment
 
-Your changes have been deployed to a staging environment:
+Your changes have been deployed to a preview environment:
 
-| Name               | Preview                       | Commit                                 | Updated (UTC)       |
-| :----------------- | :---------------------------- | :------------------------------------- | :------------------ |
+| Name               | Preview URL                   | Commit                                 | Updated (UTC)                               |
+| :----------------- | :---------------------------- | :------------------------------------- | :------------------------------------------ |
 | **${worker.name}** | [Visit Preview](${workerUrl}) | ${process.env.GITHUB_SHA?.slice(0, 7)} | ${new Date(worker.updatedAt).toUTCString()} |
 
 ---

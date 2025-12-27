@@ -15,7 +15,7 @@ concurrency:
 env:
   NODE_VERSION: '24.11.1'
   PNPM_VERSION: '10.23.0'
-  STAGE: ${{ github.event_name == 'pull_request' && format('staging-{0}', github.event.number) || (github.ref == 'refs/heads/main' && 'production' || github.ref_name) }}
+  STAGE: ${{ github.event_name == 'pull_request' && format('preview-{0}', github.event.number) || (github.ref == 'refs/heads/main' && 'production' || github.ref_name) }}
 jobs:
   deploy:
     if: ${{ github.event.action != 'closed' }}
@@ -75,7 +75,7 @@ jobs:
             echo "ERROR: Cannot destroy production environment in cleanup job"
             exit 1
           fi
-      - name: Destroy Staging Environment
+      - name: Destroy Preview Environment
         run: pnpm alchemy destroy --stage ${{ env.STAGE }}
         env:
           ALCHEMY_SECRET: ${{ secrets.ALCHEMY_SECRET }}
