@@ -3,20 +3,22 @@ on:
   push:
     branches:
       - main
-      - staging
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
 concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: false
 env:
-  # Stage based on branch
-  # main -> production
-  # staging -> staging
-  STAGE: ${{
-    github.ref == 'refs/heads/main' && 'production' ||
-    github.ref == 'refs/heads/staging' && 'staging' ||
-    github.ref_name }}
+  NODE_VERSION: '24.11.1'
+  PNPM_VERSION: '10.23.0'
+  STAGE: ${{ github.event_name == 'pull_request' && format('staging-{0}', github.event.number) || (github.ref == 'refs/heads/main' && 'production' || github.ref_name) }}
 jobs:
   deploy:
+    if: ${{ github.event.action != 'closed' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -26,12 +28,12 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: '10.23.0'
+          version: ${{ env.PNPM_VERSION }}
           run_install: false
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24.11.1'
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - name: Install dependencies
         run: pnpm install
@@ -42,4 +44,41 @@ jobs:
           ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-          HOSTNAME: ${{ vars.HOSTNAME }}
+          PULL_REQUEST: ${{ github.event.number }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  cleanup:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' }}
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Safety Check
+        run: |-
+          if [ "${{ env.STAGE }}" = "production" ]; then
+            echo "ERROR: Cannot destroy production environment in cleanup job"
+            exit 1
+          fi
+      - name: Destroy Staging Environment
+        run: pnpm alchemy destroy --stage ${{ env.STAGE }}
+        env:
+          ALCHEMY_SECRET: ${{ secrets.ALCHEMY_SECRET }}
+          ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          PULL_REQUEST: ${{ github.event.number }}

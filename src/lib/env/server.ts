@@ -1,12 +1,9 @@
 import { createEnv } from '@t3-oss/env-core';
-import * as z from 'zod/v4';
+import * as _ from 'zod/v4';
 
+/** Env schema for server bundle */
 export const serverEnv = createEnv({
-  server: {
-    ALCHEMY_SECRET: z.string(),
-    ALCHEMY_STATE_TOKEN: z.string(),
-    HOSTNAME: z.hostname(),
-  },
+  server: {},
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
 });
