@@ -12,6 +12,7 @@
 
 import alchemy, { type Scope } from 'alchemy';
 import { TanStackStart } from 'alchemy/cloudflare';
+import { GitHubComment } from 'alchemy/github';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
 import { alchemyEnv } from './src/lib/env/alchemy.ts';
@@ -49,9 +50,31 @@ export const worker = await TanStackStart('website', {
 });
 
 const workerDomain = worker.domains?.[0];
-console.info({
-  worker: worker.name,
-  url: workerDomain ? `https://${workerDomain.name}` : worker.url,
-});
+const workerUrl = workerDomain ? `https://${workerDomain.name}` : worker.url;
+console.info({ worker: worker.name, url: workerUrl });
+
+if (process.env.PULL_REQUEST) {
+  // if this is a PR, add a comment to the PR with the preview URL
+  // it will auto-update with each push
+  await GitHubComment('preview-comment', {
+    owner: 'devsantara',
+    repository: 'kit',
+    issueNumber: Number(process.env.PULL_REQUEST),
+    body: createPreviewGithubCommentBody(),
+  });
+}
 
 await app.finalize();
+
+function createPreviewGithubCommentBody() {
+  return `## 🚀 Preview Deployment
+
+Your changes have been deployed to a staging environment:
+
+| Name               | Preview                       | Commit                                 | Updated (UTC)       |
+| :----------------- | :---------------------------- | :------------------------------------- | :------------------ |
+| **${worker.name}** | [Visit Preview](${workerUrl}) | ${process.env.GITHUB_SHA?.slice(0, 7)} | ${new Date(worker.updatedAt).toUTCString()} |
+
+---
+<sub>This comment updates automatically with each push.</sub>`;
+}
