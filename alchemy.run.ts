@@ -15,6 +15,7 @@ import { TanStackStart } from 'alchemy/cloudflare';
 import { GitHubComment } from 'alchemy/github';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
+import packageJson from './package.json';
 import { alchemyEnv } from './src/lib/env/alchemy.ts';
 
 const ALCHEMY_SECRET = alchemyEnv.ALCHEMY_SECRET;
@@ -57,8 +58,8 @@ if (process.env.PULL_REQUEST) {
   // if this is a PR, add a comment to the PR with the preview URL
   // it will auto-update with each push
   await GitHubComment('preview-comment', {
-    owner: 'devsantara',
-    repository: 'kit',
+    owner: packageJson.author,
+    repository: packageJson.name,
     issueNumber: Number(process.env.PULL_REQUEST),
     body: createPreviewGithubCommentBody(),
   });
