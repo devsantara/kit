@@ -61,14 +61,7 @@ if (process.env.PULL_REQUEST) {
     owner: packageJson.author,
     repository: packageJson.name,
     issueNumber: Number(process.env.PULL_REQUEST),
-    body: createPreviewGithubCommentBody(),
-  });
-}
-
-await app.finalize();
-
-function createPreviewGithubCommentBody() {
-  return `## 🚀 Preview Deployment
+    body: `## 🚀 Preview Deployment
 
 Your changes have been deployed to a preview environment:
 
@@ -77,5 +70,8 @@ Your changes have been deployed to a preview environment:
 | **${worker.name}** | [Visit Preview](${workerUrl}) | ${process.env.GITHUB_SHA?.slice(0, 7)} | ${new Date(worker.updatedAt).toUTCString()} |
 
 ---
-<sub>🏗️ This comment updates automatically with each push.</sub>`;
+<sub>🏗️ This comment updates automatically with each push.</sub>`,
+  });
 }
+
+await app.finalize();
