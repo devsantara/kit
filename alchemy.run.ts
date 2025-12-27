@@ -15,7 +15,7 @@ import { TanStackStart } from 'alchemy/cloudflare';
 import { GitHubComment } from 'alchemy/github';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
-import packageJson from './package.json';
+import packageJson from './package.json' with { type: 'json' };
 import { alchemyEnv } from './src/lib/env/alchemy.ts';
 
 const ALCHEMY_SECRET = alchemyEnv.ALCHEMY_SECRET;
