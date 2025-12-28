@@ -1,7 +1,7 @@
 {
   // Editor
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
 
   // Files
   "files.associations": {
@@ -23,9 +23,8 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.preferTypeOnlyAutoImports": true,
 
-  // Extension - Prettier
-  "prettier.enable": true,
-  "prettier.configPath": "prettier.config.js",
+  // Extension - Oxc
+  "oxc.enable": true,
 
   // Extension - ESLint
   "eslint.enable": true,
