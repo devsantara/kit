@@ -8,8 +8,14 @@ const TYPESCRIPT_FILES = `*.{${TYPESCRIPT_EXTENSIONS.join(',')}}`;
 const JAVASCRIPT_FILES = `*.{${JAVASCRIPT_EXTENSIONS.join(',')}}`;
 
 // Format code with Prettier
-function buildPrettierCommand(stagedFiles) {
+/** @deprecated use oxfmt instead */
+function _buildPrettierCommand(stagedFiles) {
   return `prettier --ignore-unknown --write ${stagedFiles.join(' ')}`;
+}
+
+// Format code with Oxfmt
+function buildOxfmtCommand(stagedFiles) {
+  return `oxfmt --no-error-on-unmatched-pattern ${stagedFiles.join(' ')}`;
 }
 
 // Check and fix code with ESLint
@@ -29,7 +35,7 @@ function buildTypeCheckCommand() {
  */
 const lintStagedConfig = {
   [ALL_FILES]: function (stagedFiles) {
-    return [buildPrettierCommand(stagedFiles)];
+    return [buildOxfmtCommand(stagedFiles)];
   },
   [JAVASCRIPT_FILES]: function (stagedFiles) {
     return [buildEslintCommand(stagedFiles)];
