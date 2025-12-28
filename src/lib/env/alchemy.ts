@@ -4,8 +4,8 @@ import * as z from 'zod/v4';
 /** Env schema for Alchemy */
 export const alchemyEnv = createEnv({
   server: {
-    ALCHEMY_SECRET: z.string(),
-    ALCHEMY_STATE_TOKEN: z.string(),
+    ALCHEMY_SECRET: z.string().nonempty(),
+    ALCHEMY_STATE_TOKEN: z.string().nonempty(),
     HOSTNAME: z.hostname(),
   },
   runtimeEnv: process.env,
