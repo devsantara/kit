@@ -19,8 +19,14 @@ function buildOxfmtCommand(stagedFiles) {
 }
 
 // Check and fix code with ESLint
-function buildEslintCommand(stagedFiles) {
+/** @deprecated use oxlint instead */
+function _buildEslintCommand(stagedFiles) {
   return `eslint --cache --fix ${stagedFiles.join(' ')}`;
+}
+
+// Check and fix code with Oxlint
+function buildOxlintCommand(stagedFiles) {
+  return `oxlint ${stagedFiles.join(' ')}`;
 }
 
 // Type check with TypeScript
@@ -38,10 +44,10 @@ const lintStagedConfig = {
     return [buildOxfmtCommand(stagedFiles)];
   },
   [JAVASCRIPT_FILES]: function (stagedFiles) {
-    return [buildEslintCommand(stagedFiles)];
+    return [buildOxlintCommand(stagedFiles)];
   },
   [TYPESCRIPT_FILES]: function (stagedFiles) {
-    return [buildTypeCheckCommand(), buildEslintCommand(stagedFiles)];
+    return [buildTypeCheckCommand(), buildOxlintCommand(stagedFiles)];
   },
 };
 

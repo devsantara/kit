@@ -2,6 +2,9 @@
   // Editor
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  },
 
   // Files
   "files.associations": {
@@ -25,12 +28,6 @@
 
   // Extension - Oxc
   "oxc.enable": true,
-
-  // Extension - ESLint
-  "eslint.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
 
   // Extension - Tailwind CSS
   "tailwindCSS.lint.cssConflict": "ignore", // Avoid confusion with Eslint
