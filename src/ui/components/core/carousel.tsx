@@ -109,7 +109,6 @@ function Carousel({
         api: api,
         opts,
         orientation:
-          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
           orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
         scrollPrev,
         scrollNext,

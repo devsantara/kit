@@ -53,6 +53,7 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
       data-slot="breadcrumb-page"
+      // oxlint-disable-next-line prefer-tag-over-role
       role="link"
       aria-disabled="true"
       aria-current="page"

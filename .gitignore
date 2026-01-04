@@ -24,9 +24,6 @@ logs
 .pnpm-debug.log*
 *storybook.log
 
-# Cache
-.eslintcache
-
 # Misc
 .DS_Store
 *.pem

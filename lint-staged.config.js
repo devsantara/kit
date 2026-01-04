@@ -7,14 +7,14 @@ const ALL_FILES = '*';
 const TYPESCRIPT_FILES = `*.{${TYPESCRIPT_EXTENSIONS.join(',')}}`;
 const JAVASCRIPT_FILES = `*.{${JAVASCRIPT_EXTENSIONS.join(',')}}`;
 
-// Format code with Prettier
-function buildPrettierCommand(stagedFiles) {
-  return `prettier --ignore-unknown --write ${stagedFiles.join(' ')}`;
+// Format code with Oxfmt
+function buildOxfmtCommand(stagedFiles) {
+  return `oxfmt --no-error-on-unmatched-pattern ${stagedFiles.join(' ')}`;
 }
 
-// Check and fix code with ESLint
-function buildEslintCommand(stagedFiles) {
-  return `eslint --cache --fix ${stagedFiles.join(' ')}`;
+// Check and fix code with Oxlint
+function buildOxlintCommand(stagedFiles) {
+  return `oxlint ${stagedFiles.join(' ')}`;
 }
 
 // Type check with TypeScript
@@ -29,13 +29,13 @@ function buildTypeCheckCommand() {
  */
 const lintStagedConfig = {
   [ALL_FILES]: function (stagedFiles) {
-    return [buildPrettierCommand(stagedFiles)];
+    return [buildOxfmtCommand(stagedFiles)];
   },
   [JAVASCRIPT_FILES]: function (stagedFiles) {
-    return [buildEslintCommand(stagedFiles)];
+    return [buildOxlintCommand(stagedFiles)];
   },
   [TYPESCRIPT_FILES]: function (stagedFiles) {
-    return [buildTypeCheckCommand(), buildEslintCommand(stagedFiles)];
+    return [buildTypeCheckCommand(), buildOxlintCommand(stagedFiles)];
   },
 };
 
