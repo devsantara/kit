@@ -7,20 +7,14 @@ const ALL_FILES = '*';
 const TYPESCRIPT_FILES = `*.{${TYPESCRIPT_EXTENSIONS.join(',')}}`;
 const JAVASCRIPT_FILES = `*.{${JAVASCRIPT_EXTENSIONS.join(',')}}`;
 
-// Format code with Prettier
-/** @deprecated use oxfmt instead */
-function _buildPrettierCommand(stagedFiles) {
-  return `prettier --ignore-unknown --write ${stagedFiles.join(' ')}`;
-}
-
 // Format code with Oxfmt
 function buildOxfmtCommand(stagedFiles) {
   return `oxfmt --no-error-on-unmatched-pattern ${stagedFiles.join(' ')}`;
 }
 
-// Check and fix code with ESLint
-function buildEslintCommand(stagedFiles) {
-  return `eslint --cache --fix ${stagedFiles.join(' ')}`;
+// Check and fix code with Oxlint
+function buildOxlintCommand(stagedFiles) {
+  return `oxlint ${stagedFiles.join(' ')}`;
 }
 
 // Type check with TypeScript
@@ -38,10 +32,10 @@ const lintStagedConfig = {
     return [buildOxfmtCommand(stagedFiles)];
   },
   [JAVASCRIPT_FILES]: function (stagedFiles) {
-    return [buildEslintCommand(stagedFiles)];
+    return [buildOxlintCommand(stagedFiles)];
   },
   [TYPESCRIPT_FILES]: function (stagedFiles) {
-    return [buildTypeCheckCommand(), buildEslintCommand(stagedFiles)];
+    return [buildTypeCheckCommand(), buildOxlintCommand(stagedFiles)];
   },
 };
 

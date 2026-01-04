@@ -14,7 +14,7 @@ export default defineConfig({
     tailwindcss(),
     tsConfigPaths({ projects: ['./tsconfig.json'] }),
     tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
-    // react's vite plugin must come after start's vite plugin
+    // React's vite plugin must come after start's vite plugin
     viteReact(),
   ],
 });
