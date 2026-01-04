@@ -61,7 +61,7 @@ if (process.env.PULL_REQUEST) {
     owner: packageJson.author,
     repository: packageJson.name,
     issueNumber: Number(process.env.PULL_REQUEST),
-    body: `## 🚀 Preview Deployment
+    body: `## 🚀 Preview Deployment (${process.env.PULL_REQUEST})
 
 Your changes have been deployed to a preview environment:
 
