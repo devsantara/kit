@@ -12,7 +12,7 @@ on:
       - synchronize
       - closed
 concurrency:
-  group: deploy-${{ github.event_name == 'pull_request' && format('preview-{0}', github.event.number) || github.ref }}
+  group: deploy-${{ github.ref }}
   cancel-in-progress: false
 env:
   NODE_VERSION: '24.11.1'
