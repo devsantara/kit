@@ -7,21 +7,9 @@ const ALL_FILES = '*';
 const TYPESCRIPT_FILES = `*.{${TYPESCRIPT_EXTENSIONS.join(',')}}`;
 const JAVASCRIPT_FILES = `*.{${JAVASCRIPT_EXTENSIONS.join(',')}}`;
 
-// Format code with Prettier
-/** @deprecated use oxfmt instead */
-function _buildPrettierCommand(stagedFiles) {
-  return `prettier --ignore-unknown --write ${stagedFiles.join(' ')}`;
-}
-
 // Format code with Oxfmt
 function buildOxfmtCommand(stagedFiles) {
   return `oxfmt --no-error-on-unmatched-pattern ${stagedFiles.join(' ')}`;
-}
-
-// Check and fix code with ESLint
-/** @deprecated use oxlint instead */
-function _buildEslintCommand(stagedFiles) {
-  return `eslint --cache --fix ${stagedFiles.join(' ')}`;
 }
 
 // Check and fix code with Oxlint
