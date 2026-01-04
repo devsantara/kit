@@ -80,6 +80,7 @@ jobs:
       - name: Destroy Preview Environment
         run: pnpm alchemy destroy --stage ${{ env.STAGE }}
         env:
+          HOSTNAME: ${{ vars.HOSTNAME }}
           ALCHEMY_SECRET: ${{ secrets.ALCHEMY_SECRET }}
           ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
