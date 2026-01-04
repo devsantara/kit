@@ -45,6 +45,7 @@
     "unicorn/prefer-node-protocol": "error",
     "react/no-unknown-property": "error",
     "react/button-has-type": "error",
+    "import/no-cycle": ["error", { "maxDepth": 3 }],
 
     // Suspicious
     "react/react-in-jsx-scope": "off",
