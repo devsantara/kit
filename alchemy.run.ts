@@ -55,8 +55,8 @@ const workerUrl = workerDomain ? `https://${workerDomain.name}` : worker.url;
 console.info({ worker: worker.name, url: workerUrl });
 
 if (process.env.PULL_REQUEST) {
-  // if this is a PR, add a comment to the PR with the preview URL
-  // it will auto-update with each push
+  // If this is a PR, add a comment to the PR with the preview URL
+  // It will auto-update with each push
   await GitHubComment('preview-comment', {
     owner: packageJson.author,
     repository: packageJson.name,
