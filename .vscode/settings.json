@@ -1,7 +1,10 @@
 {
   // Editor
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  },
 
   // Files
   "files.associations": {
@@ -23,18 +26,10 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.preferTypeOnlyAutoImports": true,
 
-  // Extension - Prettier
-  "prettier.enable": true,
-  "prettier.configPath": "prettier.config.js",
-
-  // Extension - ESLint
-  "eslint.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
+  // Extension - Oxc
+  "oxc.enable": true,
 
   // Extension - Tailwind CSS
-  "tailwindCSS.lint.cssConflict": "ignore", // Avoid confusion with Eslint
   "tailwindCSS.classAttributes": ["class", "className", "classNames"],
   "tailwindCSS.classFunctions": ["clsx", "twMerge", "cn", "cva"]
 }

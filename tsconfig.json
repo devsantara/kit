@@ -1,9 +1,14 @@
 {
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "@types/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     ".storybook/**/*.ts",
-    ".storybook/**/*.tsx"
+    ".storybook/**/*.tsx",
+    "vite.config.ts",
+    "alchemy.run.ts",
+    "eslint.config.ts",
+    "commitlint.config.ts"
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {
@@ -13,7 +18,7 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client"],
+    "types": ["vite/client", "@cloudflare/workers-types"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -282,6 +282,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
 
   return (
     <button
+      type="button"
       data-sidebar="rail"
       data-slot="sidebar-rail"
       aria-label="Toggle Sidebar"
@@ -524,11 +525,8 @@ function SidebarMenuButton({
     return button;
   }
 
-  if (typeof tooltip === 'string') {
-    tooltip = {
-      children: tooltip,
-    };
-  }
+  const tooltipContentProps =
+    typeof tooltip === 'string' ? { children: tooltip } : tooltip;
 
   return (
     <Tooltip>
@@ -537,7 +535,7 @@ function SidebarMenuButton({
         side="right"
         align="center"
         hidden={state !== 'collapsed' || isMobile}
-        {...tooltip}
+        {...tooltipContentProps}
       />
     </Tooltip>
   );
@@ -606,7 +604,6 @@ function SidebarMenuSkeleton({
 }) {
   // Random width between 50 to 90%.
   const width = React.useMemo(() => {
-    // eslint-disable-next-line react-hooks/purity
     return `${Math.floor(Math.random() * 40) + 50}%`;
   }, []);
 

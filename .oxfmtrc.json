@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "objectWrap": "preserve",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "singleAttributePerLine": false,
+  "arrowParens": "always",
+  "ignorePatterns": ["pnpm-lock.yaml", "routeTree.gen.ts", "public/"],
+  "experimentalSortPackageJson": true,
+  "experimentalSortImports": { "order": "asc" }
+}
