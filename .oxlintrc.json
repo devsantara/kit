@@ -48,6 +48,7 @@
     "import/no-cycle": ["error", { "maxDepth": 3 }],
 
     // Suspicious
+    "eslint/no-unneeded-ternary": "off",
     "react/react-in-jsx-scope": "off",
     "import/no-unassigned-import": ["error", { "allow": ["**/*.css"] }],
 
@@ -67,7 +68,6 @@
     "default-param-last": "error",
     "func-names": ["error", "as-needed", { "generators": "as-needed" }],
     "max-params": ["error", { "max": 3 }],
-    "new-cap": "error",
     "no-duplicate-imports": "error",
     "no-implicit-coercion": "error",
     "no-template-curly-in-string": "error",
