@@ -7,6 +7,10 @@ dist/
 dist-ssr/
 storybook-static/
 
+# Infrastructures
+.alchemy/
+.wrangler/
+
 # Local files
 *.local
 
