@@ -119,7 +119,8 @@
     "vite-tsconfig-paths": "^6.0.3"
   },
   "resolutions": {
-    "conventional-changelog-conventionalcommits": "8.0.0"
+    "conventional-changelog-conventionalcommits": "8.0.0",
+    "libsodium-wrappers": "0.7.15"
   },
   "engines": {
     "node": "24.11.1"
