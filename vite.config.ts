@@ -34,7 +34,7 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       tsConfigPaths({ projects: ['./tsconfig.json'] }),
       tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
       // React's vite plugin must come after start's vite plugin
-      viteReact(),
+      viteReact({ babel: { plugins: ['babel-plugin-react-compiler'] } }),
     ],
   });
 }
