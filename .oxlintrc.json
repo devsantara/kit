@@ -75,7 +75,8 @@
     "typescript/consistent-type-definitions": ["error", "interface"],
     "unicorn/filename-case": ["error", { "case": "kebabCase" }],
     "react/self-closing-comp": "warn",
-    "import/no-duplicates": "error"
+    "import/no-duplicates": "error",
+    "eslint/func-style": ["error", "declaration"]
   },
   "overrides": [
     {
