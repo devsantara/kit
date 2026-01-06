@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.2.0](https://github.com/devsantara/kit/compare/0.1.0...0.2.0) (2026-01-06)
+
+### Features
+
+- **server:** add server wait until ([e3e9ad4](https://github.com/devsantara/kit/commit/e3e9ad45a76a03f9427ef9b70bb84aa9709894d6))
+- **ui:** add custom sans and mono fonts ([65a1f90](https://github.com/devsantara/kit/commit/65a1f905f7515a180f67c144234460d2faa5f0c3))
+- **ui:** setup tailwindcss ([ca471dc](https://github.com/devsantara/kit/commit/ca471dcb4cbd90308d275a788df4fa0e3b7eb000))
+- **ui:** setup ui library ([2c0647e](https://github.com/devsantara/kit/commit/2c0647e115bca204d8cde8658bd698c687e96dc8))
+
+### Bug Fixes
+
+- **deps:** some package imported from external module but never used ([968b7b2](https://github.com/devsantara/kit/commit/968b7b2c64165610d9a98845641254af381c2fe2))
+- **typescript:** server bundles can leaking into client bundles ([c691288](https://github.com/devsantara/kit/commit/c6912881434110cb84ba85d25da907a615aad25f))
+
+### Performance
+
+- **react:** add react-compiler ([b180469](https://github.com/devsantara/kit/commit/b18046948e2834b9e1b5b861459e5a44e2c1de8c))
+
+### Continuous Integration
+
+- **deployment:** setup infrastructure and workflows ([39a0169](https://github.com/devsantara/kit/commit/39a0169758d01c45fcb792510b3f7915369bd023))
+
+### Chores
+
+- **bump:** update packages ([d8d9e57](https://github.com/devsantara/kit/commit/d8d9e573f50837ab6c7339e7fe7842e954a12e22))
+- **formatter:** migrate prettier to oxfmt ([975a6c1](https://github.com/devsantara/kit/commit/975a6c17e47e7ff8d1adc3340d956f9cb1722488))
+- **linter:** migrate eslint to oxlint ([b8ef08b](https://github.com/devsantara/kit/commit/b8ef08b8deef8d6b13f01e0aa313309ba7cacb8c))
+- **vscode:** prevent routeTree file from being exposed in the editor ([56f72ed](https://github.com/devsantara/kit/commit/56f72ed287d895b67d40cddd0f539df03e1ba1a6))
+
 ## [0.1.0](https://github.com/devsantara/kit/compare/...0.1.0) (2025-12-14)
 
 ### Features
