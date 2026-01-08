@@ -28,7 +28,7 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       },
     },
     plugins: [
-      alchemy(),
+      alchemy({ viteEnvironment: { name: 'ssr' } }),
       devtools(),
       tailwindcss(),
       tsConfigPaths({ projects: ['./tsconfig.json'] }),

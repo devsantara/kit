@@ -8,6 +8,7 @@ import * as React from 'react';
 import { preload } from 'react-dom';
 
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
+import { PostHogProvider } from '~/lib/posthog/provider';
 import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
 import fontStylesheet from '~/ui/styles/fonts.css?url';
@@ -40,7 +41,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <ThemeProvider>
           <Toaster />
-          {children}
+          <PostHogProvider>{children}</PostHogProvider>
           <TanStackDevtools
             config={{ position: 'bottom-right' }}
             plugins={[tanstackRouterDevtools]}
