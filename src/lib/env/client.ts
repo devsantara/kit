@@ -10,6 +10,7 @@ export const clientEnv = createEnv({
     VITE_PUBLIC_POSTHOG_KEY: z.string().nonempty(),
     VITE_PUBLIC_POSTHOG_HOST: z.url(),
     VITE_PUBLIC_POSTHOG_DEBUG: coerceBoolean().default(false),
+    VITE_PUBLIC_POSTHOG_ENABLED: coerceBoolean().default(false),
   },
   runtimeEnv: import.meta.env,
   emptyStringAsUndefined: true,

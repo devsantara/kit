@@ -8,5 +8,6 @@ export function createPosthogClient() {
     host: clientEnv.VITE_PUBLIC_POSTHOG_HOST,
     flushAt: 1, // Flush after every event
     flushInterval: 0, // No batching delays
+    disabled: !clientEnv.VITE_PUBLIC_POSTHOG_ENABLED,
   });
 }
