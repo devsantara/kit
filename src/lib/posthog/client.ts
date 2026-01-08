@@ -7,6 +7,6 @@ export function initializePosthogClient() {
   posthog.init(clientEnv.VITE_PUBLIC_POSTHOG_KEY, {
     api_host: clientEnv.VITE_PUBLIC_POSTHOG_HOST,
     defaults: '2025-11-30',
-    debug: true,
+    debug: clientEnv.VITE_PUBLIC_POSTHOG_DEBUG,
   });
 }
