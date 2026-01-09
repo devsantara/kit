@@ -1,7 +1,6 @@
 import { createRouter as createTanstackRouter } from '@tanstack/react-router';
 import { posthog } from 'posthog-js';
 
-import { initializePosthogClient } from '~/lib/posthog/client';
 import { routeTree } from '~/routeTree.gen';
 
 export function getRouter() {
@@ -13,8 +12,6 @@ export function getRouter() {
       posthog.captureException(error);
     },
   });
-
-  initializePosthogClient();
 
   return router;
 }
