@@ -23,6 +23,7 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       target: 'esnext',
       minify: true,
       cssMinify: true,
+      sourcemap: true,
       rollupOptions: {
         external: ['node:async_hooks', 'cloudflare:workers'],
       },
