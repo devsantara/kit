@@ -6,6 +6,8 @@ import alchemy from 'alchemy/cloudflare/tanstack-start';
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
+import { posthog } from './src/lib/posthog/plugin';
+
 export default async function viteConfig({ mode }: ConfigEnv) {
   /**
    * Environment Variables aren't loaded automatically
@@ -23,18 +25,24 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       target: 'esnext',
       minify: true,
       cssMinify: true,
+      sourcemap: true,
       rollupOptions: {
         external: ['node:async_hooks', 'cloudflare:workers'],
       },
     },
     plugins: [
-      alchemy(),
+      alchemy({ viteEnvironment: { name: 'ssr' } }),
       devtools(),
       tailwindcss(),
       tsConfigPaths({ projects: ['./tsconfig.json'] }),
       tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
       // React's vite plugin must come after start's vite plugin
       viteReact({ babel: { plugins: ['babel-plugin-react-compiler'] } }),
+      posthog({
+        host: process.env.POSTHOG_CLI_HOST,
+        envId: process.env.POSTHOG_CLI_ENV_ID,
+        personalApiKey: process.env.POSTHOG_CLI_TOKEN,
+      }),
     ],
   });
 }
