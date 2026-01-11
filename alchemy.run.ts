@@ -43,7 +43,6 @@ const app = await alchemy('kit', {
 
 export const worker = await TanStackStart('website', {
   adopt: true,
-  build: { memoize: true },
   observability: isProductionStage(app) ? { enabled: true } : undefined,
   url: isProductionStage(app) ? false : true,
   domains: isProductionStage(app) ? [alchemyEnv.HOSTNAME] : undefined,

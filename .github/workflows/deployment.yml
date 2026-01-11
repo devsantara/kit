@@ -42,24 +42,10 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install
-      - name: Build
-        run: pnpm build
-        env:
-          VITE_PUBLIC_POSTHOG_HOST: ${{ vars.VITE_PUBLIC_POSTHOG_HOST }}
-          VITE_PUBLIC_POSTHOG_KEY: ${{ secrets.VITE_PUBLIC_POSTHOG_KEY }}
-          VITE_PUBLIC_POSTHOG_DEBUG: ${{ vars.VITE_PUBLIC_POSTHOG_DEBUG }}
-          VITE_PUBLIC_POSTHOG_ENABLED: ${{ vars.VITE_PUBLIC_POSTHOG_ENABLED }}
-      - name: Inject & upload sourcemap
-        run: |-
-          pnpm sourcemap:inject
-          pnpm sourcemap:upload
-        env:
-          POSTHOG_CLI_HOST: ${{ vars.POSTHOG_CLI_HOST }}
-          POSTHOG_CLI_ENV_ID: ${{ secrets.POSTHOG_CLI_ENV_ID }}
-          POSTHOG_CLI_TOKEN: ${{ secrets.POSTHOG_CLI_TOKEN }}
-      - name: Deploy
+      - name: Build and deploy
         run: pnpm alchemy deploy --stage ${{ env.STAGE }}
         env:
+          # Alchemy
           HOSTNAME: ${{ vars.HOSTNAME }}
           ALCHEMY_SECRET: ${{ secrets.ALCHEMY_SECRET }}
           ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}
@@ -68,6 +54,15 @@ jobs:
           PULL_REQUEST: ${{ github.event.number }}
           GITHUB_SHA: ${{ github.sha }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Build
+          VITE_PUBLIC_POSTHOG_HOST: ${{ vars.VITE_PUBLIC_POSTHOG_HOST }}
+          VITE_PUBLIC_POSTHOG_KEY: ${{ secrets.VITE_PUBLIC_POSTHOG_KEY }}
+          VITE_PUBLIC_POSTHOG_DEBUG: ${{ vars.VITE_PUBLIC_POSTHOG_DEBUG }}
+          VITE_PUBLIC_POSTHOG_ENABLED: ${{ vars.VITE_PUBLIC_POSTHOG_ENABLED }}
+          # Sourcemap inject and upload
+          POSTHOG_CLI_HOST: ${{ vars.POSTHOG_CLI_HOST }}
+          POSTHOG_CLI_ENV_ID: ${{ secrets.POSTHOG_CLI_ENV_ID }}
+          POSTHOG_CLI_TOKEN: ${{ secrets.POSTHOG_CLI_TOKEN }}
   cleanup:
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' }}
     runs-on: ubuntu-latest
@@ -100,6 +95,7 @@ jobs:
       - name: Destroy Preview Environment
         run: pnpm alchemy destroy --stage ${{ env.STAGE }}
         env:
+          # Alchemy
           HOSTNAME: ${{ vars.HOSTNAME }}
           ALCHEMY_SECRET: ${{ secrets.ALCHEMY_SECRET }}
           ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}

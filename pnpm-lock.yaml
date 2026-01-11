@@ -187,9 +187,9 @@ importers:
       '@commitlint/types':
         specifier: ^20.2.0
         version: 20.2.0
-      '@posthog/cli':
-        specifier: ^0.5.22
-        version: 0.5.22
+      '@posthog/rollup-plugin':
+        specifier: ^1.1.7
+        version: 1.1.7(rollup@4.55.1)
       '@release-it/conventional-changelog':
         specifier: 10.0.4
         version: 10.0.4(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.1)(release-it@19.2.2(@types/node@25.0.3))
@@ -1682,6 +1682,9 @@ packages:
   '@posthog/core@1.9.0':
     resolution: {integrity: sha512-j7KSWxJTUtNyKynLt/p0hfip/3I46dWU2dk+pt7dKRoz2l5CYueHuHK4EO7Wlgno5yo1HO4sc4s30MXMTICHJw==}
 
+  '@posthog/core@1.9.1':
+    resolution: {integrity: sha512-kRb1ch2dhQjsAapZmu6V66551IF2LnCbc1rnrQqnR7ArooVyJN9KOPXre16AJ3ObJz2eTfuP7x25BMyS2Y5Exw==}
+
   '@posthog/react@1.5.2':
     resolution: {integrity: sha512-KHdXbV1yba7Y2l8BVmwXlySWxqKVLNQ5ZiVvWOf7r3Eo7GIFxCM4CaNK/z83kKWn8KTskmKy7AGF6Hl6INWK3g==}
     peerDependencies:
@@ -1691,6 +1694,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  '@posthog/rollup-plugin@1.1.7':
+    resolution: {integrity: sha512-jpi6x4bueP78Psuf+Xx8fn/jglpHf0wUfs+iiCzyUgo+JghFUNoLtRMcu8vfeuo8i9RPibl0BJNlafupQsXkzQ==}
+    peerDependencies:
+      rollup: '>= 4.0.0'
 
   '@radix-ui/number@1.1.1':
     resolution: {integrity: sha512-MkKCwxlXTgz6CFoJx3pCwn07GKp36+aZyu/u2Ln2VrA5DcdyCZkASEDBTd8x5whTQQL5CiYf4prXKLcgQdv29g==}
@@ -7268,12 +7276,24 @@ snapshots:
     dependencies:
       cross-spawn: 7.0.6
 
+  '@posthog/core@1.9.1':
+    dependencies:
+      cross-spawn: 7.0.6
+
   '@posthog/react@1.5.2(@types/react@19.2.7)(posthog-js@1.314.0)(react@19.2.3)':
     dependencies:
       posthog-js: 1.314.0
       react: 19.2.3
     optionalDependencies:
       '@types/react': 19.2.7
+
+  '@posthog/rollup-plugin@1.1.7(rollup@4.55.1)':
+    dependencies:
+      '@posthog/cli': 0.5.22
+      '@posthog/core': 1.9.1
+      rollup: 4.55.1
+    transitivePeerDependencies:
+      - debug
 
   '@radix-ui/number@1.1.1': {}
 

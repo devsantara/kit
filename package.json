@@ -100,7 +100,7 @@
     "@commitlint/cli": "^20.3.0",
     "@commitlint/config-conventional": "^20.3.0",
     "@commitlint/types": "^20.2.0",
-    "@posthog/cli": "^0.5.22",
+    "@posthog/rollup-plugin": "^1.1.7",
     "@release-it/conventional-changelog": "10.0.4",
     "@storybook/addon-docs": "^10.1.11",
     "@storybook/react-vite": "^10.1.11",
