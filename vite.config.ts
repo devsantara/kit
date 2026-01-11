@@ -27,6 +27,13 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       cssMinify: true,
       sourcemap: true,
       rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes('posthog-js') || id.includes('@posthog/react')) {
+              return 'posthog';
+            }
+          },
+        },
         external: ['node:async_hooks', 'cloudflare:workers'],
       },
     },
