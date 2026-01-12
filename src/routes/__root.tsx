@@ -8,6 +8,7 @@ import * as React from 'react';
 import { preload } from 'react-dom';
 
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
+import { getLocale } from '~/lib/i18n/runtime.js';
 import { PostHogProvider } from '~/lib/posthog/provider';
 import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
@@ -34,7 +35,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   preload(jetBrainsMonoFont, { as: 'font', type: 'font/woff2' });
 
   return (
-    <html lang="en" className="antialiased" suppressHydrationWarning>
+    <html lang={getLocale()} className="antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
