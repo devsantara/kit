@@ -57,11 +57,19 @@ export default async function viteConfig({ mode }: ConfigEnv) {
         urlPatterns: [
           {
             pattern: '/',
-            localized: [['en', '/en']],
+            localized: [
+              ['en', '/en'],
+              ['id', '/id'],
+              ['zh-CN', '/zh-CN'],
+            ],
           },
           {
             pattern: '/:path(.*)?',
-            localized: [['en', '/en/:path(.*)?']],
+            localized: [
+              ['en', '/en/:path(.*)?'],
+              ['id', '/id/:path(.*)?'],
+              ['zh-CN', '/zh-CN/:path(.*)?'],
+            ],
           },
         ],
       }),
