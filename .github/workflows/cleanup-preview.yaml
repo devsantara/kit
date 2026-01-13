@@ -1,0 +1,47 @@
+name: Cleanup Preview
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+concurrency:
+  group: cleanup-preview-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  NODE_VERSION: '24.11.1'
+  PNPM_VERSION: '10.23.0'
+  # For PR closed events this will resolve to preview-<PR_NUMBER>
+  STAGE: ${{ format('preview-{0}', github.event.number) }}
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Destroy Preview Environment
+        run: pnpm alchemy destroy --stage ${{ env.STAGE }}
+        env:
+          # Alchemy
+          HOSTNAME: ${{ vars.HOSTNAME }}
+          ALCHEMY_SECRET: ${{ secrets.ALCHEMY_SECRET }}
+          ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          PULL_REQUEST: ${{ github.event.number }}
