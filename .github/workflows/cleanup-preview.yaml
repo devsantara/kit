@@ -5,6 +5,9 @@ on:
       - main
       - dev
     types:
+      - opened
+      - reopened
+      - synchronize
       - closed
 concurrency:
   group: cleanup-preview-${{ github.ref }}
@@ -17,6 +20,7 @@ env:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'closed' }}
     permissions:
       id-token: write
       contents: read
