@@ -17,8 +17,6 @@ env:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    environment:
-      name: preview
     permissions:
       id-token: write
       contents: read
