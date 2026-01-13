@@ -1,3 +1,7 @@
+# Deploys a per-PR preview environment for this repository.
+# Triggered when a PR targeting main (commonly from release/* or hotfix/*) is opened, reopened, or updated (synchronize).
+# Deploys to the "preview" environment with stage name "preview-<PR_NUMBER>" .
+
 name: Deployment (Preview)
 on:
   pull_request:

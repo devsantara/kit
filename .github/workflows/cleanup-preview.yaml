@@ -1,3 +1,6 @@
+# This workflow destroys the preview environment/deployment when a PR is closed.
+# It prevents preview resources from leaking/stale after close.
+
 name: Cleanup Preview
 on:
   pull_request:
@@ -11,7 +14,6 @@ concurrency:
 env:
   NODE_VERSION: '24.11.1'
   PNPM_VERSION: '10.23.0'
-  # For PR closed events this will resolve to preview-<PR_NUMBER>
   STAGE: ${{ format('preview-{0}', github.event.number) }}
 jobs:
   cleanup:

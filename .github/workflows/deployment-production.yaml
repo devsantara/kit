@@ -1,3 +1,6 @@
+# Deploys the main branch to the production environment on every push to main.
+# Deploys to the GitHub environment "production" with stage name "production".
+
 name: Deployment (Production)
 on:
   push:
