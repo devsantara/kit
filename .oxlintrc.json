@@ -63,7 +63,7 @@
     "react/rules-of-hooks": "error",
 
     // Style
-    "capitalized-comments": "warn",
+    "capitalized-comments": "off",
     "default-case-last": "error",
     "default-param-last": "error",
     "func-names": ["error", "as-needed", { "generators": "as-needed" }],
