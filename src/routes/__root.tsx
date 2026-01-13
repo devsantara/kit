@@ -8,7 +8,12 @@ import * as React from 'react';
 import { preload } from 'react-dom';
 
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
-import { getLocale } from '~/lib/i18n/runtime.js';
+import {
+  baseLocale,
+  getLocale,
+  locales,
+  localizeHref,
+} from '~/lib/i18n/runtime.js';
 import { PostHogProvider } from '~/lib/posthog/provider';
 import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
@@ -16,17 +21,39 @@ import fontStylesheet from '~/ui/styles/fonts.css?url';
 import { ThemeProvider } from '~/ui/styles/theme';
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Devsantara Kit' },
-    ],
-    links: [
-      { rel: 'stylesheet', href: fontStylesheet },
-      { rel: 'stylesheet', href: appStylesheet },
-    ],
-  }),
+  loader: ({ location }) => {
+    return { currentHref: location.url.href };
+  },
+  head: ({ loaderData }) => {
+    /** @example http://localhost:3000/path/without/locale */
+    const currentHref = loaderData?.currentHref ?? '';
+
+    return {
+      meta: [
+        { charSet: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { title: 'Devsantara Kit' },
+      ],
+      links: [
+        { rel: 'stylesheet', href: fontStylesheet },
+        { rel: 'stylesheet', href: appStylesheet },
+        {
+          rel: 'canonical',
+          href: localizeHref(currentHref),
+        },
+        {
+          rel: 'alternate',
+          hrefLang: 'x-default',
+          href: localizeHref(currentHref, { locale: baseLocale }),
+        },
+        ...locales.map((locale) => ({
+          rel: 'alternate',
+          hrefLang: locale,
+          href: localizeHref(currentHref, { locale }),
+        })),
+      ],
+    };
+  },
   shellComponent: RootDocument,
 });
 
