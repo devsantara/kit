@@ -1,48 +1,36 @@
-name: Deployment
+name: Deployment (Production)
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
-      - reopened
-      - synchronize
 concurrency:
-  group: deployment-${{ github.ref }}
+  group: deployment-production-${{ github.ref }}
   cancel-in-progress: false
 env:
   NODE_VERSION: '24.11.1'
   PNPM_VERSION: '10.23.0'
-  STAGE: ${{ github.event_name == 'pull_request' && format('preview-{0}', github.event.number) || (github.ref == 'refs/heads/main' && 'production' || github.ref_name) }}
+  STAGE: 'production'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+      name: production
     permissions:
       contents: read
-      pull-requests: write
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
           run_install: false
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
-
       - name: Install dependencies
         run: pnpm install
-
       - name: Build and deploy
         run: pnpm alchemy deploy --stage ${{ env.STAGE }}
         env:
@@ -52,9 +40,6 @@ jobs:
           ALCHEMY_STATE_TOKEN: ${{ secrets.ALCHEMY_STATE_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-          PULL_REQUEST: ${{ github.event.number }}
-          GITHUB_SHA: ${{ github.sha }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Build
           VITE_PUBLIC_POSTHOG_HOST: ${{ vars.VITE_PUBLIC_POSTHOG_HOST }}
           VITE_PUBLIC_POSTHOG_KEY: ${{ secrets.VITE_PUBLIC_POSTHOG_KEY }}
