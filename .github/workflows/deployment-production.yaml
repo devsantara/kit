@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - ci/split-workflow-into-multiple-files
 concurrency:
   group: deployment-production-${{ github.ref }}
   cancel-in-progress: false
