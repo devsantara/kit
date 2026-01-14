@@ -117,7 +117,7 @@
     "conventional-changelog-conventionalcommits": "9.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "oxfmt": "^0.22.0",
+    "oxfmt": "^0.24.0",
     "oxlint": "^1.37.0",
     "release-it": "19.2.2",
     "storybook": "^10.1.11",
