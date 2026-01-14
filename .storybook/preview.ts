@@ -1,4 +1,4 @@
-import '~/src/ui/styles/app.css';
+import '../src/ui/styles/app.css';
 
 import addonDocs from '@storybook/addon-docs';
 import { definePreview } from '@storybook/react-vite';
