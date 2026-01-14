@@ -13,7 +13,7 @@ import {
   getLocale,
   locales,
   localizeHref,
-} from '~/lib/i18n/runtime.js';
+} from '~/lib/i18n/runtime';
 import { PostHogProvider } from '~/lib/posthog/provider';
 import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
