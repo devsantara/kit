@@ -28,6 +28,7 @@
 
   // Extension - Oxc
   "oxc.enable": true,
+  "oxc.fmt.configPath": ".oxfmtrc.json",
 
   // Extension - Tailwind CSS
   "tailwindCSS.classAttributes": ["class", "className", "classNames"],
