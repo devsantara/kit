@@ -1,14 +1,9 @@
-import {
-  createStartHandler,
-  defaultStreamHandler,
-  defineHandlerCallback,
-} from '@tanstack/react-start/server';
-import { createServerEntry } from '@tanstack/react-start/server-entry';
+import handler from '@tanstack/react-start/server-entry';
 
-const serverHandler = defineHandlerCallback((ctx) => {
-  return defaultStreamHandler(ctx);
-});
+import { paraglideMiddleware } from '~/lib/i18n/server';
 
-const fetch = createStartHandler(serverHandler);
-
-export default createServerEntry({ fetch });
+export default {
+  fetch(req: Request): Promise<Response> {
+    return paraglideMiddleware(req, () => handler.fetch(req));
+  },
+};
