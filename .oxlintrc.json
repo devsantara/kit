@@ -1,6 +1,11 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "ignorePatterns": ["pnpm-lock.yaml", "routeTree.gen.ts", "public/"],
+  "ignorePatterns": [
+    "pnpm-lock.yaml",
+    "routeTree.gen.ts",
+    "public/",
+    "src/lib/i18n/"
+  ],
   "env": {
     "browser": true,
     "node": true

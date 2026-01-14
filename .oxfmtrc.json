@@ -13,7 +13,12 @@
   "bracketSameLine": false,
   "singleAttributePerLine": false,
   "arrowParens": "always",
-  "ignorePatterns": ["pnpm-lock.yaml", "routeTree.gen.ts", "public/"],
+  "ignorePatterns": [
+    "pnpm-lock.yaml",
+    "routeTree.gen.ts",
+    "public/",
+    "src/lib/i18n/"
+  ],
   "experimentalSortPackageJson": true,
   "experimentalSortImports": {
     "order": "asc",

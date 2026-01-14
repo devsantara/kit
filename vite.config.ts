@@ -1,3 +1,4 @@
+import { paraglideVitePlugin as paraglide } from '@inlang/paraglide-js';
 import tailwindcss from '@tailwindcss/vite';
 import { devtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
@@ -45,6 +46,33 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
       // React's vite plugin must come after start's vite plugin
       viteReact({ babel: { plugins: ['babel-plugin-react-compiler'] } }),
+      paraglide({
+        project: './project.inlang',
+        outdir: './src/lib/i18n',
+        cookieName: 'LOCALE',
+        outputStructure: 'message-modules',
+        strategy: ['url', 'cookie', 'preferredLanguage', 'baseLocale'],
+        // DisableAsyncLocalStorage should ONLY be used in serverless environments like Cloudflare Workers.
+        disableAsyncLocalStorage: true,
+        urlPatterns: [
+          {
+            pattern: '/',
+            localized: [
+              ['en', '/en'],
+              ['id', '/id'],
+              ['zh-CN', '/zh-CN'],
+            ],
+          },
+          {
+            pattern: '/:path(.*)?',
+            localized: [
+              ['en', '/en/:path(.*)?'],
+              ['id', '/id/:path(.*)?'],
+              ['zh-CN', '/zh-CN/:path(.*)?'],
+            ],
+          },
+        ],
+      }),
       posthog({
         host: process.env.POSTHOG_CLI_HOST,
         envId: process.env.POSTHOG_CLI_ENV_ID,
