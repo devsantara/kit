@@ -8,6 +8,7 @@ import * as React from 'react';
 import { preload } from 'react-dom';
 
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
+import { m } from '~/lib/i18n/messages';
 import {
   baseLocale,
   getLocale,
@@ -32,7 +33,8 @@ export const Route = createRootRoute({
       meta: [
         { charSet: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { title: 'Devsantara Kit' },
+        { title: m.app_name() },
+        { name: 'description', content: m.app_description() },
       ],
       links: [
         { rel: 'stylesheet', href: fontStylesheet },
