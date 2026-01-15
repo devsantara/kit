@@ -46,7 +46,7 @@ interface HeadResult {
  * to construct a complete head configuration before calling `build()` to generate the result.
  *
  * @example
- * const head = new HeadBuilder(
+ * const head = new HeadBuilder('https://devsantara.com')
  *   .addCharSet('utf-8')
  *   .addTitle('My Awesome Website')
  *   .addDescription('A comprehensive guide to building great websites')
@@ -70,10 +70,59 @@ interface HeadResult {
  * }
  */
 export class HeadBuilder {
+  private metadataBase?: URL;
   private meta: Meta[] = [];
   private links: Link[] = [];
   private scripts: Script[] = [];
   private styles: Style[] = [];
+
+  /**
+   * Creates a new HeadBuilder instance with optional metadataBase configuration
+   *
+   * The metadataBase serves as the base path and origin for absolute URLs in various
+   * metadata fields. When relative URLs (for Open Graph images, alternates, etc.) are used,
+   * they are composed with this base. If not provided, relative URLs will be used as-is.
+   *
+   * @param metadataBase - The base URL to use for resolving relative URLs in metadata
+   *
+   * @example
+   * const head = new HeadBuilder('https://devsantara.com')
+   *   .addOpenGraph({
+   *     title: 'My Article',
+   *     image: { url: '/og-image.jpg' } // Will resolve to https://devsantara.com/og-image.jpg
+   *   })
+   *   .build();
+   */
+  constructor(metadataBase?: URL) {
+    this.metadataBase = metadataBase;
+  }
+
+  /**
+   * Resolves a URL by composing relative URLs with the metadataBase
+   *
+   * If the URL is already absolute (contains a protocol), it's returned unchanged.
+   * If the URL is relative and metadataBase is provided, they're composed together.
+   * If the URL is relative and metadataBase is not provided, the URL is returned as-is.
+   */
+  private resolveUrl(url: string | URL) {
+    if (url instanceof URL) return url.toString();
+    if (!this.metadataBase) return url;
+
+    try {
+      // Try to parse as absolute URL
+      // oxlint-disable-next-line no-new
+      new URL(url);
+      return url;
+    } catch {
+      try {
+        // It's relative, compose with base
+        return new URL(url, this.metadataBase).toString();
+      } catch {
+        // If base is invalid, return original URL
+        return url;
+      }
+    }
+  }
 
   /**
    * Adds a charset meta tag to specify the character encoding of the document
@@ -156,16 +205,18 @@ export class HeadBuilder {
    * - Managing URL variants (HTTP vs HTTPS, www vs non-www, trailing slashes)
    * - Handling pagination and session parameters
    *
+   * Relative URLs are resolved using the metadataBase if provided.
+   *
    * @example
-   * const head = new HeadBuilder()
-   *   .addCanonical('https://devsantara.com/article/best-practices')
+   * const head = new HeadBuilder('https://devsantara.com')
+   *   .addCanonical('/blogs/nusantara')
    *   .build();
    *
    * // Result:
-   * <link rel="canonical" href="https://devsantara.com/article/best-practices" />
+   * <link rel="canonical" href="https://devsantara.com/blogs/nusantara" />
    */
   addCanonical(url: string | URL) {
-    this.links.push({ rel: 'canonical', href: String(url) });
+    this.links.push({ rel: 'canonical', href: this.resolveUrl(url) });
     return this;
   }
 
@@ -175,6 +226,8 @@ export class HeadBuilder {
    * Alternate language links help search engines understand which pages are translations
    * or variants of the same content in different languages or for different regions.
    * This is crucial for international SEO and helps users find content in their language.
+   *
+   * Relative URLs are resolved using the metadataBase if provided.
    *
    * @example
    * const head = new HeadBuilder()
@@ -195,9 +248,50 @@ export class HeadBuilder {
       this.links.push({
         rel: 'alternate',
         hrefLang: alternate.hrefLang,
-        href: String(alternate.href),
+        href: this.resolveUrl(alternate.href),
       });
     }
+    return this;
+  }
+
+  /**
+   * Adds a manifest link for progressive web app (PWA) configuration
+   *
+   * The manifest link points to a JSON file that contains metadata about your web application,
+   * including the app name, icons, theme colors, and display preferences. This is essential
+   * for progressive web apps that can be installed on mobile devices and desktops.
+   *
+   * @example
+   * const head = new HeadBuilder()
+   *   .addManifest('/manifest.json')
+   *   .build();
+   *
+   * // Result:
+   * <link rel="manifest" href="/manifest.json" />
+   */
+  addManifest(url: string | URL) {
+    this.links.push({ rel: 'manifest', href: String(url) });
+    return this;
+  }
+
+  /**
+   * Adds keywords meta tag for search engine optimization
+   *
+   * The keywords meta tag provides a list of keywords relevant to the page content.
+   * While modern search engines like Google place less emphasis on keywords, they can still
+   * be useful for other search engines and content discovery. Keep keywords relevant and
+   * avoid keyword stuffing.
+   *
+   * @example
+   * const head = new HeadBuilder()
+   *   .addKeywords(['web development', 'SEO', 'best practices'])
+   *   .build();
+   *
+   * // Result:
+   * <meta name="keywords" content="web development, SEO, best practices" />
+   */
+  addKeywords(keywords: string[]) {
+    this.meta.push({ name: 'keywords', content: keywords.join(', ') });
     return this;
   }
 
@@ -273,15 +367,16 @@ export class HeadBuilder {
    * Open Graph includes standard properties for all content types plus type-specific properties
    * for articles, videos, music, and more.
    *
+   * Relative URLs are resolved using the metadataBase if provided.
    *
    * @example
-   * const head = new HeadBuilder()
+   * const head = new HeadBuilder('https://devsantara.com')
    *   .addOpenGraph({
    *     title: 'Devsantara',
    *     description: 'The blueprint for your next big idea',
-   *     url: 'https://devsantara.com',
+   *     url: '/',
    *     image: {
-   *       url: 'https://devsantara.com/assets/og.jpg',
+   *       url: '/assets/og.jpg',
    *     }
    *   })
    *   .build();
@@ -289,7 +384,7 @@ export class HeadBuilder {
    * // Result:
    * <meta property="og:title" content="Devsantara" />
    * <meta property="og:description" content="The blueprint for your next big idea" />
-   * <meta property="og:url" content="https://devsantara.com" />
+   * <meta property="og:url" content="https://devsantara.com/" />
    * <meta property="og:image" content="https://devsantara.com/assets/og.jpg" />
    */
   addOpenGraph(options: OpenGraphOptions) {
@@ -303,7 +398,10 @@ export class HeadBuilder {
       });
     }
     if (options.url) {
-      this.meta.push({ property: 'og:url', content: options.url });
+      this.meta.push({
+        property: 'og:url',
+        content: this.resolveUrl(options.url),
+      });
     }
     if (options.locale) {
       this.meta.push({ property: 'og:locale', content: options.locale });
@@ -311,7 +409,7 @@ export class HeadBuilder {
     if (options.image) {
       this.meta.push({
         property: 'og:image',
-        content: String(options.image.url),
+        content: this.resolveUrl(options.image.url),
       });
       if (options.image.alt) {
         this.meta.push({
@@ -435,12 +533,13 @@ export class HeadBuilder {
    * bookmarks, history, and on mobile home screens. Support multiple icon formats and types
    * for optimal display across different devices and platforms (desktop, iOS, Android, etc.).
    *
+   * Relative URLs are resolved using the metadataBase if provided.
    *
    * @example
-   * const head = new HeadBuilder()
+   * const head = new HeadBuilder('https://devsantara.com')
    *   .addIcons({
    *     shortcut: [
-   *       { url: 'https://devsantara.com/favicon.ico' }
+   *       { url: '/favicon.ico' }
    *     ]
    *   })
    *   .build();
@@ -453,7 +552,7 @@ export class HeadBuilder {
       for (const { url, ...iconOptions } of options.icon) {
         this.links.push({
           rel: 'icon',
-          href: String(url),
+          href: this.resolveUrl(url),
           ...iconOptions,
         });
       }
@@ -462,7 +561,7 @@ export class HeadBuilder {
       for (const { url, ...shortcutOptions } of options.shortcut) {
         this.links.push({
           rel: 'shortcut icon',
-          href: String(url),
+          href: this.resolveUrl(url),
           ...shortcutOptions,
         });
       }
@@ -471,7 +570,7 @@ export class HeadBuilder {
       for (const { url, ...appleOptions } of options.apple) {
         this.links.push({
           rel: 'apple-touch-icon',
-          href: String(url),
+          href: this.resolveUrl(url),
           ...appleOptions,
         });
       }
@@ -480,7 +579,7 @@ export class HeadBuilder {
       for (const { rel, url, ...otherOptions } of options.other) {
         this.links.push({
           rel: rel || 'icon',
-          href: String(url),
+          href: this.resolveUrl(url),
           ...otherOptions,
         });
       }
@@ -558,47 +657,6 @@ export class HeadBuilder {
   }
 
   /**
-   * Adds a manifest link for progressive web app (PWA) configuration
-   *
-   * The manifest link points to a JSON file that contains metadata about your web application,
-   * including the app name, icons, theme colors, and display preferences. This is essential
-   * for progressive web apps that can be installed on mobile devices and desktops.
-   *
-   * @example
-   * const head = new HeadBuilder()
-   *   .addManifest('https://devsantara.com/manifest.json')
-   *   .build();
-   *
-   * // Result:
-   * <link rel="manifest" href="https://devsantara.com/manifest.json" />
-   */
-  addManifest(url: string | URL) {
-    this.links.push({ rel: 'manifest', href: String(url) });
-    return this;
-  }
-
-  /**
-   * Adds keywords meta tag for search engine optimization
-   *
-   * The keywords meta tag provides a list of keywords relevant to the page content.
-   * While modern search engines like Google place less emphasis on keywords, they can still
-   * be useful for other search engines and content discovery. Keep keywords relevant and
-   * avoid keyword stuffing.
-   *
-   * @example
-   * const head = new HeadBuilder()
-   *   .addKeywords(['web development', 'SEO', 'best practices'])
-   *   .build();
-   *
-   * // Result:
-   * <meta name="keywords" content="web development, SEO, best practices" />
-   */
-  addKeywords(keywords: string[]) {
-    this.meta.push({ name: 'keywords', content: keywords.join(', ') });
-    return this;
-  }
-
-  /**
    * Adds external stylesheet link elements
    *
    * External stylesheets define the visual styling for your page. This method adds link elements
@@ -609,20 +667,16 @@ export class HeadBuilder {
    * @example
    * const head = new HeadBuilder()
    *   .addStylesheets([
-   *     { href: 'https://devsantara.com/styles.css' }
+   *     { href: '/styles.css' }
    *   ])
    *   .build();
    *
    * // Result:
-   * <link rel="stylesheet" href="https://devsantara.com/app.css" />
+   * <link rel="stylesheet" href="/app.css" />
    */
   addStylesheets(stylesheets: Omit<Link, 'rel'>[]) {
     for (const { href, ...stylesheet } of stylesheets) {
-      this.links.push({
-        rel: 'stylesheet',
-        href: String(href),
-        ...stylesheet,
-      });
+      this.links.push({ rel: 'stylesheet', href, ...stylesheet });
     }
     return this;
   }
@@ -646,7 +700,7 @@ export class HeadBuilder {
    * <link rel="preconnect" href="https://fonts.googleapis.com" />
    * <link rel="preconnect" href="https://cdn.devsantara.com" />
    */
-  addOtherLinks(links: Link[]) {
+  addLinks(links: Link[]) {
     for (const link of links) {
       this.links.push(link);
     }
