@@ -16,6 +16,7 @@ import {
   localizeHref,
 } from '~/lib/i18n/runtime';
 import { PostHogProvider } from '~/lib/posthog/provider';
+import { HeadBuilder } from '~/lib/seo/head';
 import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
 import fontStylesheet from '~/ui/styles/fonts.css?url';
@@ -29,32 +30,24 @@ export const Route = createRootRoute({
     /** @example http://localhost:3000/path/without/locale */
     const currentHref = loaderData?.currentHref ?? '';
 
-    return {
-      meta: [
-        { charSet: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { title: m.app_name() },
-        { name: 'description', content: m.app_description() },
-      ],
-      links: [
-        { rel: 'stylesheet', href: fontStylesheet },
-        { rel: 'stylesheet', href: appStylesheet },
+    return new HeadBuilder()
+      .addCharSet('utf-8')
+      .addViewport({ width: 'device-width', initialScale: 1 })
+      .addTitle(m.app_name())
+      .addDescription(m.app_description())
+      .addStylesheets([{ href: fontStylesheet }, { href: appStylesheet }])
+      .addCanonical(localizeHref(currentHref))
+      .addAlternateLanguages([
         {
-          rel: 'canonical',
-          href: localizeHref(currentHref),
-        },
-        {
-          rel: 'alternate',
           hrefLang: 'x-default',
           href: localizeHref(currentHref, { locale: baseLocale }),
         },
         ...locales.map((locale) => ({
-          rel: 'alternate',
           hrefLang: locale,
           href: localizeHref(currentHref, { locale }),
         })),
-      ],
-    };
+      ])
+      .build();
   },
   shellComponent: RootDocument,
 });
