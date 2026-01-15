@@ -34,9 +34,9 @@ export interface RobotOptions {
 }
 
 export interface IconOptions {
-  icon?: Icon[];
-  shortcut?: Icon[];
-  apple?: Icon[];
+  icon?: Omit<Icon, 'rel'>[];
+  shortcut?: Omit<Icon, 'rel'>[];
+  apple?: Omit<Icon, 'rel'>[];
   other?: Icon[];
 }
 
@@ -45,11 +45,7 @@ interface Icon {
   type?: string;
   sizes?: string;
   color?: string;
-  /** defaults to rel="icon" unless superseded by Icons map */
   rel?: string;
   media?: string;
-  /**
-   * @see https://developer.mozilla.org/docs/Web/API/HTMLImageElement/fetchPriority
-   */
   fetchPriority?: 'high' | 'low' | 'auto';
 }

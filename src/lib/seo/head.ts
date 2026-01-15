@@ -450,27 +450,27 @@ export class HeadBuilder {
    */
   addIcons(options: IconOptions) {
     if (options.icon) {
-      for (const { rel, url, ...iconOptions } of options.icon) {
+      for (const { url, ...iconOptions } of options.icon) {
         this.links.push({
-          rel: rel || 'icon',
+          rel: 'icon',
           href: String(url),
           ...iconOptions,
         });
       }
     }
     if (options.shortcut) {
-      for (const { rel, url, ...shortcutOptions } of options.shortcut) {
+      for (const { url, ...shortcutOptions } of options.shortcut) {
         this.links.push({
-          rel: rel || 'shortcut icon',
+          rel: 'shortcut icon',
           href: String(url),
           ...shortcutOptions,
         });
       }
     }
     if (options.apple) {
-      for (const { rel, url, ...appleOptions } of options.apple) {
+      for (const { url, ...appleOptions } of options.apple) {
         this.links.push({
-          rel: rel || 'apple-touch-icon',
+          rel: 'apple-touch-icon',
           href: String(url),
           ...appleOptions,
         });
