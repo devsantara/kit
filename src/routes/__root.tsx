@@ -33,15 +33,36 @@ export const Route = createRootRoute({
     return new HeadBuilder()
       .addCharSet('utf-8')
       .addViewport({ width: 'device-width', initialScale: 1 })
+      .addStylesheets([{ href: fontStylesheet }, { href: appStylesheet }])
       .addTitle(m.app_name())
       .addDescription(m.app_description())
-      .addStylesheets([{ href: fontStylesheet }, { href: appStylesheet }])
+      .addColorScheme('light dark')
       .addCanonical(localizeHref(currentHref))
       .addAlternateLocales<Locale>({
         'x-default': localizeHref(currentHref, { locale: baseLocale }),
         en: localizeHref(currentHref, { locale: 'en' }),
         id: localizeHref(currentHref, { locale: 'id' }),
         'zh-CN': localizeHref(currentHref, { locale: 'zh-CN' }),
+      })
+      .addOpenGraph({
+        title: m.app_name(),
+        description: m.app_description(),
+        locale: getLocale(),
+        type: { name: 'website' },
+        url: localizeHref(currentHref),
+        image: {
+          url: 'https://assets.devsantara.com/kit/thumbnail.jpg',
+          type: 'image/jpeg',
+          width: 1280,
+          height: 640,
+        },
+      })
+      .addTwitter({
+        card: { name: 'summary' },
+        title: m.app_name(),
+        description: m.app_description(),
+        site: '@devsantara_hq',
+        image: { url: 'https://assets.devsantara.com/kit/thumbnail.jpg' },
       })
       .build();
   },
