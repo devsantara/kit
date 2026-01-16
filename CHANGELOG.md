@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.3.0](https://github.com/devsantara/kit/compare/0.2.0...0.3.0) (2026-01-16)
+
+### Features
+
+- **i18n:** setup paraglide ([3435a64](https://github.com/devsantara/kit/commit/3435a647c1600d1264ca4195a9571d69952427e6))
+- **observability:** setup posthog ([7f4c399](https://github.com/devsantara/kit/commit/7f4c3991d99acb437e80fa0b35d6c404623f89b9))
+- **seo:** add metadata, opengraph, web manifest and icons ([5c0e864](https://github.com/devsantara/kit/commit/5c0e864792972ba09239d8408365a48d7bf74f6d))
+- **seo:** create head metadata builder ([b3c41ec](https://github.com/devsantara/kit/commit/b3c41ec2378fb83a4d491a548c304f76d73973c5))
+
+### Bug Fixes
+
+- **storybook:** missing iframe.html on production build ([13ff3ab](https://github.com/devsantara/kit/commit/13ff3ab1d6debda0a39ceeb23125d4038f676487))
+
+### Build System
+
+- manually split posthog-js and @posthog/react from main bundle ([a0ecfb0](https://github.com/devsantara/kit/commit/a0ecfb040041cadfa1d519f86ad828855d6740c0))
+
+### Continuous Integration
+
+- **workflow:** split deployment and cleanup workflows ([1e2753a](https://github.com/devsantara/kit/commit/1e2753a437378dec73416946e2e23d8fc3b6467a))
+
+### Chores
+
+- **linter:** turn off capitalized comments rule ([ea65319](https://github.com/devsantara/kit/commit/ea6531995169a001a4b60d62b3c0ace0cea91788))
+- **oxfmt:** update and add import and tailwindcss options ([c56f260](https://github.com/devsantara/kit/commit/c56f2608bb0cf6a0246900fc5126eef9da8ffff9))
+
 ## [0.2.0](https://github.com/devsantara/kit/compare/0.1.0...0.2.0) (2026-01-06)
 
 ### Features
