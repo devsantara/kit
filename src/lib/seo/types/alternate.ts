@@ -1,8 +1,8 @@
-type DefaultLang = 'x-default';
+export type AlternateLocaleKey<TLocale extends string> =
+  | ('x-default' | TLocale)
+  | (string & {});
 
-type HrefLang = DefaultLang | (string & {});
-
-export interface AlternateLanguageOptions {
-  hrefLang: HrefLang;
-  href: string | URL;
-}
+export type AlternateLocaleOptions<TLocale extends string> = Record<
+  AlternateLocaleKey<TLocale>,
+  string | URL
+>;

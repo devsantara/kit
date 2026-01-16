@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { AlternateLanguageOptions } from '~/lib/seo/types/alternate';
+import type { AlternateLocaleOptions } from '~/lib/seo/types/alternate';
 import type {
   ColorSchemeOptions,
   IconOptions,
@@ -221,21 +221,21 @@ export class HeadBuilder {
   }
 
   /**
-   * Adds alternate language links to specify the page's translations or variants
+   * Adds alternate locale links to specify the page's translations or variants
    *
-   * Alternate language links help search engines understand which pages are translations
+   * Alternate locale links help search engines understand which pages are translations
    * or variants of the same content in different languages or for different regions.
-   * This is crucial for international SEO and helps users find content in their language.
+   * This is crucial for international SEO and helps users find content in their locale.
    *
    * Relative URLs are resolved using the metadataBase if provided.
    *
    * @example
    * const head = new HeadBuilder()
-   *   .addAlternateLanguages([
-   *     { hrefLang: 'x-default', href: 'https://devsantara.com/en' }
-   *     { hrefLang: 'en', href: 'https://devsantara.com/en' },
-   *     { hrefLang: 'fr', href: 'https://devsantara.com/fr' },
-   *   ])
+   *   .addAlternateLocales({
+   *      'x-default': 'https://devsantara.com/en',
+   *      'en': 'https://devsantara.com/en',
+   *      'fr': 'https://devsantara.com/fr'
+   *   })
    *   .build();
    *
    * // Result:
@@ -243,14 +243,16 @@ export class HeadBuilder {
    * <link rel="alternate" hrefLang="en" href="https://devsantara.com/en" />
    * <link rel="alternate" hrefLang="fr" href="https://devsantara.com/fr" />
    */
-  addAlternateLanguages(alternates: AlternateLanguageOptions[]) {
-    for (const alternate of alternates) {
+  addAlternateLocales<TLocale extends string = string>(
+    alternates: AlternateLocaleOptions<TLocale>,
+  ) {
+    Object.entries(alternates).map(([locale, url]) => {
       this.links.push({
         rel: 'alternate',
-        hrefLang: alternate.hrefLang,
-        href: this.resolveUrl(alternate.href),
+        hrefLang: locale,
+        href: this.resolveUrl(url),
       });
-    }
+    });
     return this;
   }
 

@@ -12,8 +12,8 @@ import { m } from '~/lib/i18n/messages';
 import {
   baseLocale,
   getLocale,
-  locales,
   localizeHref,
+  type Locale,
 } from '~/lib/i18n/runtime';
 import { PostHogProvider } from '~/lib/posthog/provider';
 import { HeadBuilder } from '~/lib/seo/head';
@@ -37,16 +37,12 @@ export const Route = createRootRoute({
       .addDescription(m.app_description())
       .addStylesheets([{ href: fontStylesheet }, { href: appStylesheet }])
       .addCanonical(localizeHref(currentHref))
-      .addAlternateLanguages([
-        {
-          hrefLang: 'x-default',
-          href: localizeHref(currentHref, { locale: baseLocale }),
-        },
-        ...locales.map((locale) => ({
-          hrefLang: locale,
-          href: localizeHref(currentHref, { locale }),
-        })),
-      ])
+      .addAlternateLocales<Locale>({
+        'x-default': localizeHref(currentHref, { locale: baseLocale }),
+        en: localizeHref(currentHref, { locale: 'en' }),
+        id: localizeHref(currentHref, { locale: 'id' }),
+        'zh-CN': localizeHref(currentHref, { locale: 'zh-CN' }),
+      })
       .build();
   },
   shellComponent: RootDocument,
