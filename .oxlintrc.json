@@ -4,7 +4,8 @@
     "pnpm-lock.yaml",
     "routeTree.gen.ts",
     "public/",
-    "src/lib/i18n/"
+    "src/lib/i18n/",
+    "src/lib/database/migrations/"
   ],
   "env": {
     "browser": true,
