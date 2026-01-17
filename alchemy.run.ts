@@ -11,7 +11,7 @@
  */
 
 import alchemy, { type Scope } from 'alchemy';
-import { TanStackStart } from 'alchemy/cloudflare';
+import { D1Database, TanStackStart } from 'alchemy/cloudflare';
 import { GitHubComment } from 'alchemy/github';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
@@ -41,13 +41,24 @@ const app = await alchemy('kit', {
   },
 });
 
+const database = await D1Database('database', {
+  adopt: true,
+  migrationsDir: './src/lib/database/migrations',
+  migrationsTable: 'drizzle_migrations',
+  readReplication: {
+    mode: isProductionStage(app) ? 'auto' : 'disabled',
+  },
+});
+
 export const worker = await TanStackStart('website', {
   adopt: true,
   observability: isProductionStage(app) ? { enabled: true } : undefined,
   url: isProductionStage(app) ? false : true,
   domains: isProductionStage(app) ? [alchemyEnv.HOSTNAME] : undefined,
   placement: isProductionStage(app) ? { mode: 'smart' } : undefined,
-  bindings: {},
+  bindings: {
+    DATABASE: database,
+  },
 });
 
 const workerDomain = worker.domains?.[0];
