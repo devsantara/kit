@@ -55,7 +55,7 @@
     // Suspicious
     "eslint/no-unneeded-ternary": "off",
     "react/react-in-jsx-scope": "off",
-    "import/no-unassigned-import": ["error", { "allow": ["**/*.css"] }],
+    "import/no-unassigned-import": ["off"],
 
     // Pedantic
     "eqeqeq": ["error", "smart"],
