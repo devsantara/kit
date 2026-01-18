@@ -17,9 +17,11 @@ import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
 import packageJson from './package.json' with { type: 'json' };
 import { alchemyEnv } from './src/lib/env/alchemy.ts';
+import { serverEnv } from './src/lib/env/server.ts';
 
 const ALCHEMY_SECRET = alchemyEnv.ALCHEMY_SECRET;
 const ALCHEMY_STATE_TOKEN = alchemy.secret(alchemyEnv.ALCHEMY_STATE_TOKEN);
+const AUTH_SECRET = alchemy.secret(serverEnv.AUTH_SECRET);
 
 function isProductionStage(scope: Scope) {
   return scope.stage === 'production';
@@ -57,7 +59,10 @@ export const worker = await TanStackStart('website', {
   domains: isProductionStage(app) ? [alchemyEnv.HOSTNAME] : undefined,
   placement: isProductionStage(app) ? { mode: 'smart' } : undefined,
   bindings: {
+    // Services
     DATABASE: database,
+    // Environment variables
+    AUTH_SECRET: AUTH_SECRET,
   },
 });
 
