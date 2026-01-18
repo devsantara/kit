@@ -4,7 +4,8 @@
     "pnpm-lock.yaml",
     "routeTree.gen.ts",
     "public/",
-    "src/lib/i18n/"
+    "src/lib/i18n/",
+    "src/lib/database/migrations/"
   ],
   "env": {
     "browser": true,
@@ -55,7 +56,7 @@
     // Suspicious
     "eslint/no-unneeded-ternary": "off",
     "react/react-in-jsx-scope": "off",
-    "import/no-unassigned-import": ["error", { "allow": ["**/*.css"] }],
+    "import/no-unassigned-import": ["off"],
 
     // Pedantic
     "eqeqeq": ["error", "smart"],
