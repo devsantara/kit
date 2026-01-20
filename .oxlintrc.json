@@ -27,6 +27,9 @@
     "import"
   ],
   "rules": {
+    // Correctness
+    "react/no-children-prop": ["off"],
+
     // Perf
     "no-await-in-loop": "error",
     "no-useless-call": "error",
