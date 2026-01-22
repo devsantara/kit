@@ -20,7 +20,7 @@ type Variant = 'default' | 'card';
 
 export function FormCheckboxSingle({
   option,
-  variant,
+  variant = 'default',
   ...props
 }: React.ComponentPropsWithRef<typeof Checkbox> & {
   option: Option;
@@ -40,7 +40,7 @@ function FormCheckboxSingleItem({
   ...props
 }: React.ComponentPropsWithRef<typeof Checkbox> & {
   option: Option;
-  variant?: Variant;
+  variant: Variant;
 }) {
   const field = useFieldContext<boolean>();
   const fieldSet = useFieldSet();
@@ -101,5 +101,5 @@ function FormCheckboxSingleItem({
     ),
   };
 
-  return components[variant ?? 'default'];
+  return components[variant];
 }

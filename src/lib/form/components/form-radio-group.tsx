@@ -65,7 +65,7 @@ function FormRadioGroupItem({
   ...props
 }: Omit<React.ComponentPropsWithRef<typeof RadioGroupItem>, 'value'> & {
   option: Option;
-  variant?: Variant;
+  variant: Variant;
 }) {
   const field = useFieldContext<string>();
   const fieldSet = useFieldSet();
@@ -119,5 +119,5 @@ function FormRadioGroupItem({
     ),
   };
 
-  return components[variant ?? 'default'];
+  return components[variant];
 }

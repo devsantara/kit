@@ -50,7 +50,7 @@ function FormCheckboxMultipleItem({
   ...props
 }: React.ComponentPropsWithRef<typeof Checkbox> & {
   option: Option;
-  variant?: Variant;
+  variant: Variant;
 }) {
   const field = useFieldContext<string[]>();
   const fieldSet = useFieldSet();
@@ -118,5 +118,5 @@ function FormCheckboxMultipleItem({
     ),
   };
 
-  return components[variant ?? 'default'];
+  return components[variant];
 }
