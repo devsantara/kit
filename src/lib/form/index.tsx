@@ -16,14 +16,14 @@ export const { useAppForm } = createFormHook({
   fieldComponents: {
     Field: FormField,
     FieldSet: FormFieldSet,
-    Label: FormFieldLabel,
-    Error: FormFieldError,
+    FieldLabel: FormFieldLabel,
+    FieldError: FormFieldError,
   },
   formComponents: {
     Root: FormRoot,
     FieldSet: FormFieldSet,
-    Error: FormError,
-    SubmitButton: FormSubmit,
-    ResetButton: FormReset,
+    FormError: FormError,
+    FormSubmit: FormSubmit,
+    FormReset: FormReset,
   },
 });
