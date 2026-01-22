@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
-import jetBrainsMonoFont from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
-import plusJakartaSansFont from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import geistMonoFont from '@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url';
+import geistSansFont from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
 import * as React from 'react';
@@ -80,8 +80,8 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  preload(plusJakartaSansFont, { as: 'font', type: 'font/woff2' });
-  preload(jetBrainsMonoFont, { as: 'font', type: 'font/woff2' });
+  preload(geistSansFont, { as: 'font', type: 'font/woff2' });
+  preload(geistMonoFont, { as: 'font', type: 'font/woff2' });
 
   return (
     <html lang={getLocale()} className="antialiased" suppressHydrationWarning>
