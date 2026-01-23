@@ -14,6 +14,7 @@ import { cn } from '~/ui/utils';
 interface Option {
   label: string;
   value: string;
+  disabled?: boolean;
 }
 
 export function FormSelect({
@@ -56,7 +57,11 @@ export function FormSelect({
         <SelectGroup>
           {options.map((option) => {
             return (
-              <SelectItem key={option.value} value={option.value}>
+              <SelectItem
+                key={option.value}
+                value={option.value}
+                disabled={option.disabled}
+              >
                 {option.label}
               </SelectItem>
             );
