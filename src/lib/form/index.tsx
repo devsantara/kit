@@ -17,7 +17,6 @@ import { FormSwitch } from '~/lib/form/components/form-switch';
 import { FormTextarea } from '~/lib/form/components/form-textarea';
 import { fieldContext, formContext } from '~/lib/form/form.context';
 import {
-  Field,
   FieldContent,
   FieldDescription,
   FieldGroup,
@@ -58,7 +57,6 @@ export const { useAppForm } = createFormHook({
     FormSubmit: FormSubmit,
     FormReset: FormReset,
 
-    Field: Field,
     FieldLabel: FieldLabel,
     FieldTitle: FieldTitle,
     FieldDescription: FieldDescription,
