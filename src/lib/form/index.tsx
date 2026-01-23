@@ -16,18 +16,33 @@ import { FormSubmit } from '~/lib/form/components/form-submit';
 import { FormSwitch } from '~/lib/form/components/form-switch';
 import { FormTextarea } from '~/lib/form/components/form-textarea';
 import { fieldContext, formContext } from '~/lib/form/form.context';
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldTitle,
+} from '~/ui/components/core/field';
 
 export const { useAppForm } = createFormHook({
   fieldContext,
   formContext,
   fieldComponents: {
-    // Blocks
     Field: FormField,
     FieldSet: FormFieldSet,
     FieldLabel: FormFieldLabel,
     FieldError: FormFieldError,
 
-    // Inputs
+    FieldTitle: FieldTitle,
+    FieldDescription: FieldDescription,
+    FieldContent: FieldContent,
+    FieldLegend: FieldLegend,
+    FieldGroup: FieldGroup,
+    FieldSeparator: FieldSeparator,
+
     Input: FormInput,
     Textarea: FormTextarea,
     Select: FormSelect,
@@ -37,10 +52,19 @@ export const { useAppForm } = createFormHook({
     Switch: FormSwitch,
   },
   formComponents: {
-    Root: FormRoot,
+    Form: FormRoot,
     FieldSet: FormFieldSet,
     FormError: FormError,
     FormSubmit: FormSubmit,
     FormReset: FormReset,
+
+    Field: Field,
+    FieldLabel: FieldLabel,
+    FieldTitle: FieldTitle,
+    FieldDescription: FieldDescription,
+    FieldContent: FieldContent,
+    FieldLegend: FieldLegend,
+    FieldGroup: FieldGroup,
+    FieldSeparator: FieldSeparator,
   },
 });
