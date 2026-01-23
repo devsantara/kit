@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "app_name": "Devsantara 工具包",
-  "app_description": "您下一个伟大构想的基石计划"
+  "app_description": "您下一个伟大构想的基石计划",
+
+  "common_error_something_went_wrong": "出现了一些问题",
+  "common_error_form_validation_title": "表单存在问题",
+  "common_error_form_validation_description": "请检查表单并更正后继续。"
 }

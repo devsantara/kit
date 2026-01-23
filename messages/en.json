@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "app_name": "Devsantara Kit",
-  "app_description": "The blueprint for your next big idea"
+  "app_description": "The blueprint for your next big idea",
+
+  "common_error_something_went_wrong": "Something went wrong",
+  "common_error_form_validation_title": "There is something wrong with the form",
+  "common_error_form_validation_description": "Please review the form and correct them to continue."
 }

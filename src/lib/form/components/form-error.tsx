@@ -1,13 +1,15 @@
 import { AlertCircleIcon } from 'lucide-react';
 
 import { useFormContext } from '~/lib/form/form.context';
+import { checkIsFormError } from '~/lib/form/form.utils';
+import { m } from '~/lib/i18n/messages';
 import {
   Alert,
   AlertDescription,
   AlertTitle,
 } from '~/ui/components/core/alert';
 
-export function FormError({ title }: { title?: string }) {
+export function FormError() {
   const form = useFormContext();
 
   return (
@@ -15,20 +17,24 @@ export function FormError({ title }: { title?: string }) {
       {(formSubmitError) => {
         if (!formSubmitError) return null;
 
-        let _title = title;
-        let _messages = String(formSubmitError);
-        // When error comes from the form validation, the error shape is an object with fields key
-        const isValidationError = typeof formSubmitError !== 'string';
-        if (isValidationError) {
-          _title = 'There is something wrong with the form';
-          _messages = 'Please review the form and correct them to continue.';
-        }
+        // On form submission, errors can take two shapes:
+        // 1. Validation errors - an object with field keys mapped to their validation error messages
+        // 2. Form-level errors - manually set errors, typically used when form submission fails
+        const isFormError = checkIsFormError(formSubmitError);
+
+        const title = isFormError
+          ? formSubmitError.title || m.common_error_something_went_wrong()
+          : m.common_error_form_validation_title();
+
+        const message = isFormError
+          ? formSubmitError.message || null
+          : m.common_error_form_validation_description();
 
         return (
           <Alert variant="destructive" className="max-w-md">
             <AlertCircleIcon />
-            <AlertTitle>{_title || 'Something went wrong'}</AlertTitle>
-            <AlertDescription>{_messages}</AlertDescription>
+            <AlertTitle>{title}</AlertTitle>
+            {message && <AlertDescription>{message}</AlertDescription>}
           </Alert>
         );
       }}
