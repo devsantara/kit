@@ -16,9 +16,11 @@ function FieldSet({
   disabled,
   ...props
 }: React.ComponentProps<'fieldset'>) {
-  const parentFieldset = React.use(FieldSetContext);
+  const parentFieldSetState = useFieldSet();
   const isDisabled =
-    disabled === undefined ? (parentFieldset?.disabled ?? false) : disabled;
+    disabled === undefined
+      ? (parentFieldSetState?.disabled ?? false)
+      : disabled;
 
   return (
     <FieldSetContext value={{ disabled: isDisabled }}>
