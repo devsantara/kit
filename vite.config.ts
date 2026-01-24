@@ -39,8 +39,8 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       },
     },
     plugins: [
-      alchemy({ viteEnvironment: { name: 'ssr' } }),
       devtools(),
+      alchemy({ viteEnvironment: { name: 'ssr' } }),
       tailwindcss(),
       tsConfigPaths({ projects: ['./tsconfig.json'] }),
       tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
