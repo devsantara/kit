@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "app_name": "Devsantara Kit",
-  "app_description": "Rancangan dasar untuk ide besar kamu berikutnya"
+  "app_description": "Rancangan dasar untuk ide besar kamu berikutnya",
+
+  "common_error_something_went_wrong": "Terjadi kesalahan",
+  "common_error_form_validation_title": "Ada kesalahan pada formulir",
+  "common_error_form_validation_description": "Silakan periksa kembali formulir dan perbaiki untuk melanjutkan."
 }
