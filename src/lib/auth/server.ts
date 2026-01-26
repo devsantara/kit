@@ -2,6 +2,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
 
+import { AUTH_MIN_PASSWORD_LENGTH } from '~/lib/auth/constant';
 import { getDatabase } from '~/lib/database';
 import {
   accountTable,
@@ -27,7 +28,7 @@ export const authServer = betterAuth({
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
-    minPasswordLength: 6,
+    minPasswordLength: AUTH_MIN_PASSWORD_LENGTH,
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days

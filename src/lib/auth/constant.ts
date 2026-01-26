@@ -1,0 +1,1 @@
+export const AUTH_MIN_PASSWORD_LENGTH = 8;
