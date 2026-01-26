@@ -14,6 +14,4 @@
  *
  * @see {@link https://posthog.com/docs/product-analytics/best-practices#2-implement-a-naming-convention}
  */
-export enum AnalyticEvent {
-  EXAMPLE = 'example:view_example',
-}
+export enum AnalyticEvent {}

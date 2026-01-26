@@ -15,7 +15,7 @@ import { createPosthogClient } from '~/lib/posthog/server';
 export function useAnalytic() {
   const posthog = usePostHog();
 
-  function capture<TEvent extends AnalyticEvent>(
+  function capture<TEvent extends AnalyticEvent & keyof AnalyticProperty>(
     event: TEvent,
     properties: AnalyticProperty[TEvent],
     options?: CaptureOptions,
@@ -36,16 +36,16 @@ export function useAnalytic() {
 export function createAnalyticClient() {
   const posthog = createPosthogClient();
 
-  function captureImmediate<TEvent extends AnalyticEvent>(
-    props: AnalyticEventMessage<TEvent>,
-  ) {
+  function captureImmediate<
+    TEvent extends AnalyticEvent & keyof AnalyticProperty,
+  >(props: AnalyticEventMessage<TEvent>) {
     return posthog.captureImmediate({
       event: props.event,
       properties: props.properties || undefined,
     });
   }
 
-  function capture<TEvent extends AnalyticEvent>(
+  function capture<TEvent extends AnalyticEvent & keyof AnalyticProperty>(
     props: AnalyticEventMessage<TEvent>,
   ) {
     return posthog.capture({

@@ -1,5 +1,3 @@
-import type { AnalyticEvent } from '~/lib/analytic/events';
-
 /**
  * Analytics properties - contextual data attached to events
  *
@@ -19,9 +17,4 @@ import type { AnalyticEvent } from '~/lib/analytic/events';
  *
  * @see {@link https://posthog.com/docs/product-analytics/best-practices#2-implement-a-naming-convention}
  */
-export interface AnalyticProperty {
-  [AnalyticEvent.EXAMPLE]: {
-    example_id: string;
-    example_timestamp: number;
-  };
-}
+export interface AnalyticProperty {}
