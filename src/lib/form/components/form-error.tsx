@@ -31,7 +31,10 @@ export function FormError() {
           : m.common_error_form_validation_description();
 
         return (
-          <Alert variant="destructive" className="max-w-md">
+          <Alert
+            variant="destructive"
+            className="max-w-md border-destructive bg-destructive/10"
+          >
             <AlertCircleIcon />
             <AlertTitle>{title}</AlertTitle>
             {message && <AlertDescription>{message}</AlertDescription>}
