@@ -1,8 +1,10 @@
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { APIError, createAuthMiddleware } from 'better-auth/api';
 import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
 
 import { AUTH_MIN_PASSWORD_LENGTH } from '~/lib/auth/constant';
+import { getAuthErrorMessage } from '~/lib/auth/errors';
 import { getDatabase } from '~/lib/database';
 import {
   accountTable,
@@ -45,5 +47,22 @@ export const authServer = betterAuth({
     database: {
       generateId: 'uuid',
     },
+  },
+  hooks: {
+    // oxlint-disable-next-line require-await
+    after: createAuthMiddleware(async (ctx) => {
+      const response = ctx.context.returned;
+      if (!(response instanceof APIError)) {
+        return;
+      }
+      const errorCode = response.body?.code;
+      if (!errorCode) {
+        throw new APIError(response.status, response.body);
+      }
+      throw new APIError(response.status, {
+        ...response.body,
+        message: getAuthErrorMessage(errorCode) ?? response.body?.message,
+      });
+    }),
   },
 });
