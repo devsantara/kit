@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
-import { ChevronRight, LogInIcon, UserPlusIcon } from 'lucide-react';
+import { ChevronRightIcon, LogInIcon, UserPlusIcon } from 'lucide-react';
 
 import { m } from '~/lib/i18n/messages';
 import {
@@ -51,7 +51,7 @@ function RouteComponent() {
                 </CardDescription>
               </CardHeader>
 
-              <ChevronRight className="col-start-2 col-end-3 row-start-1 row-end-3 size-5 text-muted-foreground sm:col-auto sm:row-auto" />
+              <ChevronRightIcon className="col-start-2 col-end-3 row-start-1 row-end-3 size-5 text-muted-foreground sm:col-auto sm:row-auto" />
             </CardContent>
           </Card>
         </li>
@@ -77,7 +77,7 @@ function RouteComponent() {
                 </CardDescription>
               </CardHeader>
 
-              <ChevronRight className="col-start-2 col-end-3 row-start-1 row-end-3 size-5 text-muted-foreground sm:col-auto sm:row-auto" />
+              <ChevronRightIcon className="col-start-2 col-end-3 row-start-1 row-end-3 size-5 text-muted-foreground sm:col-auto sm:row-auto" />
             </CardContent>
           </Card>
         </li>
