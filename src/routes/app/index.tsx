@@ -33,13 +33,10 @@ function RouteComponent() {
 
   return (
     <main className="grid h-dvh place-content-center p-4">
-      <header className="max-w-xl text-center">
-        <h1 className="mb-px font-sans text-2xl font-extrabold">
+      <header className="max-w-xl">
+        <h1 className="mb-px font-sans text-xl font-extrabold sm:text-2xl">
           👋🏻 {m.common_greeting_name({ name: context.user.name })}
         </h1>
-        <code className="mt-4 block w-full rounded-md border bg-muted px-2 py-1 font-mono text-sm text-muted-foreground">
-          {context.user.email}
-        </code>
 
         <Separator className="my-3" />
 
