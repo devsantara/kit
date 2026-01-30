@@ -1,9 +1,10 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
-import { ChevronRight, LogIn, UserPlus } from 'lucide-react';
+import { ChevronRight, LogInIcon, UserPlusIcon } from 'lucide-react';
 
 import { m } from '~/lib/i18n/messages';
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -27,53 +28,57 @@ function RouteComponent() {
         </p>
       </header>
 
-      <ul className="grid w-full grid-cols-1 gap-4">
+      <ul className="grid w-full grid-cols-1 gap-3">
         <li>
           <Card className="relative cursor-pointer hover:ring-primary/50">
-            <CardHeader className="text-pretty">
-              <div className="mb-1 flex items-center justify-between">
-                <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
-                  <UserPlus className="size-4 text-primary" />
-                </div>
-                <ChevronRight className="size-5 text-muted-foreground" />
+            <CardContent className="grid grid-cols-[1fr_auto] items-center gap-3 sm:grid-cols-[auto_1fr_auto] sm:gap-4">
+              <div className="flex size-10 items-center justify-center rounded-full bg-primary/5 dark:bg-primary/10">
+                <UserPlusIcon className="size-4 text-primary" />
               </div>
-              <CardTitle>
-                <Link
-                  to="/auth/sign-up"
-                  search={searchParams}
-                  className="after:absolute after:inset-0"
-                >
-                  {m.auth_get_started_signup_title()}
-                </Link>
-              </CardTitle>
-              <CardDescription>
-                {m.auth_get_started_signup_description()}
-              </CardDescription>
-            </CardHeader>
+
+              <CardHeader className="p-0 text-pretty">
+                <CardTitle>
+                  <Link
+                    to="/auth/sign-up"
+                    search={searchParams}
+                    className="after:absolute after:inset-0"
+                  >
+                    {m.auth_get_started_signup_title()}
+                  </Link>
+                </CardTitle>
+                <CardDescription>
+                  {m.auth_get_started_signup_description()}
+                </CardDescription>
+              </CardHeader>
+
+              <ChevronRight className="col-start-2 col-end-3 row-start-1 row-end-3 size-5 text-muted-foreground sm:col-auto sm:row-auto" />
+            </CardContent>
           </Card>
         </li>
         <li>
           <Card className="relative cursor-pointer hover:ring-primary/50">
-            <CardHeader className="text-pretty">
-              <div className="mb-1 flex items-center justify-between">
-                <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
-                  <LogIn className="size-4 text-primary" />
-                </div>
-                <ChevronRight className="size-5 text-muted-foreground" />
+            <CardContent className="grid grid-cols-[1fr_auto] items-center gap-3 sm:grid-cols-[auto_1fr_auto] sm:gap-4">
+              <div className="flex size-10 items-center justify-center rounded-full bg-primary/5 dark:bg-primary/10">
+                <LogInIcon className="size-4 text-primary" />
               </div>
-              <CardTitle>
-                <Link
-                  to="/auth/sign-in"
-                  search={searchParams}
-                  className="after:absolute after:inset-0"
-                >
-                  {m.auth_get_started_signin_title()}
-                </Link>
-              </CardTitle>
-              <CardDescription>
-                {m.auth_get_started_signin_description()}
-              </CardDescription>
-            </CardHeader>
+
+              <CardHeader className="p-0 text-pretty">
+                <CardTitle>
+                  <Link
+                    to="/auth/sign-in"
+                    search={searchParams}
+                    className="after:absolute after:inset-0"
+                  >
+                    {m.auth_get_started_signin_title()}
+                  </Link>
+                </CardTitle>
+                <CardDescription>
+                  {m.auth_get_started_signin_description()}
+                </CardDescription>
+              </CardHeader>
+
+              <ChevronRight className="col-start-2 col-end-3 row-start-1 row-end-3 size-5 text-muted-foreground sm:col-auto sm:row-auto" />
+            </CardContent>
           </Card>
         </li>
       </ul>
