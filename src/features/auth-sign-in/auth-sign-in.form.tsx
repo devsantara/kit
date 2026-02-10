@@ -101,9 +101,21 @@ export function AuthSignInForm({
             </form.FormFieldSeparator>
 
             <form.FormField className="grid gap-3 sm:grid-cols-3">
-              <AuthSocialButton provider="google" redirectBack={redirectBack} />
-              <AuthSocialButton provider="apple" redirectBack={redirectBack} />
-              <AuthSocialButton provider="github" redirectBack={redirectBack} />
+              <AuthSocialButton
+                disabled
+                provider="google"
+                redirectBack={redirectBack}
+              />
+              <AuthSocialButton
+                disabled
+                provider="apple"
+                redirectBack={redirectBack}
+              />
+              <AuthSocialButton
+                disabled
+                provider="github"
+                redirectBack={redirectBack}
+              />
             </form.FormField>
           </form.FormFieldGroup>
         </form.FormFieldSet>
