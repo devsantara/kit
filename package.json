@@ -41,6 +41,7 @@
     "release:major": "release-it major"
   },
   "dependencies": {
+    "@devsantara/head": "^0.3.0",
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/geist-mono": "^5.2.7",
     "@posthog/react": "^1.5.2",

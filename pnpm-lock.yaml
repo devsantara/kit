@@ -12,6 +12,9 @@ importers:
 
   .:
     dependencies:
+      '@devsantara/head':
+        specifier: ^0.3.0
+        version: 0.3.0(@types/react@19.2.7)(react@19.2.3)
       '@fontsource-variable/geist':
         specifier: ^5.2.8
         version: 5.2.8
@@ -589,6 +592,12 @@ packages:
 
   '@date-fns/tz@1.4.1':
     resolution: {integrity: sha512-P5LUNhtbj6YfI3iJjw5EL9eUAG6OitD0W3fWQcpQjDRc/QIsL0tRNuO1PcDvPccWL1fSTXXdE1ds+l95DV/OFA==}
+
+  '@devsantara/head@0.3.0':
+    resolution: {integrity: sha512-39UnjkKJUD+L2PihzwXX5p4+ZsmGUABzKcxnfN7e4dSflBtn6VXoIQ0uO0IRXLtFAi+sJN93CE5tZ7tQQ8yLwA==}
+    peerDependencies:
+      '@types/react': '>=18.0.0 || >=19.0.0'
+      react: '>=18.0.0 || >=19.0.0'
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
@@ -6845,6 +6854,11 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.9
 
   '@date-fns/tz@1.4.1': {}
+
+  '@devsantara/head@0.3.0(@types/react@19.2.7)(react@19.2.3)':
+    dependencies:
+      '@types/react': 19.2.7
+      react: 19.2.3
 
   '@drizzle-team/brocli@0.10.2': {}
 
