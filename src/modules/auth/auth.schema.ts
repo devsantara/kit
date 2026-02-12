@@ -9,3 +9,14 @@ export const authSearchParamsSchema = z.object({
    */
   redirectBack: z.string().optional(),
 });
+
+export const authGuardInputSchema = z
+  .object({
+    /**
+     * Path to redirect back when the user is not authenticated.
+     * This is used by the `authGuardFn` to know where to redirect the user after they log in.
+     * It is passed as a search parameter when redirecting to the auth page.
+     */
+    redirectBack: z.string().optional(),
+  })
+  .optional();
