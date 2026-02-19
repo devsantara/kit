@@ -36,13 +36,13 @@ export const authServer = betterAuth({
     google: {
       accessType: 'offline',
       prompt: 'select_account consent',
-      clientId: serverEnv.GOOGLE_CLIENT_ID,
-      clientSecret: serverEnv.GOOGLE_CLIENT_SECRET,
+      clientId: serverEnv.AUTH_GOOGLE_CLIENT_ID,
+      clientSecret: serverEnv.AUTH_GOOGLE_CLIENT_SECRET,
     },
     github: {
       prompt: 'select_account',
-      clientId: serverEnv.GITHUB_CLIENT_ID,
-      clientSecret: serverEnv.GITHUB_CLIENT_SECRET,
+      clientId: serverEnv.AUTH_GITHUB_CLIENT_ID,
+      clientSecret: serverEnv.AUTH_GITHUB_CLIENT_SECRET,
     },
   },
   session: {

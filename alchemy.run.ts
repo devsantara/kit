@@ -22,10 +22,14 @@ import { serverEnv } from './src/lib/env/server.ts';
 const ALCHEMY_SECRET = alchemyEnv.ALCHEMY_SECRET;
 const ALCHEMY_STATE_TOKEN = alchemy.secret(alchemyEnv.ALCHEMY_STATE_TOKEN);
 const AUTH_SECRET = alchemy.secret(serverEnv.AUTH_SECRET);
-const GITHUB_CLIENT_ID = alchemy.secret(serverEnv.GITHUB_CLIENT_ID);
-const GITHUB_CLIENT_SECRET = alchemy.secret(serverEnv.GITHUB_CLIENT_SECRET);
-const GOOGLE_CLIENT_ID = alchemy.secret(serverEnv.GOOGLE_CLIENT_ID);
-const GOOGLE_CLIENT_SECRET = alchemy.secret(serverEnv.GOOGLE_CLIENT_SECRET);
+const AUTH_GITHUB_CLIENT_ID = alchemy.secret(serverEnv.AUTH_GITHUB_CLIENT_ID);
+const AUTH_GITHUB_CLIENT_SECRET = alchemy.secret(
+  serverEnv.AUTH_GITHUB_CLIENT_SECRET,
+);
+const AUTH_GOOGLE_CLIENT_ID = alchemy.secret(serverEnv.AUTH_GOOGLE_CLIENT_ID);
+const AUTH_GOOGLE_CLIENT_SECRET = alchemy.secret(
+  serverEnv.AUTH_GOOGLE_CLIENT_SECRET,
+);
 
 function isProductionStage(scope: Scope) {
   return scope.stage === 'production';
@@ -67,10 +71,10 @@ export const worker = await TanStackStart('website', {
     DATABASE: database,
     // Environment variables
     AUTH_SECRET: AUTH_SECRET,
-    GITHUB_CLIENT_ID: GITHUB_CLIENT_ID,
-    GITHUB_CLIENT_SECRET: GITHUB_CLIENT_SECRET,
-    GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: GOOGLE_CLIENT_SECRET,
+    AUTH_GITHUB_CLIENT_ID: AUTH_GITHUB_CLIENT_ID,
+    AUTH_GITHUB_CLIENT_SECRET: AUTH_GITHUB_CLIENT_SECRET,
+    AUTH_GOOGLE_CLIENT_ID: AUTH_GOOGLE_CLIENT_ID,
+    AUTH_GOOGLE_CLIENT_SECRET: AUTH_GOOGLE_CLIENT_SECRET,
   },
 });
 
