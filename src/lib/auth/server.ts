@@ -32,6 +32,19 @@ export const authServer = betterAuth({
     autoSignIn: false,
     minPasswordLength: AUTH_MIN_PASSWORD_LENGTH,
   },
+  socialProviders: {
+    google: {
+      accessType: 'offline',
+      prompt: 'select_account consent',
+      clientId: serverEnv.GOOGLE_CLIENT_ID,
+      clientSecret: serverEnv.GOOGLE_CLIENT_SECRET,
+    },
+    github: {
+      prompt: 'select_account',
+      clientId: serverEnv.GITHUB_CLIENT_ID,
+      clientSecret: serverEnv.GITHUB_CLIENT_SECRET,
+    },
+  },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 1 day

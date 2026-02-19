@@ -28,14 +28,9 @@ function HomePage() {
 
         <div className="mt-6 flex items-center justify-center gap-2">
           {isPendingSession ? (
-            <Skeleton className="h-9 w-full max-w-40" />
+            <Skeleton className="h-9 min-w-40" />
           ) : (
-            <Button
-              asChild
-              size="lg"
-              variant="default"
-              className="w-full max-w-40"
-            >
+            <Button asChild size="lg" variant="default" className="min-w-40">
               <Link to={session?.user ? '/app' : '/auth'}>
                 {!session?.user
                   ? m.auth_get_started_action()
