@@ -17,6 +17,7 @@ export async function authUserGuard({
   if (!isAuthenticated) {
     throw redirect({
       to: '/auth',
+      replace: true,
       search: { redirectBack },
     });
   }
@@ -32,7 +33,7 @@ export async function authGuestGuard() {
   const user = await getCurrentUserFn();
   const isAuthenticated = user !== null;
   if (isAuthenticated) {
-    throw redirect({ to: '/app' });
+    throw redirect({ to: '/app', replace: true });
   }
   return;
 }
