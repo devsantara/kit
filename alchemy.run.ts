@@ -11,7 +11,7 @@
  */
 
 import alchemy, { type Scope } from 'alchemy';
-import { D1Database, TanStackStart } from 'alchemy/cloudflare';
+import { D1Database, KVNamespace, TanStackStart } from 'alchemy/cloudflare';
 import { GitHubComment } from 'alchemy/github';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 
@@ -60,6 +60,10 @@ const database = await D1Database('database', {
   },
 });
 
+const kv = await KVNamespace('kv', {
+  adopt: true,
+});
+
 export const worker = await TanStackStart('website', {
   adopt: true,
   observability: isProductionStage(app) ? { enabled: true } : undefined,
@@ -69,6 +73,7 @@ export const worker = await TanStackStart('website', {
   bindings: {
     // Services
     DATABASE: database,
+    KV: kv,
     // Environment variables
     AUTH_SECRET: AUTH_SECRET,
     AUTH_GITHUB_CLIENT_ID: AUTH_GITHUB_CLIENT_ID,

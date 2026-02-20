@@ -2,6 +2,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { APIError, createAuthMiddleware } from 'better-auth/api';
 import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
+import { env } from 'cloudflare:workers';
 
 import { AUTH_MIN_PASSWORD_LENGTH } from '~/lib/auth/constant';
 import { getAuthErrorMessage } from '~/lib/auth/errors';
@@ -13,9 +14,27 @@ import {
   verificationTable,
 } from '~/lib/database/schema/auth.db';
 import { serverEnv } from '~/lib/env/server';
+import { m } from '~/lib/i18n/messages';
 
 export const authServer = betterAuth({
+  appName: m.app_name(),
   secret: serverEnv.AUTH_SECRET,
+  rateLimit: {
+    enabled: true,
+    storage: 'secondary-storage',
+    window: 60, // time window in seconds
+    max: 100, // max requests in the window
+    customRules: {
+      '/sign-in/*': {
+        window: 60,
+        max: 18,
+      },
+      '/sign-up/*': {
+        window: 60,
+        max: 18,
+      },
+    },
+  },
   database: drizzleAdapter(getDatabase(), {
     provider: 'sqlite',
     usePlural: true,
@@ -26,6 +45,17 @@ export const authServer = betterAuth({
       verifications: verificationTable,
     },
   }),
+  secondaryStorage: {
+    get: async (key) => {
+      return await env.KV.get(key);
+    },
+    set: async (key, value, ttl) => {
+      return await env.KV.put(key, value, { expirationTtl: ttl });
+    },
+    delete: async (key) => {
+      return await env.KV.delete(key);
+    },
+  },
   plugins: [tanstackStartCookies()],
   emailAndPassword: {
     enabled: true,
@@ -57,6 +87,9 @@ export const authServer = betterAuth({
   },
   advanced: {
     cookiePrefix: 'auth',
+    ipAddress: {
+      ipAddressHeaders: ['CF-Connecting-IP', 'X-Forwarded-For'],
+    },
     database: {
       generateId: 'uuid',
     },
