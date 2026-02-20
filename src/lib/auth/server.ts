@@ -4,7 +4,10 @@ import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
 import { env } from 'cloudflare:workers';
 
-import { AUTH_MIN_PASSWORD_LENGTH } from '~/lib/auth/constant';
+import {
+  AUTH_MIN_PASSWORD_LENGTH,
+  AUTH_MIN_TTL_IN_SECONDS,
+} from '~/lib/auth/constant';
 import { getAuthErrorMessage } from '~/lib/auth/errors';
 import { getDatabase } from '~/lib/database';
 import {
@@ -24,16 +27,6 @@ export const authServer = betterAuth({
     storage: 'secondary-storage',
     window: 60, // time window in seconds
     max: 100, // max requests in the window
-    customRules: {
-      '/sign-in/*': {
-        window: 60,
-        max: 18,
-      },
-      '/sign-up/*': {
-        window: 60,
-        max: 18,
-      },
-    },
   },
   database: drizzleAdapter(getDatabase(), {
     provider: 'sqlite',
@@ -50,7 +43,14 @@ export const authServer = betterAuth({
       return await env.KV.get(key);
     },
     set: async (key, value, ttl) => {
-      return await env.KV.put(key, value, { expirationTtl: ttl });
+      if (!ttl) return await env.KV.put(key, value);
+      // Cloudflare Workers KV has a minimum TTL of 60 seconds.
+      // If the provided TTL is less than that, we set it to the minimum.
+      let expirationTtl = ttl;
+      if (expirationTtl < AUTH_MIN_TTL_IN_SECONDS) {
+        expirationTtl = AUTH_MIN_TTL_IN_SECONDS;
+      }
+      return await env.KV.put(key, value, { expirationTtl });
     },
     delete: async (key) => {
       return await env.KV.delete(key);
