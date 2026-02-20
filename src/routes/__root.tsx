@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+import { HeadBuilder } from '@devsantara/head';
+import { HeadTanstackRouterAdapter } from '@devsantara/head/adapters';
 import geistMonoFont from '@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url';
 import geistSansFont from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import { TanStackDevtools } from '@tanstack/react-devtools';
@@ -16,7 +18,6 @@ import {
   type Locale,
 } from '~/lib/i18n/runtime';
 import { PostHogProvider } from '~/lib/posthog/provider';
-import { HeadBuilder } from '~/lib/seo/head';
 import { Toaster } from '~/ui/components/core/sonner';
 import appStylesheet from '~/ui/styles/app.css?url';
 import fontStylesheet from '~/ui/styles/fonts.css?url';
@@ -30,42 +31,52 @@ export const Route = createRootRoute({
     /** @example http://localhost:3000/path/without/locale */
     const currentHref = loaderData?.currentHref ?? '';
 
-    return new HeadBuilder(new URL(currentHref))
+    return new HeadBuilder({
+      metadataBase: new URL(currentHref),
+      adapter: new HeadTanstackRouterAdapter(),
+    })
       .addCharSet('utf-8')
       .addViewport({ width: 'device-width', initialScale: 1 })
-      .addStylesheets([{ href: fontStylesheet }, { href: appStylesheet }])
+      .addStylesheet(fontStylesheet)
+      .addStylesheet(appStylesheet)
       .addTitle(m.app_name())
       .addDescription(m.app_description())
       .addColorScheme('light dark')
-      .addManifest('/site.webmanifest')
-      .addCanonical(localizeHref(currentHref))
-      .addAlternateLocales<Locale>({
-        'x-default': localizeHref(currentHref, { locale: baseLocale }),
-        en: localizeHref(currentHref, { locale: 'en' }),
-        id: localizeHref(currentHref, { locale: 'id' }),
-        'zh-CN': localizeHref(currentHref, { locale: 'zh-CN' }),
+      .addManifest((h) => h.resolveUrl('/site.webmanifest'))
+      .addCanonical((h) => h.resolveUrl(localizeHref(currentHref)))
+      .addAlternateLocale<Locale>((h) => ({
+        'x-default': h.resolveUrl(
+          localizeHref(currentHref, { locale: baseLocale }),
+        ),
+        en: h.resolveUrl(localizeHref(currentHref, { locale: 'en' })),
+        id: h.resolveUrl(localizeHref(currentHref, { locale: 'id' })),
+        'zh-CN': h.resolveUrl(localizeHref(currentHref, { locale: 'zh-CN' })),
+      }))
+      .addIcon('shortcut', { href: '/favicon.ico', sizes: '48x48' })
+      .addIcon('icon', {
+        href: '/favicon.svg',
+        type: 'image/svg+xml',
+        sizes: 'any',
       })
-      .addIcons({
-        shortcut: [{ url: '/favicon.ico', sizes: '48x48' }],
-        icon: [
-          { type: 'image/svg+xml', url: '/favicon.svg', sizes: 'any' },
-          { type: 'image/png', url: '/favicon-96x96.png', sizes: '96x96' },
-        ],
-        apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+      .addIcon('icon', {
+        href: '/favicon-96x96.png',
+        type: 'image/png',
+        sizes: '96x96',
       })
-      .addOpenGraph({
+      .addIcon('apple', { href: '/apple-touch-icon.png', sizes: '180x180' })
+      .addOpenGraph((h) => ({
         title: m.app_name(),
         description: m.app_description(),
         locale: getLocale(),
         type: { name: 'website' },
-        url: localizeHref(currentHref),
+        url: h.resolveUrl(localizeHref(currentHref)),
         image: {
           url: 'https://assets.devsantara.com/kit/thumbnail.jpg',
           type: 'image/jpeg',
           width: 1280,
           height: 640,
         },
-      })
+      }))
       .addTwitter({
         card: { name: 'summary' },
         title: m.app_name(),
@@ -73,7 +84,7 @@ export const Route = createRootRoute({
         site: '@devsantara_hq',
         image: { url: 'https://assets.devsantara.com/kit/thumbnail.jpg' },
       })
-      .addMeta([{ name: 'apple-mobile-web-app-title', content: m.app_name() }])
+      .addMeta({ name: 'apple-mobile-web-app-title', content: m.app_name() })
       .build();
   },
   shellComponent: RootDocument,
