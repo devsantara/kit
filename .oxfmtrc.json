@@ -5,7 +5,9 @@
     "routeTree.gen.ts",
     "public/",
     "src/lib/i18n/",
-    "src/lib/database/migrations/"
+    "src/lib/database/migrations/",
+    ".agents/",
+    "skills-lock.json"
   ],
   "printWidth": 80,
   "tabWidth": 2,

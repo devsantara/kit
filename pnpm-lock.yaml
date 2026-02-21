@@ -208,6 +208,9 @@ importers:
       release-it:
         specifier: 19.2.2
         version: 19.2.2(@types/node@25.0.3)
+      skills:
+        specifier: ^1.4.1
+        version: 1.4.1
       storybook:
         specifier: ^10.1.11
         version: 10.1.11(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -5835,6 +5838,11 @@ packages:
 
   simple-swizzle@0.2.4:
     resolution: {integrity: sha512-nAu1WFPQSMNr2Zn9PGSZK9AGn4t/y97lEm+MXTtUDwfP0ksAIX4nO+6ruD9Jwut4C49SB1Ws+fbXsm/yScWOHw==}
+
+  skills@1.4.1:
+    resolution: {integrity: sha512-Mmbu3sBw3cMoW6p9DzldlGpIZtFMAtiIlsHwXXtIwcd+a1MGDnjtysFabD2TvJWp3yyv+5pxfc2qcKnoWT7VEQ==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   slice-ansi@7.1.2:
     resolution: {integrity: sha512-iOBWFgUX7caIZiuutICxVgX1SdxwAVFFKwt1EvMYYec/NWO5meOJ6K5uQxhrYBdQJne4KxiqZc+KptFOWFSI9w==}
@@ -12272,6 +12280,8 @@ snapshots:
   simple-swizzle@0.2.4:
     dependencies:
       is-arrayish: 0.3.4
+
+  skills@1.4.1: {}
 
   slice-ansi@7.1.2:
     dependencies:
