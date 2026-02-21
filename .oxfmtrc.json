@@ -5,7 +5,8 @@
     "routeTree.gen.ts",
     "public/",
     "src/lib/i18n/",
-    "src/lib/database/migrations/"
+    "src/lib/database/migrations/",
+    ".agents/"
   ],
   "printWidth": 80,
   "tabWidth": 2,
