@@ -27,14 +27,12 @@
     "order": "asc",
     "internalPattern": ["~/"],
     "groups": [
-      ["side-effect"],
-      ["side-effect-style"],
+      ["side_effect"],
       ["builtin"],
-      ["external", "external-type"],
-      ["internal", "internal-type"],
-      ["parent", "parent-type"],
-      ["sibling", "sibling-type"],
-      ["index", "index-type"]
+      ["external"],
+      ["internal"],
+      ["parent", "sibling", "index"],
+      ["style"]
     ]
   },
   "experimentalTailwindcss": {
