@@ -121,7 +121,7 @@
     "libsodium-wrappers": "0.7.15"
   },
   "engines": {
-    "node": "24.11.1"
+    "node": ">=24.13.0"
   },
   "packageManager": "pnpm@10.23.0"
 }
