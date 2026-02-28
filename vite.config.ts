@@ -75,7 +75,7 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       }),
       posthog({
         host: process.env.POSTHOG_CLI_HOST,
-        envId: process.env.POSTHOG_CLI_ENV_ID,
+        projectId: process.env.POSTHOG_CLI_PROJECT_ID,
         personalApiKey: process.env.POSTHOG_CLI_TOKEN,
       }),
     ],
