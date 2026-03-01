@@ -1,4 +1,4 @@
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { drizzleAdapter } from '@better-auth/drizzle-adapter';
 import { APIError, createAuthMiddleware } from 'better-auth/api';
 import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
@@ -16,11 +16,13 @@ import {
   userTable,
   verificationTable,
 } from '~/lib/database/schema/auth.db';
+import { clientEnv } from '~/lib/env/client';
 import { serverEnv } from '~/lib/env/server';
 import { m } from '~/lib/i18n/messages';
 
 export const authServer = betterAuth({
   appName: m.app_name(),
+  baseURL: clientEnv.VITE_PUBLIC_BASE_URL,
   secret: serverEnv.AUTH_SECRET,
   rateLimit: {
     enabled: true,

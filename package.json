@@ -44,6 +44,7 @@
     "release:major": "release-it major"
   },
   "dependencies": {
+    "@better-auth/drizzle-adapter": "^1.5.0",
     "@devsantara/head": "^0.4.1",
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/geist-mono": "^5.2.7",
