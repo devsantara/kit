@@ -17,16 +17,26 @@
  */
 
 import alchemy, { type Scope } from 'alchemy';
-import { D1Database, TanStackStart } from 'alchemy/cloudflare';
+import { D1Database, KVNamespace, TanStackStart } from 'alchemy/cloudflare';
 import { GitHubComment } from 'alchemy/github';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 import { parse as parseURL } from 'tldts';
 
 import packageJson from './package.json' with { type: 'json' };
 import { alchemyEnv } from './src/lib/env/alchemy.ts';
+import { serverEnv } from './src/lib/env/server.ts';
 
 const ALCHEMY_SECRET = alchemyEnv.ALCHEMY_SECRET;
 const ALCHEMY_STATE_TOKEN = alchemy.secret(alchemyEnv.ALCHEMY_STATE_TOKEN);
+const AUTH_SECRET = alchemy.secret(serverEnv.AUTH_SECRET);
+const AUTH_GITHUB_CLIENT_ID = alchemy.secret(serverEnv.AUTH_GITHUB_CLIENT_ID);
+const AUTH_GITHUB_CLIENT_SECRET = alchemy.secret(
+  serverEnv.AUTH_GITHUB_CLIENT_SECRET,
+);
+const AUTH_GOOGLE_CLIENT_ID = alchemy.secret(serverEnv.AUTH_GOOGLE_CLIENT_ID);
+const AUTH_GOOGLE_CLIENT_SECRET = alchemy.secret(
+  serverEnv.AUTH_GOOGLE_CLIENT_SECRET,
+);
 
 function isProductionStage(scope: Scope) {
   return scope.stage === 'production';
@@ -105,6 +115,11 @@ const database = await D1Database('database', {
   },
 });
 
+/** Provision a KV namespace for key value storage */
+const kvStore = await KVNamespace('kv', {
+  adopt: true,
+});
+
 /** Provision a TanStack Start worker for the application */
 export const worker = await TanStackStart('website', {
   adopt: true,
@@ -113,8 +128,16 @@ export const worker = await TanStackStart('website', {
   domains: getDomain(app),
   placement: isProductionStage(app) ? { mode: 'smart' } : undefined,
   bindings: {
+    // Services
     DATABASE: database,
+    KV_STORE: kvStore,
+    // Environment variables
     VITE_PUBLIC_BASE_URL: getBaseURL(app),
+    AUTH_SECRET: AUTH_SECRET,
+    AUTH_GITHUB_CLIENT_ID: AUTH_GITHUB_CLIENT_ID,
+    AUTH_GITHUB_CLIENT_SECRET: AUTH_GITHUB_CLIENT_SECRET,
+    AUTH_GOOGLE_CLIENT_ID: AUTH_GOOGLE_CLIENT_ID,
+    AUTH_GOOGLE_CLIENT_SECRET: AUTH_GOOGLE_CLIENT_SECRET,
   },
 });
 
