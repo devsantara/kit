@@ -10,8 +10,8 @@ concurrency:
   group: deployment-production-${{ github.ref }}
   cancel-in-progress: false
 env:
-  NODE_VERSION: '24.11.1'
-  PNPM_VERSION: '10.23.0'
+  NODE_VERSION: '24.13.0'
+  PNPM_VERSION: '10.30.1'
   STAGE: 'production'
 jobs:
   deploy:
@@ -50,5 +50,5 @@ jobs:
           VITE_PUBLIC_POSTHOG_ENABLED: ${{ vars.VITE_PUBLIC_POSTHOG_ENABLED }}
           # Sourcemap inject and upload
           POSTHOG_CLI_HOST: ${{ vars.POSTHOG_CLI_HOST }}
-          POSTHOG_CLI_ENV_ID: ${{ secrets.POSTHOG_CLI_ENV_ID }}
+          POSTHOG_CLI_PROJECT_ID: ${{ secrets.POSTHOG_CLI_PROJECT_ID }}
           POSTHOG_CLI_TOKEN: ${{ secrets.POSTHOG_CLI_TOKEN }}

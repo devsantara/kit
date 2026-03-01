@@ -20,13 +20,13 @@ import posthogVitePlugin, {
  * - delete sourcemaps after upload (as configured)
  */
 export function posthog(options: Partial<PostHogRollupPluginOptions>) {
-  if (!options.personalApiKey || !options.envId || !options.host) {
+  if (!options.personalApiKey || !options.projectId || !options.host) {
     return undefined;
   }
 
   return posthogVitePlugin({
     host: options.host,
-    envId: options.envId,
+    projectId: options.projectId,
     personalApiKey: options.personalApiKey,
     ...options,
     sourcemaps: {
