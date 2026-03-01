@@ -11,10 +11,12 @@ export function getAuthErrorMessage(code: keyof AuthErrors | (string & {})) {
     INVALID_PASSWORD: m.auth_error_base_invalid_password(),
     INVALID_EMAIL: m.auth_error_base_invalid_email(),
     INVALID_EMAIL_OR_PASSWORD: m.auth_error_base_invalid_email_or_password(),
+    INVALID_USER: m.auth_error_base_invalid_user(),
     SOCIAL_ACCOUNT_ALREADY_LINKED:
       m.auth_error_base_social_account_already_linked(),
     PROVIDER_NOT_FOUND: m.auth_error_base_provider_not_found(),
     INVALID_TOKEN: m.auth_error_base_invalid_token(),
+    TOKEN_EXPIRED: m.auth_error_base_token_expired(),
     ID_TOKEN_NOT_SUPPORTED: m.auth_error_base_id_token_not_supported(),
     FAILED_TO_GET_USER_INFO: m.auth_error_base_failed_to_get_user_info(),
     USER_EMAIL_NOT_FOUND: m.auth_error_base_user_email_not_found(),
@@ -56,6 +58,10 @@ export function getAuthErrorMessage(code: keyof AuthErrors | (string & {})) {
       m.auth_error_base_async_validation_not_supported(),
     VALIDATION_ERROR: m.auth_error_base_validation_error(),
     MISSING_FIELD: m.auth_error_base_missing_field(),
+    METHOD_NOT_ALLOWED_DEFER_SESSION_REQUIRED:
+      m.auth_error_base_method_not_allowed_defer_session_required(),
+    BODY_MUST_BE_AN_OBJECT: m.auth_error_base_body_must_be_an_object(),
+    PASSWORD_ALREADY_SET: m.auth_error_base_password_already_set(),
   };
 
   return AUTH_ERROR_CODES[code as keyof AuthErrors] as string | undefined;

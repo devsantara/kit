@@ -63,9 +63,11 @@
   "auth_error_base_invalid_password": "Invalid password",
   "auth_error_base_invalid_email": "Invalid email",
   "auth_error_base_invalid_email_or_password": "Invalid email or password",
+  "auth_error_base_invalid_user": "Invalid user",
   "auth_error_base_social_account_already_linked": "Social account already linked",
   "auth_error_base_provider_not_found": "Provider not found",
   "auth_error_base_invalid_token": "Invalid token",
+  "auth_error_base_token_expired": "Token expired",
   "auth_error_base_id_token_not_supported": "id_token not supported",
   "auth_error_base_failed_to_get_user_info": "Failed to get user info",
   "auth_error_base_user_email_not_found": "User email not found",
@@ -97,5 +99,8 @@
   "auth_error_base_field_not_allowed": "Field not allowed to be set",
   "auth_error_base_async_validation_not_supported": "Async validation is not supported",
   "auth_error_base_validation_error": "Validation Error",
-  "auth_error_base_missing_field": "Field is required"
+  "auth_error_base_missing_field": "Field is required",
+  "auth_error_base_method_not_allowed_defer_session_required": "POST method requires deferSessionRefresh to be enabled in session config",
+  "auth_error_base_body_must_be_an_object": "Body must be an object",
+  "auth_error_base_password_already_set": "User already has a password set"
 }

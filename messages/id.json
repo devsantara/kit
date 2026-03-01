@@ -63,9 +63,11 @@
   "auth_error_base_invalid_password": "Password tidak valid",
   "auth_error_base_invalid_email": "Email tidak valid",
   "auth_error_base_invalid_email_or_password": "Email atau password tidak valid",
+  "auth_error_base_invalid_user": "Pengguna tidak valid",
   "auth_error_base_social_account_already_linked": "Akun sosial sudah tertaut",
   "auth_error_base_provider_not_found": "Provider tidak ditemukan",
   "auth_error_base_invalid_token": "Token tidak valid",
+  "auth_error_base_token_expired": "Token kedaluwarsa",
   "auth_error_base_id_token_not_supported": "id_token tidak didukung",
   "auth_error_base_failed_to_get_user_info": "Gagal mengambil info pengguna",
   "auth_error_base_user_email_not_found": "Email pengguna tidak ditemukan",
@@ -97,5 +99,8 @@
   "auth_error_base_field_not_allowed": "Field tidak diizinkan untuk diatur",
   "auth_error_base_async_validation_not_supported": "Validasi async tidak didukung",
   "auth_error_base_validation_error": "Kesalahan validasi",
-  "auth_error_base_missing_field": "Field wajib diisi"
+  "auth_error_base_missing_field": "Field wajib diisi",
+  "auth_error_base_method_not_allowed_defer_session_required": "Metode POST memerlukan deferSessionRefresh diaktifkan dalam konfigurasi sesi",
+  "auth_error_base_body_must_be_an_object": "Body harus berupa objek",
+  "auth_error_base_password_already_set": "Pengguna sudah memiliki kata sandi"
 }
