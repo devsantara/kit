@@ -15,6 +15,7 @@ import { m } from '~/lib/i18n/messages';
 import {
   baseLocale,
   getLocale,
+  getTextDirection,
   localizeHref,
   type Locale,
 } from '~/lib/i18n/runtime';
@@ -102,7 +103,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   preload(geistMonoFont, { as: 'font', type: 'font/woff2' });
 
   return (
-    <html lang={getLocale()} className="antialiased" suppressHydrationWarning>
+    <html
+      lang={getLocale()}
+      dir={getTextDirection()}
+      className="antialiased"
+      suppressHydrationWarning
+    >
       <head>
         <HeadContent />
       </head>
