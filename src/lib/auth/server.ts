@@ -23,6 +23,7 @@ import { m } from '~/lib/i18n/messages';
 export const authServer = betterAuth({
   appName: m.app_name(),
   baseURL: clientEnv.VITE_PUBLIC_BASE_URL,
+  trustedOrigins: [clientEnv.VITE_PUBLIC_BASE_URL],
   secret: serverEnv.AUTH_SECRET,
   rateLimit: {
     enabled: true,
