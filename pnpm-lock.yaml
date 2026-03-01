@@ -4,10 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  conventional-changelog-conventionalcommits: 8.0.0
-  libsodium-wrappers: 0.7.15
-
 importers:
 
   .:
@@ -182,8 +178,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       conventional-changelog-conventionalcommits:
-        specifier: 8.0.0
-        version: 8.0.0
+        specifier: 9.1.0
+        version: 9.1.0
       dotenv:
         specifier: ^17.3.1
         version: 17.3.1
@@ -4027,8 +4023,8 @@ packages:
     resolution: {integrity: sha512-GGf2Nipn1RUCAktxuVauVr1e3r8QrLP/B0lEUsFktmGqc3ddbQkhoJZHJctVU829U1c6mTSWftrVOCHaL85Q3w==}
     engines: {node: '>=18'}
 
-  conventional-changelog-conventionalcommits@8.0.0:
-    resolution: {integrity: sha512-eOvlTO6OcySPyyyk8pKz2dP4jjElYunj9hn9/s0OB+gapTO8zwS9UQWrZ1pmF2hFs3vw1xhonOLGcGjy/zgsuA==}
+  conventional-changelog-conventionalcommits@9.1.0:
+    resolution: {integrity: sha512-MnbEysR8wWa8dAEvbj5xcBgJKQlX/m0lhS8DsyAAWDHdfs2faDJxTgzRYlRYpXSe7UiKrIIlB4TrBKU9q9DgkA==}
     engines: {node: '>=18'}
 
   conventional-changelog-preset-loader@5.0.0:
@@ -4989,11 +4985,11 @@ packages:
   launch-editor@2.13.1:
     resolution: {integrity: sha512-lPSddlAAluRKJ7/cjRFoXUFzaX7q/YKI7yPHuEvSJVqoXvFnJov1/Ud87Aa4zULIbA9Nja4mSPK8l0z/7eV2wA==}
 
-  libsodium-wrappers@0.7.15:
-    resolution: {integrity: sha512-E4anqJQwcfiC6+Yrl01C1m8p99wEhLmJSs0VQqST66SbQXXBoaJY0pF4BNjRYa/sOQAxx6lXAaAFIlx+15tXJQ==}
+  libsodium-wrappers@0.8.2:
+    resolution: {integrity: sha512-VFLmfxkxo+U9q60tjcnSomQBRx2UzlRjKWJqvB4K1pUqsMQg4cu3QXA2nrcsj9A1qRsnJBbi2Ozx1hsiDoCkhw==}
 
-  libsodium@0.7.16:
-    resolution: {integrity: sha512-3HrzSPuzm6Yt9aTYCDxYEG8x8/6C0+ag655Y7rhhWZM9PT4NpdnbqlzXhGZlDnkgR6MeSTnOt/VIyHLs9aSf+Q==}
+  libsodium@0.8.2:
+    resolution: {integrity: sha512-TsnGYMoZtpweT+kR+lOv5TVsnJ/9U0FZOsLFzFOMWmxqOAYXjX3fsrPAW+i1LthgDKXJnI9A8dWEanT1tnJKIw==}
 
   libsql@0.5.22:
     resolution: {integrity: sha512-NscWthMQt7fpU8lqd7LXMvT9pi+KhhmTHAJWUB/Lj6MWa0MKFv0F2V4C6WKKpjCVZl0VwcDz4nOI3CyaT1DDiA==}
@@ -6913,7 +6909,7 @@ snapshots:
   '@commitlint/config-conventional@20.4.2':
     dependencies:
       '@commitlint/types': 20.4.0
-      conventional-changelog-conventionalcommits: 8.0.0
+      conventional-changelog-conventionalcommits: 9.1.0
 
   '@commitlint/config-validator@20.4.0':
     dependencies:
@@ -8859,7 +8855,7 @@ snapshots:
       concat-stream: 2.0.0
       conventional-changelog: 7.1.1(conventional-commits-filter@5.0.0)
       conventional-changelog-angular: 8.1.0
-      conventional-changelog-conventionalcommits: 8.0.0
+      conventional-changelog-conventionalcommits: 9.1.0
       conventional-recommended-bump: 11.2.0
       release-it: 19.2.4(@types/node@25.3.2)
       semver: 7.7.4
@@ -9972,7 +9968,7 @@ snapshots:
       find-process: 2.0.0
       glob: 10.5.0
       jszip: 3.10.1
-      libsodium-wrappers: 0.7.15
+      libsodium-wrappers: 0.8.2
       miniflare: 4.20260305.0
       neverthrow: 8.2.0
       open: 10.2.0
@@ -10330,7 +10326,7 @@ snapshots:
     dependencies:
       compare-func: 2.0.0
 
-  conventional-changelog-conventionalcommits@8.0.0:
+  conventional-changelog-conventionalcommits@9.1.0:
     dependencies:
       compare-func: 2.0.0
 
@@ -11197,11 +11193,11 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.8.3
 
-  libsodium-wrappers@0.7.15:
+  libsodium-wrappers@0.8.2:
     dependencies:
-      libsodium: 0.7.16
+      libsodium: 0.8.2
 
-  libsodium@0.7.16: {}
+  libsodium@0.8.2: {}
 
   libsql@0.5.22:
     dependencies:
