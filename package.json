@@ -41,7 +41,10 @@
     "storybook:build": "storybook build",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
-    "release:major": "release-it major"
+    "release:major": "release-it major",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "^1.5.0",
@@ -84,6 +87,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@cloudflare/vite-plugin": "^1.25.6",
     "@cloudflare/workers-types": "^4.20260301.1",
     "@commitlint/cli": "^20.4.2",
