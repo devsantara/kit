@@ -2,7 +2,7 @@ import { drizzleAdapter } from '@better-auth/drizzle-adapter';
 import { APIError, createAuthMiddleware } from 'better-auth/api';
 import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
-import { env } from 'cloudflare:workers';
+import { env, waitUntil } from 'cloudflare:workers';
 
 import {
   AUTH_MIN_PASSWORD_LENGTH,
@@ -88,6 +88,13 @@ export const authServer = betterAuth({
       maxAge: 5 * 60, // 5 minutes
     },
   },
+  account: {
+    encryptOAuthTokens: true,
+    storeStateStrategy: 'cookie',
+    accountLinking: {
+      enabled: true,
+    },
+  },
   advanced: {
     cookiePrefix: 'auth',
     ipAddress: {
@@ -95,6 +102,9 @@ export const authServer = betterAuth({
     },
     database: {
       generateId: 'uuid',
+    },
+    backgroundTasks: {
+      handler: (task) => waitUntil(task),
     },
   },
   hooks: {
