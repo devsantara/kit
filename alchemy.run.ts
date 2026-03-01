@@ -116,7 +116,7 @@ const database = await D1Database('database', {
 });
 
 /** Provision a KV namespace for key value storage */
-const kv = await KVNamespace('kv', {
+const kvStore = await KVNamespace('kv', {
   adopt: true,
 });
 
@@ -130,7 +130,7 @@ export const worker = await TanStackStart('website', {
   bindings: {
     // Services
     DATABASE: database,
-    KV: kv,
+    KV_STORE: kvStore,
     // Environment variables
     VITE_PUBLIC_BASE_URL: getBaseURL(app),
     AUTH_SECRET: AUTH_SECRET,

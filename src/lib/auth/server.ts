@@ -2,12 +2,9 @@ import { drizzleAdapter } from '@better-auth/drizzle-adapter';
 import { APIError, createAuthMiddleware } from 'better-auth/api';
 import { betterAuth } from 'better-auth/minimal';
 import { tanstackStartCookies } from 'better-auth/tanstack-start';
-import { env, waitUntil } from 'cloudflare:workers';
+import { waitUntil } from 'cloudflare:workers';
 
-import {
-  AUTH_MIN_PASSWORD_LENGTH,
-  AUTH_MIN_TTL_IN_SECONDS,
-} from '~/lib/auth/constant';
+import { AUTH_MIN_PASSWORD_LENGTH } from '~/lib/auth/constant';
 import { getAuthErrorMessage } from '~/lib/auth/errors';
 import { getDatabase } from '~/lib/database';
 import {
@@ -19,6 +16,10 @@ import {
 import { clientEnv } from '~/lib/env/client';
 import { serverEnv } from '~/lib/env/server';
 import { m } from '~/lib/i18n/messages';
+import { getKVStore } from '~/lib/kv-store';
+import { KV_STORE_MIN_TTL_IN_SECONDS } from '~/lib/kv-store/constants';
+
+const kvStore = getKVStore();
 
 export const authServer = betterAuth({
   appName: m.app_name(),
@@ -43,20 +44,20 @@ export const authServer = betterAuth({
   }),
   secondaryStorage: {
     get: async (key) => {
-      return await env.KV.get(key);
+      return await kvStore.get(key);
     },
     set: async (key, value, ttl) => {
-      if (!ttl) return await env.KV.put(key, value);
+      if (!ttl) return await kvStore.put(key, value);
       // Cloudflare Workers KV has a minimum TTL of 60 seconds.
       // If the provided TTL is less than that, we set it to the minimum.
       let expirationTtl = ttl;
-      if (expirationTtl < AUTH_MIN_TTL_IN_SECONDS) {
-        expirationTtl = AUTH_MIN_TTL_IN_SECONDS;
+      if (expirationTtl < KV_STORE_MIN_TTL_IN_SECONDS) {
+        expirationTtl = KV_STORE_MIN_TTL_IN_SECONDS;
       }
-      return await env.KV.put(key, value, { expirationTtl });
+      return await kvStore.put(key, value, { expirationTtl });
     },
     delete: async (key) => {
-      return await env.KV.delete(key);
+      return await kvStore.delete(key);
     },
   },
   plugins: [tanstackStartCookies()],
