@@ -17,6 +17,9 @@ importers:
       '@fontsource-variable/geist-mono':
         specifier: ^5.2.7
         version: 5.2.7
+      '@inlang/paraglide-js-react':
+        specifier: ^1.0.1
+        version: 1.0.1(@inlang/paraglide-js@2.13.0)(react@19.2.4)
       '@posthog/react':
         specifier: ^1.8.1
         version: 1.8.1(@types/react@19.2.14)(posthog-js@1.356.1)(react@19.2.4)
@@ -1250,6 +1253,12 @@ packages:
     resolution: {integrity: sha512-fJG2E/DB4b31/Z8ie4rdfJaO9zK+aUcE90DNn1YoRxiaZ/nxk7cgYdh9Yd6tcZKQjHxH0V6fF6R+bGDxr/3Enw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
+
+  '@inlang/paraglide-js-react@1.0.1':
+    resolution: {integrity: sha512-Qh3mAR0xUeqJXbukeU/j9PSlsoyOQgvlXvLVU+bAxyQrXVzyXvuC1cw2d4imXFg9EKVe3mctnTFZaARiar0Nag==}
+    peerDependencies:
+      '@inlang/paraglide-js': '>=2.11.0 <3'
+      react: ^18.0.0 || ^19.0.0
 
   '@inlang/paraglide-js@2.13.0':
     resolution: {integrity: sha512-m7JQiTeLC3tY3DusUCc4iRWlsKoMuDLhw4iGhkY0yI96ki7PK42DLsi1kMk8ubSVenKOwgrs7eqQZN1Htvkhew==}
@@ -7381,6 +7390,11 @@ snapshots:
       esbuild-wasm: 0.19.12
     transitivePeerDependencies:
       - babel-plugin-macros
+
+  '@inlang/paraglide-js-react@1.0.1(@inlang/paraglide-js@2.13.0)(react@19.2.4)':
+    dependencies:
+      '@inlang/paraglide-js': 2.13.0
+      react: 19.2.4
 
   '@inlang/paraglide-js@2.13.0':
     dependencies:
