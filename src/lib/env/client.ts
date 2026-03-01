@@ -7,6 +7,9 @@ import { coerceBoolean } from './utils';
 export const clientEnv = createEnv({
   clientPrefix: 'VITE_',
   client: {
+    // Application
+    VITE_PUBLIC_BASE_URL: z.url(),
+    // PostHog
     VITE_PUBLIC_POSTHOG_KEY: z.string().nonempty(),
     VITE_PUBLIC_POSTHOG_HOST: z.url(),
     VITE_PUBLIC_POSTHOG_DEBUG: coerceBoolean().default(false),

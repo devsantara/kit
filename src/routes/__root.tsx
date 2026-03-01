@@ -10,6 +10,7 @@ import * as React from 'react';
 import { preload } from 'react-dom';
 
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
+import { clientEnv } from '~/lib/env/client';
 import { m } from '~/lib/i18n/messages';
 import {
   baseLocale,
@@ -19,20 +20,23 @@ import {
 } from '~/lib/i18n/runtime';
 import { PostHogProvider } from '~/lib/posthog/provider';
 import { Toaster } from '~/ui/components/core/sonner';
-import appStylesheet from '~/ui/styles/app.css?url';
-import fontStylesheet from '~/ui/styles/fonts.css?url';
 import { ThemeProvider } from '~/ui/styles/theme';
 
+import appStylesheet from '~/ui/styles/app.css?url';
+import fontStylesheet from '~/ui/styles/fonts.css?url';
+
 export const Route = createRootRoute({
-  loader: ({ location }) => {
-    return { currentHref: location.url.origin + location.url.pathname };
+  loader: (context) => {
+    return {
+      /** @example /path/without/locale */
+      currentPath: context.location.pathname,
+    };
   },
   head: ({ loaderData }) => {
-    /** @example http://localhost:3000/path/without/locale */
-    const currentHref = loaderData?.currentHref ?? '';
+    const currentPath = loaderData?.currentPath ?? '';
 
     return new HeadBuilder({
-      metadataBase: new URL(currentHref),
+      metadataBase: new URL(clientEnv.VITE_PUBLIC_BASE_URL),
       adapter: new HeadTanstackRouterAdapter(),
     })
       .addCharSet('utf-8')
@@ -43,14 +47,14 @@ export const Route = createRootRoute({
       .addDescription(m.app_description())
       .addColorScheme('light dark')
       .addManifest((h) => h.resolveUrl('/site.webmanifest'))
-      .addCanonical((h) => h.resolveUrl(localizeHref(currentHref)))
+      .addCanonical((h) => h.resolveUrl(localizeHref(currentPath)))
       .addAlternateLocale<Locale>((h) => ({
         'x-default': h.resolveUrl(
-          localizeHref(currentHref, { locale: baseLocale }),
+          localizeHref(currentPath, { locale: baseLocale }),
         ),
-        en: h.resolveUrl(localizeHref(currentHref, { locale: 'en' })),
-        id: h.resolveUrl(localizeHref(currentHref, { locale: 'id' })),
-        'zh-CN': h.resolveUrl(localizeHref(currentHref, { locale: 'zh-CN' })),
+        en: h.resolveUrl(localizeHref(currentPath, { locale: 'en' })),
+        id: h.resolveUrl(localizeHref(currentPath, { locale: 'id' })),
+        'zh-CN': h.resolveUrl(localizeHref(currentPath, { locale: 'zh-CN' })),
       }))
       .addIcon('shortcut', { href: '/favicon.ico', sizes: '48x48' })
       .addIcon('icon', {
@@ -69,7 +73,7 @@ export const Route = createRootRoute({
         description: m.app_description(),
         locale: getLocale(),
         type: { name: 'website' },
-        url: h.resolveUrl(localizeHref(currentHref)),
+        url: h.resolveUrl(localizeHref(currentPath)),
         image: {
           url: 'https://assets.devsantara.com/kit/thumbnail.jpg',
           type: 'image/jpeg',
@@ -84,7 +88,10 @@ export const Route = createRootRoute({
         site: '@devsantara_hq',
         image: { url: 'https://assets.devsantara.com/kit/thumbnail.jpg' },
       })
-      .addMeta({ name: 'apple-mobile-web-app-title', content: m.app_name() })
+      .addMeta({
+        name: 'apple-mobile-web-app-title',
+        content: m.app_name(),
+      })
       .build();
   },
   shellComponent: RootDocument,
