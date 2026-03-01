@@ -33,14 +33,14 @@ function RouteComponent() {
 
   return (
     <main className="grid h-dvh place-content-center p-4">
-      <header className="max-w-xl">
-        <h1 className="mb-px font-sans text-xl font-extrabold sm:text-2xl">
+      <header className="max-w-xl text-center">
+        <h1 className="mb-px font-sans text-xl font-extrabold">
           👋🏻 {m.common_greeting_name({ name: context.user.name })}
         </h1>
 
         <Separator className="my-3" />
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <Button asChild size="icon" variant="outline">
             <Link to="/">
               <HomeIcon />
