@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.4.0
+
+### Minor Changes
+
+- eaa7b64: feat(seo): using @devsantara/head to manage head
+- eaa7b64: feat(db): setup cloudflare d1 with drizzle-orm
+- eaa7b64: feat(db): add drizzle studio for local and remote db
+- eaa7b64: feat(auth): setup authentication with better-auth
+- eaa7b64: feat(form): setup tanstack form
+- eaa7b64: feat(ui): introduce new ui style
+- eaa7b64: feat(i18n): add markup and text direction support
+
+### Patch Changes
+
+- eaa7b64: fix(ui): use text-pretty for title and description
+- eaa7b64: fix(ui): invalid switch checked and unchecked selector
+- eaa7b64: chore(bump): update dependencies
+- eaa7b64: chore(agent): add basic skills
+- eaa7b64: chore(release): migrate to changesets
+
 ## [0.3.0](https://github.com/devsantara/kit/compare/0.2.0...0.3.0) (2026-01-16)
 
 ### Features
