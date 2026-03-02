@@ -22,7 +22,6 @@ import { GitHubComment } from 'alchemy/github';
 import { CloudflareStateStore, FileSystemStateStore } from 'alchemy/state';
 import { parse as parseURL } from 'tldts';
 
-import packageJson from './package.json' with { type: 'json' };
 import { alchemyEnv } from './src/lib/env/alchemy.ts';
 import { serverEnv } from './src/lib/env/server.ts';
 
@@ -147,8 +146,8 @@ if (process.env.PULL_REQUEST) {
   // If this is a PR, add a comment to the PR with the preview URL
   // It will auto-update with each push
   await GitHubComment('preview-comment', {
-    owner: packageJson.author,
-    repository: packageJson.name,
+    owner: 'devsantara',
+    repository: 'kit',
     issueNumber: Number(process.env.PULL_REQUEST),
     body: `## 🚀 Preview Deployment (${process.env.PULL_REQUEST})
 
