@@ -2,4 +2,4 @@
 '@devsantara/kit': patch
 ---
 
-chore(oxfmt): ignore changelog
+chore(release): migrate to changesets
