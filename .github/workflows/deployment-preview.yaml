@@ -15,8 +15,8 @@ concurrency:
   group: deployment-preview-${{ github.ref }}
   cancel-in-progress: false
 env:
-  NODE_VERSION: '24.11.1'
-  PNPM_VERSION: '10.23.0'
+  NODE_VERSION: '24.13.0'
+  PNPM_VERSION: '10.30.1'
   STAGE: ${{ format('preview-{0}', github.event.number) }}
 jobs:
   deploy:
@@ -59,5 +59,11 @@ jobs:
           VITE_PUBLIC_POSTHOG_ENABLED: ${{ vars.VITE_PUBLIC_POSTHOG_ENABLED }}
           # Sourcemap inject and upload
           POSTHOG_CLI_HOST: ${{ vars.POSTHOG_CLI_HOST }}
-          POSTHOG_CLI_ENV_ID: ${{ secrets.POSTHOG_CLI_ENV_ID }}
+          POSTHOG_CLI_PROJECT_ID: ${{ secrets.POSTHOG_CLI_PROJECT_ID }}
           POSTHOG_CLI_TOKEN: ${{ secrets.POSTHOG_CLI_TOKEN }}
+          # Auth
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          AUTH_GITHUB_CLIENT_ID: ${{ secrets.AUTH_GITHUB_CLIENT_ID }}
+          AUTH_GITHUB_CLIENT_SECRET: ${{ secrets.AUTH_GITHUB_CLIENT_SECRET }}
+          AUTH_GOOGLE_CLIENT_ID: ${{ secrets.AUTH_GOOGLE_CLIENT_ID }}
+          AUTH_GOOGLE_CLIENT_SECRET: ${{ secrets.AUTH_GOOGLE_CLIENT_SECRET }}

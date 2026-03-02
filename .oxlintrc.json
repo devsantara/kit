@@ -4,7 +4,9 @@
     "pnpm-lock.yaml",
     "routeTree.gen.ts",
     "public/",
-    "src/lib/i18n/"
+    "src/lib/i18n/",
+    "src/lib/database/migrations/",
+    ".agents/"
   ],
   "env": {
     "browser": true,
@@ -26,6 +28,9 @@
     "import"
   ],
   "rules": {
+    // Correctness
+    "react/no-children-prop": ["off"],
+
     // Perf
     "no-await-in-loop": "error",
     "no-useless-call": "error",
@@ -54,8 +59,9 @@
 
     // Suspicious
     "eslint/no-unneeded-ternary": "off",
+    "eslint/no-shadow": "off",
     "react/react-in-jsx-scope": "off",
-    "import/no-unassigned-import": ["error", { "allow": ["**/*.css"] }],
+    "import/no-unassigned-import": "off",
 
     // Pedantic
     "eqeqeq": ["error", "smart"],

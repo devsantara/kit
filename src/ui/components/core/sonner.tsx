@@ -1,15 +1,15 @@
 import {
   CircleCheckIcon,
   InfoIcon,
-  Loader2Icon,
-  OctagonXIcon,
   TriangleAlertIcon,
+  OctagonXIcon,
+  Loader2Icon,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import {
-  toast as baseToast,
-  Toaster as BaseToaster,
+  Toaster as RootToaster,
   type ToasterProps,
+  toast as baseToast,
 } from 'sonner';
 
 const toast = baseToast;
@@ -18,7 +18,7 @@ function Toaster({ ...props }: ToasterProps) {
   const { theme = 'system' } = useTheme();
 
   return (
-    <BaseToaster
+    <RootToaster
       theme={theme as ToasterProps['theme']}
       className="toaster group"
       icons={{
@@ -36,9 +36,16 @@ function Toaster({ ...props }: ToasterProps) {
           '--border-radius': 'var(--radius)',
         } as React.CSSProperties
       }
+      toastOptions={{
+        classNames: {
+          toast: 'cn-toast',
+          title: 'text-pretty',
+          description: 'text-pretty',
+        },
+      }}
       {...props}
     />
   );
 }
 
-export { toast, Toaster };
+export { Toaster, toast };

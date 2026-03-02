@@ -32,5 +32,15 @@
 
   // Extension - Tailwind CSS
   "tailwindCSS.classAttributes": ["class", "className", "classNames"],
-  "tailwindCSS.classFunctions": ["clsx", "twMerge", "cn", "cva"]
+  "tailwindCSS.classFunctions": ["clsx", "twMerge", "cn", "cva"],
+
+  // Extension - AI Chat
+  "chat.agentSkillsLocations": {
+    ".github/skills": true,
+    ".agents/skills": true,
+    ".claude/skills": true,
+    "~/.copilot/skills": true,
+    "~/.agents/skills": true,
+    "~/.claude/skills": true
+  }
 }
