@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+### Patch Changes
+
+- 6b08d97: fix(ci): missing env on preview cleanup workflow
+
 ## 0.4.0
 
 ### Minor Changes
