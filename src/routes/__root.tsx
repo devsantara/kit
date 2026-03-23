@@ -9,6 +9,7 @@ import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
 import * as React from 'react';
 import { preload } from 'react-dom';
 
+import { tanstackFormDevtools } from '~/devtools/form-devtools';
 import { tanstackRouterDevtools } from '~/devtools/router-devtools';
 import { clientEnv } from '~/lib/env/client';
 import { m } from '~/lib/i18n/messages';
@@ -118,7 +119,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           <PostHogProvider>{children}</PostHogProvider>
           <TanStackDevtools
             config={{ position: 'bottom-right' }}
-            plugins={[tanstackRouterDevtools]}
+            plugins={[tanstackRouterDevtools, tanstackFormDevtools]}
           />
         </ThemeProvider>
         <Scripts />
