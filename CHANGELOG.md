@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.2
+
+### Patch Changes
+
+- 5f9b83d: chore(agent): add shadcn skills
+- 067ce4b: chore(devtool): add tanstack form devtool
+- 067ce4b: chore(vite): add devtools
+- c5bc771: chore(agent): remove claude skills
+- 067ce4b: chore(bump): update node and pnpm
+- 067ce4b: chore(bump): update dependencies
+
 ## 0.4.1
 
 ### Patch Changes
