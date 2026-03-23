@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 import { defineConfig } from 'drizzle-kit';
 
-import { getLocalCloudflareD1Path } from './src/lib/auth/utils';
+import { getLocalCloudflareD1Path } from './src/lib/database/utils';
 
 const DBEnvironments = ['local', 'remote'] as const;
 type DBEnvironment = (typeof DBEnvironments)[number];
