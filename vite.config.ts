@@ -1,7 +1,7 @@
 import { paraglideVitePlugin as paraglide } from '@inlang/paraglide-js';
 import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite';
-import { devtools } from '@tanstack/devtools-vite';
+import { devtools as tanstackDevtools } from '@tanstack/devtools-vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
 import alchemy from 'alchemy/cloudflare/tanstack-start';
@@ -25,12 +25,16 @@ export default async function viteConfig({ mode }: ConfigEnv) {
     resolve: {
       tsconfigPaths: true,
     },
+    devtools: {
+      enabled: process.env.VITE_DEVTOOLS_ENABLED === 'true',
+    },
     build: {
       target: 'esnext',
       minify: true,
       cssMinify: true,
       sourcemap: true,
-      rollupOptions: {
+      rolldownOptions: {
+        external: ['node:async_hooks', 'cloudflare:workers'],
         output: {
           manualChunks: (id) => {
             if (id.includes('posthog-js') || id.includes('@posthog/react')) {
@@ -38,13 +42,12 @@ export default async function viteConfig({ mode }: ConfigEnv) {
             }
           },
         },
-        external: ['node:async_hooks', 'cloudflare:workers'],
       },
     },
     plugins: [
-      devtools(),
       alchemy({ viteEnvironment: { name: 'ssr' } }),
       tailwindcss(),
+      tanstackDevtools(),
       tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
       // React's vite plugin must come after start's vite plugin
       viteReact(),
