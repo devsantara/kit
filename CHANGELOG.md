@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.3](https://github.com/devsantara/kit/compare/v0.4.2...v0.4.3) (2026-03-24)
+
+### Continuous Integration
+
+* **release:** migrate to release-it ([#81](https://github.com/devsantara/kit/issues/81)) ([3ae8d87](https://github.com/devsantara/kit/commit/3ae8d87ef946a78684b601514c060e009c676906))
+
 ## [0.4.2](https://github.com/devsantara/kit/compare/v0.4.1...v0.4.2) (2026-03-24)
 
 ### Chores
