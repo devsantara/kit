@@ -33,13 +33,14 @@ jobs:
         with:
           version: ${{ env.PNPM_VERSION }}
           run_install: false
+          cache: true
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --prefer-offline --frozen-lockfile
       - name: Build and deploy
         run: pnpm alchemy deploy --stage ${{ env.STAGE }}
         env:
