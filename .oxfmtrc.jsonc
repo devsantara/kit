@@ -8,7 +8,7 @@
     "src/lib/database/migrations/",
     ".agents/",
     "skills-lock.json",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
   ],
   "printWidth": 80,
   "tabWidth": 2,
@@ -23,9 +23,11 @@
   "bracketSameLine": false,
   "singleAttributePerLine": false,
   "arrowParens": "always",
-  "experimentalSortPackageJson": true,
-  "experimentalSortImports": {
+  "sortPackageJson": true,
+  "sortImports": {
     "order": "asc",
+    "newlinesBetween": true,
+    "sortSideEffects": true,
     "internalPattern": ["~/"],
     "groups": [
       ["side_effect"],
@@ -33,14 +35,14 @@
       ["external"],
       ["internal"],
       ["parent", "sibling", "index"],
-      ["style"]
-    ]
+      ["style"],
+    ],
   },
-  "experimentalTailwindcss": {
+  "sortTailwindcss": {
     "stylesheet": "./src/ui/styles/app.css",
     "attributes": ["class", "className", "classNames"],
     "functions": ["clsx", "twMerge", "cn", "cva"],
     "preserveDuplicates": false,
-    "preserveWhitespace": false
-  }
+    "preserveWhitespace": false,
+  },
 }

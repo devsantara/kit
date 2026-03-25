@@ -6,15 +6,15 @@
     "public/",
     "src/lib/i18n/",
     "src/lib/database/migrations/",
-    ".agents/"
+    ".agents/",
   ],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
   },
   "categories": {
     "correctness": "error",
-    "suspicious": "error"
+    "suspicious": "error",
   },
   "plugins": [
     "oxc",
@@ -25,7 +25,7 @@
     "react",
     "jsx-a11y",
     "react-perf",
-    "import"
+    "import",
   ],
   "rules": {
     // Correctness
@@ -87,7 +87,7 @@
     "unicorn/filename-case": ["error", { "case": "kebabCase" }],
     "react/self-closing-comp": "warn",
     "import/no-duplicates": "error",
-    "eslint/func-style": ["error", "declaration"]
+    "eslint/func-style": ["error", "declaration"],
   },
   "overrides": [
     {
@@ -96,8 +96,8 @@
       "plugins": ["import"],
       "rules": {
         "import/no-default-export": "error",
-        "import/prefer-default-export": "off"
-      }
+        "import/prefer-default-export": "off",
+      },
     },
     {
       // Only allow default export in reserved files
@@ -105,8 +105,8 @@
       "plugins": ["import"],
       "rules": {
         "import/no-default-export": "off",
-        "import/prefer-default-export": "error"
-      }
-    }
-  ]
+        "import/prefer-default-export": "error",
+      },
+    },
+  ],
 }
