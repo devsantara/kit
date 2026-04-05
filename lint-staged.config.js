@@ -7,19 +7,18 @@ const ALL_FILES = '*';
 const TYPESCRIPT_FILES = `*.{${TYPESCRIPT_EXTENSIONS.join(',')}}`;
 const JAVASCRIPT_FILES = `*.{${JAVASCRIPT_EXTENSIONS.join(',')}}`;
 
-// Format code with Oxfmt
+/**
+ * Format code with Oxfmt
+ */
 function buildOxfmtCommand(stagedFiles) {
   return `oxfmt --no-error-on-unmatched-pattern ${stagedFiles.join(' ')}`;
 }
 
-// Check and fix code with Oxlint
+/**
+ * Check and fix code with Oxlint
+ */
 function buildOxlintCommand(stagedFiles) {
   return `oxlint ${stagedFiles.join(' ')}`;
-}
-
-// Type check with TypeScript
-function buildTypeCheckCommand() {
-  return 'tsc --noEmit';
 }
 
 /**
@@ -35,7 +34,7 @@ const lintStagedConfig = {
     return [buildOxlintCommand(stagedFiles)];
   },
   [TYPESCRIPT_FILES]: function (stagedFiles) {
-    return [buildTypeCheckCommand(), buildOxlintCommand(stagedFiles)];
+    return [buildOxlintCommand(stagedFiles)];
   },
 };
 

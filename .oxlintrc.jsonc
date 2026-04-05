@@ -12,6 +12,10 @@
     "browser": true,
     "node": true,
   },
+  "options": {
+    "typeAware": true,
+    "typeCheck": true,
+  },
   "categories": {
     "correctness": "error",
     "suspicious": "error",
@@ -50,7 +54,6 @@
     "typescript/no-explicit-any": "error",
     "typescript/no-non-null-asserted-nullish-coalescing": "error",
     "typescript/no-non-null-assertion": "error",
-    "typescript/promise-function-async": "error",
     "typescript/use-unknown-in-catch-callback-variable": "error",
     "unicorn/prefer-node-protocol": "error",
     "react/no-unknown-property": "error",
@@ -66,7 +69,6 @@
     // Pedantic
     "eqeqeq": ["error", "smart"],
     "radix": "error",
-    "require-await": "error",
     "typescript/no-unsafe-argument": "error",
     "typescript/return-await": "error",
     "react/jsx-no-target-blank": "error",
