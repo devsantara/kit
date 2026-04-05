@@ -2,3 +2,5 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - workerd
+overrides:
+  undici: 7.18.2
