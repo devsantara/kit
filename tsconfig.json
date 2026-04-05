@@ -9,7 +9,8 @@
     "vite.config.ts",
     "alchemy.run.ts",
     "eslint.config.ts",
-    "commitlint.config.ts"
+    "commitlint.config.ts",
+    "drizzle.config.ts"
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {

@@ -1,3 +1,8 @@
+// oxlint-disable typescript/no-unnecessary-type-arguments
+// oxlint-disable typescript/restrict-template-expressions
+// oxlint-disable typescript/no-unsafe-type-assertion
+// oxlint-disable typescript/no-unsafe-argument
+
 import * as React from 'react';
 import * as RechartsPrimitive from 'recharts';
 import type { TooltipValueType } from 'recharts';

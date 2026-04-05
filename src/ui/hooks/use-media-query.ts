@@ -25,7 +25,7 @@ const directionOperators: Record<BreakpointDirection, string> = {
   'max-width': '<',
 };
 
-interface Options<TInitialValue> {
+interface Options<TInitialValue extends boolean | undefined> {
   /**
    * Initial value to use before the media query listener is set up.
    * This opens up the possibility of knowing the media query match state
@@ -80,9 +80,7 @@ export function useMediaQuery<TInitialValue extends boolean | undefined>(
   options?: Options<TInitialValue>,
 ) {
   const { initialValue } = options ?? {};
-  const [isMatches, setIsMatches] = React.useState<boolean | undefined>(
-    initialValue,
-  );
+  const [isMatches, setIsMatches] = React.useState(initialValue);
 
   React.useEffect(
     function watchMediaSize() {
@@ -92,10 +90,12 @@ export function useMediaQuery<TInitialValue extends boolean | undefined>(
       );
 
       function onChangeMediaQuery(event: MediaQueryListEvent) {
-        setIsMatches(event.matches);
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+        setIsMatches(event.matches as TInitialValue);
       }
       mediaQuery.addEventListener('change', onChangeMediaQuery);
-      setIsMatches(mediaQuery.matches);
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      setIsMatches(mediaQuery.matches as TInitialValue);
       return () => mediaQuery.removeEventListener('change', onChangeMediaQuery);
     },
     [breakpoint, direction],

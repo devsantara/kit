@@ -50,7 +50,7 @@ function FormCheckboxSingleItem({
   const isDisabled = fieldSet?.disabled || disabled;
 
   function handleCheckedChange(checked: boolean) {
-    field.handleChange(checked === true);
+    field.handleChange(checked);
   }
 
   const checkbox = (

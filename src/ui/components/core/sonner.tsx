@@ -5,12 +5,13 @@ import {
   OctagonXIcon,
   Loader2Icon,
 } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import {
   Toaster as RootToaster,
   type ToasterProps,
   toast as baseToast,
 } from 'sonner';
+
+import { useTheme, type Theme } from '~/ui/styles/theme';
 
 const toast = baseToast;
 
@@ -19,7 +20,8 @@ function Toaster({ ...props }: ToasterProps) {
 
   return (
     <RootToaster
-      theme={theme as ToasterProps['theme']}
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      theme={theme as Theme}
       className="toaster group"
       icons={{
         success: <CircleCheckIcon className="size-4" />,

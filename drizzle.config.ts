@@ -3,6 +3,7 @@ import 'dotenv/config';
 import { defineConfig } from 'drizzle-kit';
 
 import { getLocalCloudflareD1Path } from './src/lib/database/utils';
+import { drizzleEnv } from './src/lib/env/drizzle';
 
 const DBEnvironments = ['local', 'remote'] as const;
 type DBEnvironment = (typeof DBEnvironments)[number];
@@ -11,7 +12,6 @@ interface DBConfig {
   config: ReturnType<typeof defineConfig>;
 }
 
-const DB_ENV = process.env.DB_ENV as DBEnvironment;
 const OUT_DIR = './src/lib/database/migrations';
 const SCHEMA_DIR = './src/lib/database/schema';
 
@@ -59,7 +59,7 @@ const ENVIRONMENTS: Record<DBEnvironment, DBConfig> = {
   },
 };
 
-const activeConfig = ENVIRONMENTS[DB_ENV];
+const activeConfig = ENVIRONMENTS[drizzleEnv.DB_ENV];
 
 if (!activeConfig) {
   throw new Error(
