@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 
-import { authSearchParamsSchema } from '~/modules/auth/auth.schema';
+import { authSearchParamsSchema } from '~/modules/auth/auth.search';
 import { authGuestGuard } from '~/modules/auth/auth.utils';
 
 export const Route = createFileRoute('/auth')({

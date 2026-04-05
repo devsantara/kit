@@ -1,5 +1,6 @@
 import * as z from 'zod/v4';
 
+/** Search params for `/auth`. */
 export const authSearchParamsSchema = z.object({
   /**
    * Path of the protected page the user was trying to access before being redirected to auth.
