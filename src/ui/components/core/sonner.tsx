@@ -11,7 +11,7 @@ import {
   toast as baseToast,
 } from 'sonner';
 
-import { useTheme, type Theme } from '~/ui/styles/theme';
+import { useTheme } from '~/ui/styles/theme';
 
 const toast = baseToast;
 
@@ -21,7 +21,7 @@ function Toaster({ ...props }: ToasterProps) {
   return (
     <RootToaster
       // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-      theme={theme as Theme}
+      theme={theme as ToasterProps['theme']}
       className="toaster group"
       icons={{
         success: <CircleCheckIcon className="size-4" />,
