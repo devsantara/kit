@@ -60,13 +60,5 @@ const ENVIRONMENTS: Record<DBEnvironment, DBConfig> = {
 };
 
 const activeConfig = ENVIRONMENTS[drizzleEnv.DB_ENV];
-
-if (!activeConfig) {
-  throw new Error(
-    `Invalid DB_ENV value. Expected one of ${DBEnvironments.join(', ')}. Please set the DB_ENV environment variable accordingly.`,
-  );
-}
-
 console.info(`Running Drizzle config in ${activeConfig.name} mode`);
-
 export default activeConfig.config;

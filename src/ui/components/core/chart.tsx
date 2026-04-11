@@ -61,9 +61,10 @@ function ChartContainer({
 }) {
   const uniqueId = React.useId();
   const chartId = `chart-${id ?? uniqueId.replace(/:/g, '')}`;
+  const value = React.useMemo(() => ({ config }), [config]);
 
   return (
-    <ChartContext.Provider value={{ config }}>
+    <ChartContext.Provider value={value}>
       <div
         data-slot="chart"
         data-chart={chartId}
@@ -215,10 +216,10 @@ function ChartTooltipContent({
                   indicator === 'dot' && 'items-center',
                 )}
               >
-                {formatter && item?.value !== undefined && item.name ? (
+                {formatter && item.value !== undefined && item.name ? (
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
-                  <>
+                  <React.Fragment>
                     {itemConfig?.icon ? (
                       <itemConfig.icon />
                     ) : (
@@ -263,7 +264,7 @@ function ChartTooltipContent({
                         </span>
                       )}
                     </div>
-                  </>
+                  </React.Fragment>
                 )}
               </div>
             );
