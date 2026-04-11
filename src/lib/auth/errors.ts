@@ -64,6 +64,5 @@ export function getAuthErrorMessage(code: keyof AuthErrors | (string & {})) {
     PASSWORD_ALREADY_SET: m.auth_error_base_password_already_set(),
   };
 
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   return AUTH_ERROR_CODES[code as keyof AuthErrors] as string | undefined;
 }

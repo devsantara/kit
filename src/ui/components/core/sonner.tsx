@@ -20,7 +20,6 @@ function Toaster({ ...props }: ToasterProps) {
 
   return (
     <RootToaster
-      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       theme={theme as ToasterProps['theme']}
       className="toaster group"
       icons={{

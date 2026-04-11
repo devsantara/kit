@@ -90,11 +90,9 @@ export function useMediaQuery<TInitialValue extends boolean | undefined>(
       );
 
       function onChangeMediaQuery(event: MediaQueryListEvent) {
-        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
         setIsMatches(event.matches as TInitialValue);
       }
       mediaQuery.addEventListener('change', onChangeMediaQuery);
-      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       setIsMatches(mediaQuery.matches as TInitialValue);
       return () => mediaQuery.removeEventListener('change', onChangeMediaQuery);
     },

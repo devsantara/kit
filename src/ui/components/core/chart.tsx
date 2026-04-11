@@ -1,8 +1,3 @@
-// oxlint-disable typescript/no-unnecessary-type-arguments
-// oxlint-disable typescript/restrict-template-expressions
-// oxlint-disable typescript/no-unsafe-type-assertion
-// oxlint-disable typescript/no-unsafe-argument
-
 import * as React from 'react';
 import * as RechartsPrimitive from 'recharts';
 import type { TooltipValueType } from 'recharts';
@@ -156,6 +151,7 @@ function ChartTooltipContent({
     }
 
     const [item] = payload;
+    // oxlint-disable-next-line typescript/restrict-template-expressions
     const key = `${labelKey ?? item?.dataKey ?? item?.name ?? 'value'}`;
     const itemConfig = getPayloadConfigFromPayload(config, item, key);
     const value =
@@ -204,6 +200,7 @@ function ChartTooltipContent({
         {payload
           .filter((item) => item.type !== 'none')
           .map((item, index) => {
+            // oxlint-disable-next-line typescript/restrict-template-expressions
             const key = `${nameKey ?? item.name ?? item.dataKey ?? 'value'}`;
             const itemConfig = getPayloadConfigFromPayload(config, item, key);
             const indicatorColor = color ?? item.payload?.fill ?? item.color;
@@ -303,6 +300,7 @@ function ChartLegendContent({
       {payload
         .filter((item) => item.type !== 'none')
         .map((item, index) => {
+          // oxlint-disable-next-line typescript/restrict-template-expressions
           const key = `${nameKey ?? item.dataKey ?? 'value'}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
 
