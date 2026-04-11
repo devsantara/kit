@@ -28,7 +28,7 @@ function RouteComponent() {
     toast.success(m.auth_sign_out_success_title(), {
       description: m.auth_sign_out_success_description(),
     });
-    navigate({ to: '/' });
+    await navigate({ to: '/' });
   }
 
   return (

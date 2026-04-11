@@ -4,6 +4,8 @@ import {
 } from 'next-themes';
 import * as React from 'react';
 
+export type Theme = 'light' | 'dark' | 'system';
+
 /**
  * Theme provider component that wraps the application
  * to configures the next-themes provider.

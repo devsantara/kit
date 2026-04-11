@@ -56,9 +56,10 @@ function ChartContainer({
 }) {
   const uniqueId = React.useId();
   const chartId = `chart-${id ?? uniqueId.replace(/:/g, '')}`;
+  const value = React.useMemo(() => ({ config }), [config]);
 
   return (
-    <ChartContext.Provider value={{ config }}>
+    <ChartContext.Provider value={value}>
       <div
         data-slot="chart"
         data-chart={chartId}
@@ -150,6 +151,7 @@ function ChartTooltipContent({
     }
 
     const [item] = payload;
+    // oxlint-disable-next-line typescript/restrict-template-expressions
     const key = `${labelKey ?? item?.dataKey ?? item?.name ?? 'value'}`;
     const itemConfig = getPayloadConfigFromPayload(config, item, key);
     const value =
@@ -198,6 +200,7 @@ function ChartTooltipContent({
         {payload
           .filter((item) => item.type !== 'none')
           .map((item, index) => {
+            // oxlint-disable-next-line typescript/restrict-template-expressions
             const key = `${nameKey ?? item.name ?? item.dataKey ?? 'value'}`;
             const itemConfig = getPayloadConfigFromPayload(config, item, key);
             const indicatorColor = color ?? item.payload?.fill ?? item.color;
@@ -210,10 +213,10 @@ function ChartTooltipContent({
                   indicator === 'dot' && 'items-center',
                 )}
               >
-                {formatter && item?.value !== undefined && item.name ? (
+                {formatter && item.value !== undefined && item.name ? (
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
-                  <>
+                  <React.Fragment>
                     {itemConfig?.icon ? (
                       <itemConfig.icon />
                     ) : (
@@ -258,7 +261,7 @@ function ChartTooltipContent({
                         </span>
                       )}
                     </div>
-                  </>
+                  </React.Fragment>
                 )}
               </div>
             );
@@ -297,6 +300,7 @@ function ChartLegendContent({
       {payload
         .filter((item) => item.type !== 'none')
         .map((item, index) => {
+          // oxlint-disable-next-line typescript/restrict-template-expressions
           const key = `${nameKey ?? item.dataKey ?? 'value'}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
 

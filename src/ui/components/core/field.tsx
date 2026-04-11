@@ -22,8 +22,10 @@ function FieldSet({
       ? (parentFieldSetState?.disabled ?? false)
       : disabled;
 
+  const value = React.useMemo(() => ({ disabled: isDisabled }), [isDisabled]);
+
   return (
-    <FieldSetContext value={{ disabled: isDisabled }}>
+    <FieldSetContext value={value}>
       <fieldset
         data-slot="field-set"
         disabled={isDisabled}
@@ -196,7 +198,7 @@ function FieldError({
   errors,
   ...props
 }: React.ComponentProps<'div'> & {
-  errors?: Array<{ message?: string } | undefined>;
+  errors?: ({ message?: string } | undefined)[];
 }) {
   const content = React.useMemo(() => {
     if (children) {
@@ -211,7 +213,7 @@ function FieldError({
       ...new Map(errors.map((error) => [error?.message, error])).values(),
     ];
 
-    if (uniqueErrors?.length === 1) {
+    if (uniqueErrors.length === 1) {
       return uniqueErrors[0]?.message;
     }
 

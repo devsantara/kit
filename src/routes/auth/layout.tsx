@@ -6,7 +6,7 @@ import { authGuestGuard } from '~/modules/auth/auth.utils';
 
 export const Route = createFileRoute('/auth')({
   validateSearch: zodValidator(authSearchParamsSchema),
-  beforeLoad: async () => await authGuestGuard(),
+  beforeLoad: async () => authGuestGuard(),
   component: RouteComponent,
 });
 
