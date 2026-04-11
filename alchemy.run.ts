@@ -122,6 +122,7 @@ const kvStore = await KVNamespace('kv', {
 /** Provision a TanStack Start worker for the application */
 export const worker = await TanStackStart('website', {
   adopt: true,
+  wrangler: { main: 'src/entry.server.ts' },
   observability: isProductionStage(app) ? { enabled: true } : undefined,
   url: isProductionStage(app) ? false : true,
   domains: getDomain(app),

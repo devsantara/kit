@@ -48,7 +48,13 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       alchemy({ viteEnvironment: { name: 'ssr' } }),
       tailwindcss(),
       tanstackDevtools(),
-      tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
+      tanstackStart({
+        srcDirectory: 'src',
+        router: { routeToken: 'layout' },
+        start: { entry: 'entry.start.ts' },
+        server: { entry: 'entry.server.ts' },
+        client: { entry: 'entry.client.tsx' },
+      }),
       // React's vite plugin must come after start's vite plugin
       viteReact(),
       babel({ presets: [reactCompilerPreset()] }),
