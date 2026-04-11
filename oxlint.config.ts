@@ -292,7 +292,7 @@ export default defineConfig({
     },
     {
       // Only allow default export in reserved files
-      files: ['src/server.ts'],
+      files: ['src/entry.server.ts'],
       plugins: ['import'],
       rules: {
         'import/no-default-export': 'off',
