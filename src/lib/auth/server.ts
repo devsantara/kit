@@ -109,7 +109,7 @@ export const authServer = betterAuth({
     },
   },
   hooks: {
-    // oxlint-disable-next-line require-await
+    // oxlint-disable-next-line typescript/require-await
     after: createAuthMiddleware(async (ctx) => {
       const response = ctx.context.returned;
       if (!(response instanceof APIError)) {
