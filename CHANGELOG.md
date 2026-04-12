@@ -1,5 +1,51 @@
 # Changelog
 
+## [0.4.3](https://github.com/devsantara/kit/compare/v0.4.2...v0.4.3) (2026-03-24)
+
+### Continuous Integration
+
+* **release:** migrate to release-it ([#81](https://github.com/devsantara/kit/issues/81)) ([3ae8d87](https://github.com/devsantara/kit/commit/3ae8d87ef946a78684b601514c060e009c676906))
+
+## [0.4.2](https://github.com/devsantara/kit/compare/v0.4.1...v0.4.2) (2026-03-24)
+
+### Chores
+
+- **agent:** add shadcn skills ([5f9b83d](https://github.com/devsantara/kit/commit/5f9b83d))
+- **devtool:** add tanstack form devtool ([067ce4b](https://github.com/devsantara/kit/commit/067ce4b))
+- **vite:** add devtools ([067ce4b](https://github.com/devsantara/kit/commit/067ce4b))
+- **agent:** remove claude skills ([c5bc771](https://github.com/devsantara/kit/commit/c5bc771))
+- **bump:** update node and pnpm ([067ce4b](https://github.com/devsantara/kit/commit/067ce4b))
+- **bump:** update dependencies ([067ce4b](https://github.com/devsantara/kit/commit/067ce4b))
+
+## [0.4.1](https://github.com/devsantara/kit/compare/v0.4.0...v0.4.1) (2026-03-03)
+
+### Bug Fixes
+
+- **ci:** missing env on preview cleanup workflow ([6b08d97](https://github.com/devsantara/kit/commit/6b08d97))
+
+## [0.4.0](https://github.com/devsantara/kit/compare/0.3.0...v0.4.0) (2026-03-02)
+
+### Features
+
+- **seo:** using @devsantara/head to manage head ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **db:** setup cloudflare d1 with drizzle-orm ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **db:** add drizzle studio for local and remote db ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **auth:** setup authentication with better-auth ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **form:** setup tanstack form ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **ui:** introduce new ui style ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **i18n:** add markup and text direction support ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+
+### Bug Fixes
+
+- **ui:** use text-pretty for title and description ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **ui:** invalid switch checked and unchecked selector ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+
+### Chores
+
+- **bump:** update dependencies ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **agent:** add basic skills ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+- **release:** migrate to changesets ([eaa7b64](https://github.com/devsantara/kit/commit/eaa7b64))
+
 ## [0.3.0](https://github.com/devsantara/kit/compare/0.2.0...0.3.0) (2026-01-16)
 
 ### Features

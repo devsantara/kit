@@ -8,9 +8,9 @@ export function FormRoot({
 }: React.ComponentPropsWithRef<'form'>) {
   const form = useFormContext();
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
-    form.handleSubmit();
+    await form.handleSubmit();
   }
 
   return (

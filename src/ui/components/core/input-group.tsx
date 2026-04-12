@@ -47,14 +47,14 @@ function InputGroupAddon({
   ...props
 }: React.ComponentProps<'div'> & VariantProps<typeof inputGroupAddonVariants>) {
   return (
-    // oxlint-disable-next-line click-events-have-key-events no-static-element-interactions
+    // oxlint-disable-next-line click-events-have-key-events
     <div
       role="group"
       data-slot="input-group-addon"
       data-align={align}
       className={cn(inputGroupAddonVariants({ align }), className)}
       onClick={(e) => {
-        if ((e.target as HTMLElement).closest('button')) {
+        if (e.target instanceof HTMLElement && e.target.closest('button')) {
           return;
         }
         e.currentTarget.parentElement?.querySelector('input')?.focus();

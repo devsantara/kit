@@ -5,12 +5,13 @@ import {
   OctagonXIcon,
   Loader2Icon,
 } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import {
   Toaster as RootToaster,
   type ToasterProps,
   toast as baseToast,
 } from 'sonner';
+
+import { useTheme } from '~/ui/styles/theme';
 
 const toast = baseToast;
 
@@ -36,7 +37,13 @@ function Toaster({ ...props }: ToasterProps) {
           '--border-radius': 'var(--radius)',
         } as React.CSSProperties
       }
-      toastOptions={{ classNames: { toast: 'cn-toast' } }}
+      toastOptions={{
+        classNames: {
+          toast: 'cn-toast',
+          title: 'text-pretty',
+          description: 'text-pretty',
+        },
+      }}
       {...props}
     />
   );

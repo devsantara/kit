@@ -6,15 +6,12 @@
     "src/**/*.tsx",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx",
-    "vite.config.ts",
-    "alchemy.run.ts",
-    "eslint.config.ts",
-    "commitlint.config.ts"
+    "*.config.ts",
+    "alchemy.run.ts"
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {
     /* Base options: */
-    "baseUrl": ".",
     "target": "ES2022",
     "jsx": "react-jsx",
     "module": "ESNext",

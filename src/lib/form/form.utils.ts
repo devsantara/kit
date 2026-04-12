@@ -46,6 +46,6 @@ export function checkIsFormError(errors: unknown): errors is FormError {
     typeof errors === 'object' &&
     errors !== null &&
     '_tag' in errors &&
-    errors?._tag === FormErrorSymbol
+    errors._tag === FormErrorSymbol
   );
 }

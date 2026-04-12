@@ -1,7 +1,9 @@
 {
-  "$schema": "https://unpkg.com/release-it@19/schema/release-it.json",
+  "$schema": "https://unpkg.com/release-it/schema/release-it.json",
   "git": {
-    "commitMessage": "chore(release): v${version}"
+    "commitMessage": "chore(release): v${version}",
+    "requireBranch": "main",
+    "requireCommits": true
   },
   "github": {
     "release": true,
@@ -36,8 +38,7 @@
           },
           {
             "type": "style",
-            "section": "Formatting Styles",
-            "hidden": true
+            "section": "Formatting Styles"
           },
           {
             "type": "refactor",
@@ -45,7 +46,7 @@
           },
           {
             "type": "perf",
-            "section": "Performance"
+            "section": "Performance Improvements"
           },
           {
             "type": "test",
