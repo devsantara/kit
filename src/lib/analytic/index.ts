@@ -1,9 +1,10 @@
 import { usePostHog } from '@posthog/react';
 import type { CaptureOptions } from 'posthog-js';
+import type { EventMessage } from 'posthog-node';
+import * as React from 'react';
 
-import { AnalyticEvent } from '~/lib/analytic/events';
-import type { AnalyticProperty } from '~/lib/analytic/properties';
-import type { AnalyticEventMessage } from '~/lib/analytic/types';
+import { type AnalyticEvent } from '~/lib/analytic/events';
+import type { AnalyticCaptureEventProps } from '~/lib/analytic/types';
 import { createPosthogClient } from '~/lib/posthog/server';
 
 /**
@@ -15,15 +16,15 @@ import { createPosthogClient } from '~/lib/posthog/server';
 export function useAnalytic() {
   const posthog = usePostHog();
 
-  function capture<TEvent extends AnalyticEvent & keyof AnalyticProperty>(
-    event: TEvent,
-    properties: AnalyticProperty[TEvent],
-    options?: CaptureOptions,
-  ) {
-    return posthog.capture(event, properties, options);
-  }
-
-  return { ...posthog, capture };
+  return React.useRef({
+    capture<TEvent extends AnalyticEvent>({
+      event,
+      properties,
+      ...options
+    }: AnalyticCaptureEventProps<TEvent, CaptureOptions>) {
+      return posthog.capture(event, properties, options);
+    },
+  }).current;
 }
 
 /**
@@ -36,23 +37,29 @@ export function useAnalytic() {
 export function createAnalyticClient() {
   const posthog = createPosthogClient();
 
-  function captureImmediate<
-    TEvent extends AnalyticEvent & keyof AnalyticProperty,
-  >(props: AnalyticEventMessage<TEvent>) {
-    return posthog.captureImmediate({
-      event: props.event,
-      properties: props.properties || undefined,
-    });
+  /** Capture an event immediately (synchronously) */
+  function captureImmediate<TEvent extends AnalyticEvent>({
+    event,
+    properties,
+    ...props
+  }: AnalyticCaptureEventProps<
+    TEvent,
+    Omit<EventMessage, 'event' | 'properties'>
+  >) {
+    return posthog.captureImmediate({ event, properties, ...props });
   }
 
-  function capture<TEvent extends AnalyticEvent & keyof AnalyticProperty>(
-    props: AnalyticEventMessage<TEvent>,
-  ) {
-    return posthog.capture({
-      event: props.event,
-      properties: props.properties || undefined,
-    });
+  /** Capture an event manually (asynchronously) */
+  function capture<TEvent extends AnalyticEvent>({
+    event,
+    properties,
+    ...props
+  }: AnalyticCaptureEventProps<
+    TEvent,
+    Omit<EventMessage, 'event' | 'properties'>
+  >) {
+    return posthog.capture({ event, properties, ...props });
   }
 
-  return { ...posthog, capture, captureImmediate };
+  return { capture, captureImmediate };
 }

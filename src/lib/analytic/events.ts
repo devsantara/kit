@@ -14,4 +14,6 @@
  *
  * @see {@link https://posthog.com/docs/product-analytics/best-practices#2-implement-a-naming-convention}
  */
-export enum AnalyticEvent {}
+export enum AnalyticEvent {
+  EVENT = 'category:object_action' /** Example */,
+}
