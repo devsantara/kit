@@ -5,6 +5,8 @@ import { authServer } from '~/lib/auth/server';
 
 /**
  * A server function to get the current authenticated user and session.
+ *
+ * @returns The current session with user, or `null` if no session exists.
  */
 export const getSession = createServerFn({ method: 'GET' }).handler(
   async () => {
@@ -25,6 +27,9 @@ export const getSession = createServerFn({ method: 'GET' }).handler(
 /**
  * A server function to get the current authenticated user and session.
  * Unlike `getSession`, this function throws if no user is authenticated.
+ *
+ * @returns The current session with user.
+ * @throws {Error} If no authenticated session is found (`"Unauthorized"`).
  */
 export const ensureSession = createServerFn({ method: 'GET' }).handler(
   async () => {
