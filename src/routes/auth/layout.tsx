@@ -1,12 +1,15 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 
+import { getSession } from '~/modules/auth/auth.fn';
 import { authSearchParamsSchema } from '~/modules/auth/auth.search';
-import { authGuestGuard } from '~/modules/auth/auth.utils';
 
 export const Route = createFileRoute('/auth')({
   validateSearch: zodValidator(authSearchParamsSchema),
-  beforeLoad: async () => authGuestGuard(),
+  beforeLoad: async () => {
+    const session = await getSession();
+    if (session) throw redirect({ to: '/app', replace: true });
+  },
   component: RouteComponent,
 });
 

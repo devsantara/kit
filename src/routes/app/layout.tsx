@@ -1,13 +1,18 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 
-import { authUserGuard } from '~/modules/auth/auth.utils';
+import { getSession } from '~/modules/auth/auth.fn';
 
 export const Route = createFileRoute('/app')({
   beforeLoad: async ({ location }) => {
-    const user = await authUserGuard({
-      redirectBack: location.pathname,
-    });
-    return { user };
+    const session = await getSession();
+    if (!session) {
+      throw redirect({
+        to: '/auth',
+        replace: true,
+        search: { redirectBack: location.pathname },
+      });
+    }
+    return { user: session.user };
   },
   component: RouteComponent,
 });
