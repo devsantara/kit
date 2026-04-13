@@ -1,3 +1,7 @@
+autoInstallPeers: true
+engineStrict: true
+nodeLinker: 'isolated'
+strictPeerDependencies: false
 onlyBuiltDependencies:
   - esbuild
   - sharp
