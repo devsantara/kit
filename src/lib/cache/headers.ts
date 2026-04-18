@@ -1,6 +1,8 @@
 import type { CacheControlDirectives } from '~/lib/cache/types';
 
+/** Standard Cache-Control header name */
 export const CACHE_CONTROL_HEADER = 'Cache-Control';
+/** Cloudflare CDN-specific cache control header */
 export const CF_CACHE_CONTROL_HEADER = 'CDN-Cache-Control';
 
 /**
