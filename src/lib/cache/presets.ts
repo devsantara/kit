@@ -15,7 +15,7 @@ export class CachePreset {
    * is set because CDN-level storage of these responses is always wrong.
    *
    * @example
-   * createCacheMiddleware(CachePreset.noStore())
+   * CachePreset.noStore()
    * // Cache-Control: no-store
    */
   static noStore(): CacheOptions {
@@ -38,7 +38,7 @@ export class CachePreset {
    * every request negates the benefit of a CDN.
    *
    * @example
-   * createCacheMiddleware(CachePreset.noCache())
+   * CachePreset.noCache()
    * // Cache-Control: no-cache
    */
   static noCache(): CacheOptions {
@@ -62,7 +62,7 @@ export class CachePreset {
    * Cloudflare must not store private responses.
    *
    * @example
-   * createCacheMiddleware(CachePreset.private())
+   * CachePreset.private()
    * // Cache-Control: private, max-age=300, stale-while-revalidate=60
    */
   static private(): CacheOptions {
@@ -90,7 +90,7 @@ export class CachePreset {
    * silently without interrupting users.
    *
    * @example
-   * createCacheMiddleware(CachePreset.shortLived())
+   * CachePreset.shortLived()
    * // Cache-Control: public, max-age=60, stale-while-revalidate=30
    * // CDN-Cache-Control: s-maxage=300, stale-while-revalidate=60
    */
@@ -120,7 +120,7 @@ export class CachePreset {
    * visitors and crawlers while still picking up deploys within minutes.
    *
    * @example
-   * createCacheMiddleware(CachePreset.standard())
+   * CachePreset.standard()
    * // Cache-Control: public, max-age=300, stale-while-revalidate=60
    * // CDN-Cache-Control: s-maxage=3600, stale-while-revalidate=300
    */
@@ -151,7 +151,7 @@ export class CachePreset {
    * CDN ensures deploys propagate gradually without a hard cache break.
    *
    * @example
-   * createCacheMiddleware(CachePreset.longLived())
+   * CachePreset.longLived()
    * // Cache-Control: public, max-age=86400, stale-while-revalidate=3600
    * // CDN-Cache-Control: s-maxage=604800, stale-while-revalidate=86400
    */
@@ -183,7 +183,7 @@ export class CachePreset {
    * busting is handled automatically — no manual purge is needed.
    *
    * @example
-   * createCacheMiddleware(CachePreset.immutable())
+   * CachePreset.immutable()
    * // Cache-Control: public, max-age=31536000, immutable
    * // CDN-Cache-Control: s-maxage=31536000, immutable
    */
