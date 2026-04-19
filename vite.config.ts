@@ -15,8 +15,9 @@ export default async function viteConfig({ mode }: ConfigEnv) {
    */
   Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
   /** Validate env's schema on build */
-  const { serverEnv } = await import('./src/lib/env/server');
+  await import('./src/lib/env/server');
   const { clientEnv } = await import('./src/lib/env/client');
+  const { posthogCliEnv } = await import('./src/lib/env/posthog-cli');
 
   return defineConfig({
     server: { port: 3000 },
@@ -86,9 +87,9 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       clientEnv.VITE_PUBLIC_POSTHOG_ENABLED
         ? [
             posthogVitePlugin({
-              host: serverEnv.POSTHOG_CLI_HOST,
-              projectId: serverEnv.POSTHOG_CLI_PROJECT_ID,
-              personalApiKey: serverEnv.POSTHOG_CLI_TOKEN,
+              host: posthogCliEnv.POSTHOG_CLI_HOST,
+              projectId: posthogCliEnv.POSTHOG_CLI_PROJECT_ID,
+              personalApiKey: posthogCliEnv.POSTHOG_CLI_TOKEN,
               sourcemaps: {
                 enabled: true,
                 deleteAfterUpload: true,
