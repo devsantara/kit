@@ -1,4 +1,5 @@
 import { paraglideVitePlugin as paraglide } from '@inlang/paraglide-js';
+import posthogVitePlugin from '@posthog/rollup-plugin';
 import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite';
 import { devtools as tanstackDevtools } from '@tanstack/devtools-vite';
@@ -7,8 +8,6 @@ import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
 import alchemy from 'alchemy/cloudflare/tanstack-start';
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
 
-import { posthog } from './src/lib/posthog/plugin';
-
 export default async function viteConfig({ mode }: ConfigEnv) {
   /**
    * Environment Variables aren't loaded automatically
@@ -16,8 +15,8 @@ export default async function viteConfig({ mode }: ConfigEnv) {
    */
   Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
   /** Validate env's schema on build */
-  await import('./src/lib/env/server');
-  await import('./src/lib/env/client');
+  const { serverEnv } = await import('./src/lib/env/server');
+  const { clientEnv } = await import('./src/lib/env/client');
 
   return defineConfig({
     server: { port: 3000 },
@@ -26,13 +25,12 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       tsconfigPaths: true,
     },
     devtools: {
-      enabled: process.env.VITE_DEVTOOLS_ENABLED === 'true',
+      enabled: clientEnv.VITE_DEVTOOLS_ENABLED,
     },
     build: {
       target: 'esnext',
       minify: true,
       cssMinify: true,
-      sourcemap: true,
       rolldownOptions: {
         external: ['node:async_hooks', 'cloudflare:workers'],
         output: {
@@ -85,11 +83,19 @@ export default async function viteConfig({ mode }: ConfigEnv) {
           },
         ],
       }),
-      posthog({
-        host: process.env.POSTHOG_CLI_HOST,
-        projectId: process.env.POSTHOG_CLI_PROJECT_ID,
-        personalApiKey: process.env.POSTHOG_CLI_TOKEN,
-      }),
+      clientEnv.VITE_PUBLIC_POSTHOG_ENABLED
+        ? [
+            posthogVitePlugin({
+              host: serverEnv.POSTHOG_CLI_HOST,
+              projectId: serverEnv.POSTHOG_CLI_PROJECT_ID,
+              personalApiKey: serverEnv.POSTHOG_CLI_TOKEN,
+              sourcemaps: {
+                enabled: true,
+                deleteAfterUpload: true,
+              },
+            }),
+          ]
+        : [],
     ],
   });
 }
