@@ -10,8 +10,8 @@ permissions:
   contents: write
   id-token: write
 env:
-  NODE_VERSION: '24.14.0'
-  PNPM_VERSION: '10.32.1'
+  NODE_VERSION: '24.15.0'
+  PNPM_VERSION: '10.33.2'
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -32,9 +32,9 @@ jobs:
           HUSKY: 0
         run: |
           pnpm add --global \
-            release-it@19.2.4 \
-            @release-it/conventional-changelog@10.0.6 \
-            conventional-changelog-conventionalcommits@9.3.0
+            release-it@20.0.1 \
+            @release-it/conventional-changelog@11.0.0 \
+            conventional-changelog-conventionalcommits@9.3.1
       - name: Initialize Git
         run: |
           git config --global user.name "github-actions[bot]"
