@@ -1,5 +1,50 @@
 # Changelog
 
+## [0.5.0](https://github.com/devsantara/kit/compare/v0.4.3...v0.5.0) (2026-05-02)
+
+### Features
+
+* **analytic:** add posthog wrapper for analytic capture ([#60](https://github.com/devsantara/kit/issues/60)) ([278b014](https://github.com/devsantara/kit/commit/278b014fe06359b5fbf690ee9501cfb5db36caf7))
+* **cache:** add cache control middleware lib ([#96](https://github.com/devsantara/kit/issues/96)) ([6e5cabd](https://github.com/devsantara/kit/commit/6e5cabdf1cc2e4286a01610ee3b678aa5ba3393e))
+
+### Bug Fixes
+
+* **ci:** nodejs and pnpm version mismatch ([a3c9b77](https://github.com/devsantara/kit/commit/a3c9b7784420e857a604ece44839f9b2b50bd892))
+* **favicon:** image size is too small ([#88](https://github.com/devsantara/kit/issues/88)) ([6ad2480](https://github.com/devsantara/kit/commit/6ad248031e9fa9359a6078311cc196f1d32c6e21))
+* **posthog:** cli env only used at build time ([#98](https://github.com/devsantara/kit/issues/98)) ([8b4e270](https://github.com/devsantara/kit/commit/8b4e270bb6e0a23c4097146a78491e4866962410))
+
+### Formatting Styles
+
+* **oxc:** remove old config files ([#91](https://github.com/devsantara/kit/issues/91)) ([ed8fb40](https://github.com/devsantara/kit/commit/ed8fb401adc1dda573a2978cf2602c134fa95af3))
+
+### Code Refactors
+
+* **auth:** simplify auth error and guard ([#94](https://github.com/devsantara/kit/issues/94)) ([877ba0e](https://github.com/devsantara/kit/commit/877ba0ed4cec1b70936be77ef58e6100a0b23476))
+* **oxc:** use config ts file instead of json ([#90](https://github.com/devsantara/kit/issues/90)) ([3e1631f](https://github.com/devsantara/kit/commit/3e1631f84a0d77e410d9ea2473e1045984ff3283))
+* **search:** add search params schema file ([#85](https://github.com/devsantara/kit/issues/85)) ([4927458](https://github.com/devsantara/kit/commit/492745874267cc270c6dc318c4ab3f5392955b8b))
+* **start:** rename entry files ([#92](https://github.com/devsantara/kit/issues/92)) ([d85f77e](https://github.com/devsantara/kit/commit/d85f77e4c7711ab45e1f83ad3295f05379c002b9))
+
+### Build System
+
+* **posthog:** only generate and upload sourcemap when enabled ([#97](https://github.com/devsantara/kit/issues/97)) ([4d3f80b](https://github.com/devsantara/kit/commit/4d3f80ba9f4d479f8f923a0236bef639e44a356b))
+* **storybook:** use build-in tsconfig path resolve ([ccf1afd](https://github.com/devsantara/kit/commit/ccf1afd73b970cc63517f9f211d39aaf65fcb31b))
+
+### Continuous Integration
+
+* **github:** using workflow_dispatch to trigger release ([#84](https://github.com/devsantara/kit/issues/84)) ([330c729](https://github.com/devsantara/kit/commit/330c7291ff97cc8abff707943bb4f5530d964423))
+
+### Chores
+
+* **bettter-auth:** update deps lock file ([#87](https://github.com/devsantara/kit/issues/87)) ([960dd18](https://github.com/devsantara/kit/commit/960dd18ab9d9a1ada41e421b499ac792e26ba996))
+* **bump:** upgrade cloudflare infra deps ([#86](https://github.com/devsantara/kit/issues/86)) ([ae0de25](https://github.com/devsantara/kit/commit/ae0de25b699c311a53b7e2e25076f8caf6ea8330))
+* **bump:** upgrade dependencies ([#99](https://github.com/devsantara/kit/issues/99)) ([973c574](https://github.com/devsantara/kit/commit/973c574c0fd08c31e90e18fd476af5ae7d5a858d))
+* **lint:** use oxlint type aware ([#89](https://github.com/devsantara/kit/issues/89)) ([1e90047](https://github.com/devsantara/kit/commit/1e900476549f9af7adda85b0035e6690e5f09103))
+* **oxc:** use stable sort config from experimental ([e01273b](https://github.com/devsantara/kit/commit/e01273b16841701ed306ebe84ef10b2171ef1f2a))
+* **pnpm:** move npmrc config into pnpm workspace ([#95](https://github.com/devsantara/kit/issues/95)) ([afeea95](https://github.com/devsantara/kit/commit/afeea953b02956837675837060172a9d0debc649))
+* **vscode:** invalid oxc fmt config path ([ffa6585](https://github.com/devsantara/kit/commit/ffa6585cf9ab0748359967377ab99849723ae50b))
+* **vscode:** invalid oxfmt config path ([#93](https://github.com/devsantara/kit/issues/93)) ([e9aa471](https://github.com/devsantara/kit/commit/e9aa4716b52a80e73a2b1aada4d1582442a8fe06))
+* **vscode:** update deprecated typescript settings ([a4d81db](https://github.com/devsantara/kit/commit/a4d81dbfba7982d78dc3e425b5cfa2f6d4a262c8))
+
 ## [0.4.3](https://github.com/devsantara/kit/compare/v0.4.2...v0.4.3) (2026-03-24)
 
 ### Continuous Integration
