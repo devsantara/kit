@@ -44,20 +44,20 @@ export const authServer = betterAuth({
   }),
   secondaryStorage: {
     get: async (key) => {
-      return await kvStore.get(key);
+      return kvStore.get(key);
     },
     set: async (key, value, ttl) => {
-      if (!ttl) return await kvStore.put(key, value);
+      if (!ttl) return kvStore.put(key, value);
       // Cloudflare Workers KV has a minimum TTL of 60 seconds.
       // If the provided TTL is less than that, we set it to the minimum.
       let expirationTtl = ttl;
       if (expirationTtl < KV_STORE_MIN_TTL_IN_SECONDS) {
         expirationTtl = KV_STORE_MIN_TTL_IN_SECONDS;
       }
-      return await kvStore.put(key, value, { expirationTtl });
+      return kvStore.put(key, value, { expirationTtl });
     },
     delete: async (key) => {
-      return await kvStore.delete(key);
+      return kvStore.delete(key);
     },
   },
   plugins: [tanstackStartCookies()],
@@ -109,7 +109,7 @@ export const authServer = betterAuth({
     },
   },
   hooks: {
-    // oxlint-disable-next-line require-await
+    // oxlint-disable-next-line typescript/require-await
     after: createAuthMiddleware(async (ctx) => {
       const response = ctx.context.returned;
       if (!(response instanceof APIError)) {

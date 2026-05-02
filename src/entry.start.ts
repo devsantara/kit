@@ -1,13 +1,13 @@
 import { createMiddleware, createStart } from '@tanstack/react-start';
 
 const requestMiddleware = createMiddleware({ type: 'request' }).server(
-  function handler({ next }) {
+  async function handler({ next }) {
     return next();
   },
 );
 
 const functionMiddleware = createMiddleware({ type: 'function' }).server(
-  function handler({ next }) {
+  async function handler({ next }) {
     return next();
   },
 );

@@ -1,4 +1,10 @@
+autoInstallPeers: true
+engineStrict: true
+nodeLinker: 'isolated'
+strictPeerDependencies: false
 onlyBuiltDependencies:
   - esbuild
   - sharp
   - workerd
+overrides:
+  undici: 7.18.2

@@ -5,12 +5,13 @@ import {
   OctagonXIcon,
   Loader2Icon,
 } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import {
   Toaster as RootToaster,
   type ToasterProps,
   toast as baseToast,
 } from 'sonner';
+
+import { useTheme } from '~/ui/styles/theme';
 
 const toast = baseToast;
 

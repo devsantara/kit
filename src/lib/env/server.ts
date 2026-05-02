@@ -4,6 +4,7 @@ import * as z from 'zod/v4';
 /** Env schema for server bundle */
 export const serverEnv = createEnv({
   server: {
+    // Auth
     AUTH_SECRET: z.string(),
     AUTH_GITHUB_CLIENT_ID: z.string(),
     AUTH_GITHUB_CLIENT_SECRET: z.string(),

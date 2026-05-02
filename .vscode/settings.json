@@ -20,15 +20,15 @@
     "**/routeTree.gen.ts": true
   },
 
-  // Typescript
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.updateImportsOnFileMove.enabled": "prompt",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  // Javascript/Typescript
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.updateImportsOnFileMove.enabled": "prompt",
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "js/ts.preferences.preferTypeOnlyAutoImports": true,
 
   // Extension - Oxc
   "oxc.enable": true,
-  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "oxc.fmt.configPath": "oxfmt.config.ts",
 
   // Extension - Tailwind CSS
   "tailwindCSS.classAttributes": ["class", "className", "classNames"],

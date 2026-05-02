@@ -10,8 +10,8 @@ concurrency:
   group: deployment-production-${{ github.ref }}
   cancel-in-progress: false
 env:
-  NODE_VERSION: '24.14.0'
-  PNPM_VERSION: '10.32.1'
+  NODE_VERSION: '24.15.0'
+  PNPM_VERSION: '10.33.2'
   STAGE: 'production'
 jobs:
   deploy:
@@ -59,38 +59,3 @@ jobs:
           AUTH_GITHUB_CLIENT_SECRET: ${{ secrets.AUTH_GITHUB_CLIENT_SECRET }}
           AUTH_GOOGLE_CLIENT_ID: ${{ secrets.AUTH_GOOGLE_CLIENT_ID }}
           AUTH_GOOGLE_CLIENT_SECRET: ${{ secrets.AUTH_GOOGLE_CLIENT_SECRET }}
-  release:
-    needs:
-      - deploy
-    permissions:
-      contents: write
-      id-token: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6.0.1
-        with:
-          fetch-depth: 0
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
-          cache: true
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
-      - name: Install Dependencies
-        run: pnpm install --prefer-offline --frozen-lockfile
-        env:
-          HUSKY: 0
-      - name: Initialize Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      - name: Create Release
-        run: pnpm release --ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

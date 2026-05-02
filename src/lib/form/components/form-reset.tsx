@@ -9,7 +9,7 @@ export function FormReset({
 }: React.ComponentPropsWithRef<typeof Button>) {
   const form = useFormContext();
 
-  function handleReset(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleReset(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     form.reset();
   }

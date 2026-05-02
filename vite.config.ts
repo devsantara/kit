@@ -1,4 +1,5 @@
 import { paraglideVitePlugin as paraglide } from '@inlang/paraglide-js';
+import posthogVitePlugin from '@posthog/rollup-plugin';
 import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite';
 import { devtools as tanstackDevtools } from '@tanstack/devtools-vite';
@@ -6,8 +7,6 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
 import alchemy from 'alchemy/cloudflare/tanstack-start';
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
-
-import { posthog } from './src/lib/posthog/plugin';
 
 export default async function viteConfig({ mode }: ConfigEnv) {
   /**
@@ -17,7 +16,8 @@ export default async function viteConfig({ mode }: ConfigEnv) {
   Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
   /** Validate env's schema on build */
   await import('./src/lib/env/server');
-  await import('./src/lib/env/client');
+  const { clientEnv } = await import('./src/lib/env/client');
+  const { posthogCliEnv } = await import('./src/lib/env/posthog-cli');
 
   return defineConfig({
     server: { port: 3000 },
@@ -26,13 +26,12 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       tsconfigPaths: true,
     },
     devtools: {
-      enabled: process.env.VITE_DEVTOOLS_ENABLED === 'true',
+      enabled: clientEnv.VITE_DEVTOOLS_ENABLED,
     },
     build: {
       target: 'esnext',
       minify: true,
       cssMinify: true,
-      sourcemap: true,
       rolldownOptions: {
         external: ['node:async_hooks', 'cloudflare:workers'],
         output: {
@@ -48,7 +47,13 @@ export default async function viteConfig({ mode }: ConfigEnv) {
       alchemy({ viteEnvironment: { name: 'ssr' } }),
       tailwindcss(),
       tanstackDevtools(),
-      tanstackStart({ srcDirectory: 'src', router: { routeToken: 'layout' } }),
+      tanstackStart({
+        srcDirectory: 'src',
+        router: { routeToken: 'layout' },
+        start: { entry: 'entry.start.ts' },
+        server: { entry: 'entry.server.ts' },
+        client: { entry: 'entry.client.tsx' },
+      }),
       // React's vite plugin must come after start's vite plugin
       viteReact(),
       babel({ presets: [reactCompilerPreset()] }),
@@ -79,11 +84,19 @@ export default async function viteConfig({ mode }: ConfigEnv) {
           },
         ],
       }),
-      posthog({
-        host: process.env.POSTHOG_CLI_HOST,
-        projectId: process.env.POSTHOG_CLI_PROJECT_ID,
-        personalApiKey: process.env.POSTHOG_CLI_TOKEN,
-      }),
+      clientEnv.VITE_PUBLIC_POSTHOG_ENABLED
+        ? [
+            posthogVitePlugin({
+              host: posthogCliEnv.POSTHOG_CLI_HOST,
+              projectId: posthogCliEnv.POSTHOG_CLI_PROJECT_ID,
+              personalApiKey: posthogCliEnv.POSTHOG_CLI_TOKEN,
+              sourcemaps: {
+                enabled: true,
+                deleteAfterUpload: true,
+              },
+            }),
+          ]
+        : [],
     ],
   });
 }

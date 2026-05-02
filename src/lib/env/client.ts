@@ -7,6 +7,8 @@ import { coerceBoolean } from './utils';
 export const clientEnv = createEnv({
   clientPrefix: 'VITE_',
   client: {
+    // Devtools
+    VITE_DEVTOOLS_ENABLED: coerceBoolean().default(false),
     // Application
     VITE_PUBLIC_BASE_URL: z.url(),
     // PostHog
