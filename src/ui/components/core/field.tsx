@@ -1,22 +1,42 @@
-'use client';
-
 import { cva, type VariantProps } from 'class-variance-authority';
 import { useMemo } from 'react';
+import * as React from 'react';
 
 import { Label } from '~/ui/components/core/label';
 import { Separator } from '~/ui/components/core/separator';
 import { cn } from '~/ui/utils';
 
-function FieldSet({ className, ...props }: React.ComponentProps<'fieldset'>) {
+const FieldSetContext = React.createContext<{ disabled: boolean } | null>(null);
+
+function useFieldSet() {
+  return React.use(FieldSetContext);
+}
+
+function FieldSet({
+  className,
+  disabled,
+  ...props
+}: React.ComponentProps<'fieldset'>) {
+  const parentFieldSetState = useFieldSet();
+
+  const isDisabled =
+    parentFieldSetState?.disabled !== undefined
+      ? parentFieldSetState.disabled
+      : (disabled ?? false);
+
+  const value = React.useMemo(() => ({ disabled: isDisabled }), [isDisabled]);
+
   return (
-    <fieldset
-      data-slot="field-set"
-      className={cn(
-        'flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3',
-        className,
-      )}
-      {...props}
-    />
+    <FieldSetContext value={value}>
+      <fieldset
+        data-slot="field-set"
+        className={cn(
+          'flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3',
+          className,
+        )}
+        {...props}
+      />
+    </FieldSetContext>
   );
 }
 
@@ -235,4 +255,5 @@ export {
   FieldSet,
   FieldContent,
   FieldTitle,
+  useFieldSet,
 };
