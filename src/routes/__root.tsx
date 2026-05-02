@@ -22,6 +22,7 @@ import {
 } from '~/lib/i18n/runtime';
 import { PostHogProvider } from '~/lib/posthog/provider';
 import { Toaster } from '~/ui/components/core/sonner';
+import { TooltipProvider } from '~/ui/components/core/tooltip';
 import { ThemeProvider } from '~/ui/styles/theme';
 
 import appStylesheet from '~/ui/styles/app.css?url';
@@ -116,7 +117,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <ThemeProvider>
           <Toaster />
-          <PostHogProvider>{children}</PostHogProvider>
+          <PostHogProvider>
+            <TooltipProvider>{children}</TooltipProvider>
+          </PostHogProvider>
           <TanStackDevtools
             config={{ position: 'bottom-right' }}
             plugins={[tanstackRouterDevtools, tanstackFormDevtools]}
