@@ -228,9 +228,6 @@ importers:
       release-it:
         specifier: ^20.0.1
         version: 20.0.1(@types/node@25.6.0)
-      skills:
-        specifier: ^1.5.3
-        version: 1.5.3
       storybook:
         specifier: ^10.3.6
         version: 10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -6948,11 +6945,6 @@ packages:
   sirv@3.0.2:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
-
-  skills@1.5.3:
-    resolution: {integrity: sha512-lgZa7NvOGJA1WcwyqsOysO3ojMabq4R/NdQGNbry05y5ccDb/8CFed0HoSU9fvKfjuGbXSCVoV++4gcLMKAykQ==}
-    engines: {node: '>=18'}
-    hasBin: true
 
   slice-ansi@7.1.2:
     resolution: {integrity: sha512-iOBWFgUX7caIZiuutICxVgX1SdxwAVFFKwt1EvMYYec/NWO5meOJ6K5uQxhrYBdQJne4KxiqZc+KptFOWFSI9w==}
@@ -14542,10 +14534,6 @@ snapshots:
       '@polka/url': 1.0.0-next.29
       mrmime: 2.0.1
       totalist: 3.0.1
-
-  skills@1.5.3:
-    dependencies:
-      yaml: 2.8.3
 
   slice-ansi@7.1.2:
     dependencies:
