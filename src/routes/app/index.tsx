@@ -3,7 +3,7 @@ import { HomeIcon } from 'lucide-react';
 
 import { authClient } from '~/lib/auth/client';
 import { m } from '~/lib/i18n/messages';
-import { Button } from '~/ui/components/core/button';
+import { Button, buttonVariants } from '~/ui/components/core/button';
 import { Separator } from '~/ui/components/core/separator';
 import { toast } from '~/ui/components/core/sonner';
 
@@ -41,11 +41,12 @@ function RouteComponent() {
         <Separator className="my-3" />
 
         <div className="flex items-center justify-center gap-2">
-          <Button asChild size="icon" variant="outline">
-            <Link to="/">
-              <HomeIcon />
-            </Link>
-          </Button>
+          <Link
+            to="/"
+            className={buttonVariants({ variant: 'outline', size: 'icon' })}
+          >
+            <HomeIcon />
+          </Link>
           <Button size="lg" variant="destructive" onClick={handleSignOut}>
             {m.auth_sign_out_action()}
           </Button>
