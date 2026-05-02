@@ -5,21 +5,20 @@ import {
   OctagonXIcon,
   Loader2Icon,
 } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import {
-  Toaster as RootToaster,
+  Toaster as Sonner,
   type ToasterProps,
   toast as baseToast,
 } from 'sonner';
 
-import { useTheme } from '~/ui/styles/theme';
-
-const toast = baseToast;
+export const toast = baseToast;
 
 function Toaster({ ...props }: ToasterProps) {
   const { theme = 'system' } = useTheme();
 
   return (
-    <RootToaster
+    <Sonner
       theme={theme as ToasterProps['theme']}
       className="toaster group"
       icons={{
@@ -40,8 +39,6 @@ function Toaster({ ...props }: ToasterProps) {
       toastOptions={{
         classNames: {
           toast: 'cn-toast',
-          title: 'text-pretty',
-          description: 'text-pretty',
         },
       }}
       {...props}
@@ -49,4 +46,4 @@ function Toaster({ ...props }: ToasterProps) {
   );
 }
 
-export { Toaster, toast };
+export { Toaster };

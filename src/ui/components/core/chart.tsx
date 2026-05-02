@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import * as RechartsPrimitive from 'recharts';
 import type { TooltipValueType } from 'recharts';
@@ -56,10 +58,11 @@ function ChartContainer({
 }) {
   const uniqueId = React.useId();
   const chartId = `chart-${id ?? uniqueId.replace(/:/g, '')}`;
-  const value = React.useMemo(() => ({ config }), [config]);
+
+  const contextValue = React.useMemo(() => ({ config }), [config]);
 
   return (
-    <ChartContext.Provider value={value}>
+    <ChartContext.Provider value={contextValue}>
       <div
         data-slot="chart"
         data-chart={chartId}
@@ -213,7 +216,8 @@ function ChartTooltipContent({
                   indicator === 'dot' && 'items-center',
                 )}
               >
-                {formatter && item.value !== undefined && item.name ? (
+                {/* oxlint-disable-next-line typescript/no-unnecessary-condition */}
+                {formatter && item?.value !== undefined && item.name ? (
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
                   <React.Fragment>

@@ -120,6 +120,7 @@ export default defineConfig({
     'jsx-a11y/aria-role': 'error',
     'jsx-a11y/aria-unsupported-elements': 'error',
     'jsx-a11y/autocomplete-valid': 'error',
+    'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/heading-has-content': 'error',
     'jsx-a11y/html-has-lang': 'error',
     'jsx-a11y/iframe-has-title': 'error',

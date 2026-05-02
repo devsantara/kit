@@ -34,7 +34,10 @@ export function FormSelect({
   const id = field.name;
   const isDisabled = fieldSet?.disabled || disabled;
 
-  function handleValueChange(value: string) {
+  function handleValueChange(value: string | null) {
+    if (value === null) {
+      return;
+    }
     field.handleChange(value);
   }
 
@@ -53,7 +56,7 @@ export function FormSelect({
       >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent position="popper">
+      <SelectContent>
         <SelectGroup>
           {options.map((option) => {
             return (

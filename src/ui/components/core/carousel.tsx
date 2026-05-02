@@ -59,6 +59,20 @@ function Carousel({
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
 
+  const contextValue = React.useMemo(
+    () => ({
+      carouselRef,
+      api,
+      opts,
+      orientation,
+      scrollPrev: () => api?.scrollPrev(),
+      scrollNext: () => api?.scrollNext(),
+      canScrollPrev,
+      canScrollNext,
+    }),
+    [carouselRef, api, opts, orientation, canScrollPrev, canScrollNext],
+  );
+
   const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return;
     setCanScrollPrev(api.canScrollPrev());
@@ -102,29 +116,6 @@ function Carousel({
     };
   }, [api, onSelect]);
 
-  const contextValue = React.useMemo(
-    () => ({
-      carouselRef,
-      api,
-      opts,
-      orientation,
-      scrollPrev,
-      scrollNext,
-      canScrollPrev,
-      canScrollNext,
-    }),
-    [
-      carouselRef,
-      api,
-      opts,
-      orientation,
-      scrollPrev,
-      scrollNext,
-      canScrollPrev,
-      canScrollNext,
-    ],
-  );
-
   return (
     <CarouselContext.Provider value={contextValue}>
       <div
@@ -153,7 +144,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
       <div
         className={cn(
           'flex',
-          orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
+          orientation === 'horizontal' ? '-ms-4' : '-mt-4 flex-col',
           className,
         )}
         {...props}
@@ -172,7 +163,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="carousel-item"
       className={cn(
         'min-w-0 shrink-0 grow-0 basis-full',
-        orientation === 'horizontal' ? 'pl-4' : 'pt-4',
+        orientation === 'horizontal' ? 'ps-4' : 'pt-4',
         className,
       )}
       {...props}
@@ -196,15 +187,15 @@ function CarouselPrevious({
       className={cn(
         'absolute touch-manipulation rounded-full',
         orientation === 'horizontal'
-          ? 'top-1/2 -left-12 -translate-y-1/2'
-          : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
+          ? '-start-12 top-1/2 -translate-y-1/2'
+          : 'start-1/2 -top-12 -translate-x-1/2 rotate-90 rtl:translate-x-1/2',
         className,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ChevronLeftIcon />
+      <ChevronLeftIcon className="rtl:rotate-180" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -226,15 +217,15 @@ function CarouselNext({
       className={cn(
         'absolute touch-manipulation rounded-full',
         orientation === 'horizontal'
-          ? 'top-1/2 -right-12 -translate-y-1/2'
-          : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
+          ? '-end-12 top-1/2 -translate-y-1/2'
+          : 'start-1/2 -bottom-12 -translate-x-1/2 rotate-90 rtl:translate-x-1/2',
         className,
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ChevronRightIcon />
+      <ChevronRightIcon className="rtl:rotate-180" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

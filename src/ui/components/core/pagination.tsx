@@ -44,59 +44,62 @@ type PaginationLinkProps = {
 function PaginationLink({
   className,
   isActive,
-  size = 'icon',
   children,
+  size = 'icon',
   ...props
 }: PaginationLinkProps) {
   return (
     <Button
-      asChild
       variant={isActive ? 'outline' : 'ghost'}
       size={size}
       className={cn(className)}
-    >
-      <a
-        aria-current={isActive ? 'page' : undefined}
-        data-slot="pagination-link"
-        data-active={isActive}
-        {...props}
-      >
-        {children}
-      </a>
-    </Button>
+      nativeButton={false}
+      render={
+        <a
+          aria-current={isActive ? 'page' : undefined}
+          data-slot="pagination-link"
+          data-active={isActive}
+          {...props}
+        >
+          {children}
+        </a>
+      }
+    />
   );
 }
 
 function PaginationPrevious({
   className,
+  text = 'Previous',
   ...props
-}: React.ComponentProps<typeof PaginationLink>) {
+}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
       size="default"
-      className={cn('pl-1.5!', className)}
+      className={cn('ps-1.5!', className)}
       {...props}
     >
-      <ChevronLeftIcon data-icon="inline-start" />
-      <span className="hidden sm:block">Previous</span>
+      <ChevronLeftIcon data-icon="inline-start" className="rtl:rotate-180" />
+      <span className="hidden sm:block">{text}</span>
     </PaginationLink>
   );
 }
 
 function PaginationNext({
   className,
+  text = 'Next',
   ...props
-}: React.ComponentProps<typeof PaginationLink>) {
+}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
   return (
     <PaginationLink
       aria-label="Go to next page"
       size="default"
-      className={cn('pr-1.5!', className)}
+      className={cn('pe-1.5!', className)}
       {...props}
     >
-      <span className="hidden sm:block">Next</span>
-      <ChevronRightIcon data-icon="inline-end" />
+      <span className="hidden sm:block">{text}</span>
+      <ChevronRightIcon data-icon="inline-end" className="rtl:rotate-180" />
     </PaginationLink>
   );
 }

@@ -2,8 +2,9 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 
 import { authClient } from '~/lib/auth/client';
 import { m } from '~/lib/i18n/messages';
-import { Button } from '~/ui/components/core/button';
+import { buttonVariants } from '~/ui/components/core/button';
 import { Skeleton } from '~/ui/components/core/skeleton';
+import { cn } from '~/ui/utils';
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -30,15 +31,19 @@ function HomePage() {
           {isPendingSession ? (
             <Skeleton className="h-9 min-w-40" />
           ) : (
-            <Button asChild size="lg" variant="default" className="min-w-40">
-              <Link to={session?.user ? '/app' : '/auth'}>
-                {!session?.user
-                  ? m.auth_get_started_action()
-                  : m.common_continue_as_name({
-                      name: String(session.user.name.split(' ')[0]),
-                    })}
-              </Link>
-            </Button>
+            <Link
+              to={session?.user ? '/app' : '/auth'}
+              className={cn(
+                buttonVariants({ variant: 'default', size: 'lg' }),
+                'min-w-40',
+              )}
+            >
+              {!session?.user
+                ? m.auth_get_started_action()
+                : m.common_continue_as_name({
+                    name: String(session.user.name.split(' ')[0]),
+                  })}
+            </Link>
           )}
         </div>
       </header>
